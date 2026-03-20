@@ -1,0 +1,26 @@
+name: CozyScreen
+options:
+  bundleIdPrefix: com.cozyscreen
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "15.0"
+  createIntermediateGroups: true
+
+targets:
+  CozyScreen:
+    type: application
+    platform: macOS
+    sources:
+      - CozyScreen
+    settings:
+      base:
+        INFOPLIST_FILE: CozyScreen/Info.plist
+        CODE_SIGN_ENTITLEMENTS: CozyScreen/CozyScreen.entitlements
+        PRODUCT_BUNDLE_IDENTIFIER: com.cozyscreen.app
+        SWIFT_VERSION: "5.9"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        PRODUCT_NAME: CozyScreen
+        GENERATE_INFOPLIST_FILE: false
+        CODE_SIGN_STYLE: Automatic
+    entitlements:
+      path: CozyScreen/CozyScreen.entitlements
