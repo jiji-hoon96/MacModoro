@@ -16,10 +16,16 @@ final class SceneCoordinator: NSObject {
         arView.scene.addAnchor(anchor)
         self.anchorEntity = anchor
 
+        setupEnvironmentMap(in: arView)
         setupCamera(in: arView)
         setupLighting(in: anchor)
         setupGroundPlane(in: anchor)
         loadCharacter(in: anchor)
+    }
+
+    private func setupEnvironmentMap(in arView: ARView) {
+        // macOS RealityKit은 번들 리소스에서만 EnvironmentResource 로딩을 지원하므로
+        // 배경은 PhotoBackgroundView에서 JPG 프리뷰 이미지로 표시
     }
 
     private func setupCamera(in arView: ARView) {

@@ -31,6 +31,9 @@
 		CEF656904759ECBA2AE153C9 /* MemoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0717416390DED071B17656 /* MemoOverlayView.swift */; };
 		EC93162F014C09DCEA539F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D165CDF7F6DF263761BC58 /* AppDelegate.swift */; };
 		FFEE0DE4D9D0D63D635714A7 /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C216843BFCA5E4EF074080EE /* AssetManager.swift */; };
+		E4D5F60718293041C5D6E7F8 /* BackgroundCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F60718293A4B5C /* BackgroundCatalog.swift */; };
+		F5E607182930415AD6E7F809 /* BackgroundDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3D4E5F6071829A3B4C5D6 /* BackgroundDownloadService.swift */; };
+		A6F7081929304152E7F80910 /* BackgroundSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E5F607182930B4C5D6E7 /* BackgroundSettingsTab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,9 @@
 		ED088F701AF0565BC1A372A9 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		F67C9625179C3503775028B1 /* ScreenSaverContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverContentView.swift; sourceTree = "<group>"; };
 		FB748EE29FBD5E5A458A135C /* CharacterSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSettingsTab.swift; sourceTree = "<group>"; };
+		B1A2C3D4E5F60718293A4B5C /* BackgroundCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCatalog.swift; sourceTree = "<group>"; };
+		C2B3D4E5F6071829A3B4C5D6 /* BackgroundDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundDownloadService.swift; sourceTree = "<group>"; };
+		D3C4E5F607182930B4C5D6E7 /* BackgroundSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSettingsTab.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -68,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A74ACF526195D0E657F5FF2D /* AssetManager */,
+				B7A80920304152630F091A2B /* BackgroundProvider */,
 				AA6D31CE03BAB67BE40ABA58 /* ShortcutService */,
 			);
 			path = Services;
@@ -76,6 +83,7 @@
 		045F64324AF85C7620B2BBE4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				D3C4E5F607182930B4C5D6E7 /* BackgroundSettingsTab.swift */,
 				FB748EE29FBD5E5A458A135C /* CharacterSettingsTab.swift */,
 				CC260E628E6181E5C5B2C3FA /* GeneralSettingsTab.swift */,
 				2F6B2E5BE9698302DE50AC91 /* MemoSettingsTab.swift */,
@@ -178,6 +186,15 @@
 				C216843BFCA5E4EF074080EE /* AssetManager.swift */,
 			);
 			path = AssetManager;
+			sourceTree = "<group>";
+		};
+		B7A80920304152630F091A2B /* BackgroundProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B1A2C3D4E5F60718293A4B5C /* BackgroundCatalog.swift */,
+				C2B3D4E5F6071829A3B4C5D6 /* BackgroundDownloadService.swift */,
+			);
+			path = BackgroundProvider;
 			sourceTree = "<group>";
 		};
 		AA6D31CE03BAB67BE40ABA58 /* ShortcutService */ = {
@@ -286,6 +303,9 @@
 				EC93162F014C09DCEA539F09 /* AppDelegate.swift in Sources */,
 				4D3A0EFCDE464C47BCD8EC72 /* AppSettings.swift in Sources */,
 				FFEE0DE4D9D0D63D635714A7 /* AssetManager.swift in Sources */,
+				E4D5F60718293041C5D6E7F8 /* BackgroundCatalog.swift in Sources */,
+				F5E607182930415AD6E7F809 /* BackgroundDownloadService.swift in Sources */,
+				A6F7081929304152E7F80910 /* BackgroundSettingsTab.swift in Sources */,
 				8C2E886B83501C1C03BEF5C3 /* CharacterAsset.swift in Sources */,
 				AD586DB3C0F9D70C1EABA384 /* CharacterBehaviorController.swift in Sources */,
 				17796974CF99444884C9A04C /* CharacterBehaviorState.swift in Sources */,

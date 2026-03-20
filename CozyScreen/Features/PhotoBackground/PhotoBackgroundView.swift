@@ -31,15 +31,13 @@ final class PhotoBackgroundViewModel: ObservableObject {
     private var timer: Timer?
 
     func startSlideshow() {
-        let settings = AppSettings.shared
-        guard let photoSet = settings.selectedPhotoSet else { return }
-
-        photoURLs = photoSet.photoURLs().filter { FileManager.default.fileExists(atPath: $0.path) }
+        collectPhotoSources()
         guard !photoURLs.isEmpty else { return }
 
         loadPhoto(at: 0)
 
-        timer = Timer.scheduledTimer(withTimeInterval: settings.photoTransitionInterval, repeats: true) { [weak self] _ in
+        let interval = AppSettings.shared.photoTransitionInterval
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
             Task { @MainActor [weak self] in
                 self?.advancePhoto()
             }
@@ -49,6 +47,36 @@ final class PhotoBackgroundViewModel: ObservableObject {
     func stopSlideshow() {
         timer?.invalidate()
         timer = nil
+    }
+
+    private func collectPhotoSources() {
+        var urls: [URL] = []
+        let settings = AppSettings.shared
+        let downloadService = BackgroundDownloadService.shared
+
+        // 1. 다운로드된 Poly Haven 배경 (선택된 것 우선)
+        if let bgID = settings.selectedBackgroundID, downloadService.isDownloaded(bgID) {
+            let previewURL = downloadService.previewURL(for: bgID)
+            if FileManager.default.fileExists(atPath: previewURL.path) {
+                urls.append(previewURL)
+            }
+        }
+
+        // 2. 다운로드된 다른 배경들도 추가
+        for pack in BackgroundCatalog.curated where downloadService.isDownloaded(pack.id) {
+            let previewURL = downloadService.previewURL(for: pack.id)
+            if FileManager.default.fileExists(atPath: previewURL.path) && !urls.contains(previewURL) {
+                urls.append(previewURL)
+            }
+        }
+
+        // 3. 사용자 사진 세트
+        if let photoSet = settings.selectedPhotoSet {
+            let setURLs = photoSet.photoURLs().filter { FileManager.default.fileExists(atPath: $0.path) }
+            urls.append(contentsOf: setURLs)
+        }
+
+        photoURLs = urls
     }
 
     private func advancePhoto() {

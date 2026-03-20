@@ -17,6 +17,7 @@ final class AppSettings: ObservableObject {
         static let photoTransitionInterval = "photoTransitionInterval"
         static let availableCharacters = "availableCharacters"
         static let photoSets = "photoSets"
+        static let selectedBackgroundID = "selectedBackgroundID"
     }
 
     @Published var shortcutKeyCode: UInt32 {
@@ -49,6 +50,10 @@ final class AppSettings: ObservableObject {
 
     @Published var photoTransitionInterval: TimeInterval {
         didSet { defaults.set(photoTransitionInterval, forKey: Keys.photoTransitionInterval) }
+    }
+
+    @Published var selectedBackgroundID: String? {
+        didSet { defaults.set(selectedBackgroundID, forKey: Keys.selectedBackgroundID) }
     }
 
     var availableCharacters: [CharacterAsset] {
@@ -115,5 +120,6 @@ final class AppSettings: ObservableObject {
         self.selectedCharacterID = d.string(forKey: Keys.selectedCharacterID)
         self.selectedPhotoSetID = d.string(forKey: Keys.selectedPhotoSetID)
         self.photoTransitionInterval = d.object(forKey: Keys.photoTransitionInterval) as? TimeInterval ?? 10.0
+        self.selectedBackgroundID = d.string(forKey: Keys.selectedBackgroundID)
     }
 }

@@ -7,19 +7,21 @@ final class AssetManager {
     let baseDirectory: URL
     let photoDirectory: URL
     let characterDirectory: URL
+    let backgroundDirectory: URL
 
     private init() {
         let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         baseDirectory = appSupport.appendingPathComponent("CozyScreen", isDirectory: true)
         photoDirectory = baseDirectory.appendingPathComponent("Photos", isDirectory: true)
         characterDirectory = baseDirectory.appendingPathComponent("Characters", isDirectory: true)
+        backgroundDirectory = baseDirectory.appendingPathComponent("Backgrounds", isDirectory: true)
 
         createDirectoriesIfNeeded()
     }
 
     private func createDirectoriesIfNeeded() {
         let fm = FileManager.default
-        for dir in [baseDirectory, photoDirectory, characterDirectory] {
+        for dir in [baseDirectory, photoDirectory, characterDirectory, backgroundDirectory] {
             if !fm.fileExists(atPath: dir.path) {
                 try? fm.createDirectory(at: dir, withIntermediateDirectories: true)
             }
