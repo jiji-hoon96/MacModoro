@@ -60,19 +60,28 @@ struct BackgroundPackRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            AsyncImage(url: isDownloaded ? downloadService.previewURL(for: pack.id) : pack.previewURL) { phase in
-                switch phase {
-                case .success(let image):
-                    image
+            Group {
+                if isDownloaded, let nsImage = NSImage(contentsOf: downloadService.localURL(for: pack.id)) {
+                    Image(nsImage: nsImage)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 80, height: 45)
                         .cornerRadius(6)
                         .clipped()
-                case .failure:
-                    previewPlaceholder
-                default:
-                    previewPlaceholder
+                } else {
+                    AsyncImage(url: pack.previewURL) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 80, height: 45)
+                                .cornerRadius(6)
+                                .clipped()
+                        default:
+                            previewPlaceholder
+                        }
+                    }
                 }
             }
 

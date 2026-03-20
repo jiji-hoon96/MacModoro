@@ -5,15 +5,7 @@ import SwiftData
 struct CozyScreenApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([MemoItem.self])
-        let config = ModelConfiguration(isStoredInMemoryOnly: false)
-        do {
-            return try ModelContainer(for: schema, configurations: [config])
-        } catch {
-            fatalError("Failed to create ModelContainer: \(error)")
-        }
-    }()
+    let sharedModelContainer: ModelContainer = SharedModelContainer.shared
 
     var body: some Scene {
         Settings {
@@ -26,4 +18,16 @@ struct CozyScreenApp: App {
                 .modelContainer(sharedModelContainer)
         }
     }
+}
+
+enum SharedModelContainer {
+    static let shared: ModelContainer = {
+        let schema = Schema([MemoItem.self])
+        let config = ModelConfiguration(isStoredInMemoryOnly: false)
+        do {
+            return try ModelContainer(for: schema, configurations: [config])
+        } catch {
+            fatalError("Failed to create ModelContainer: \(error)")
+        }
+    }()
 }

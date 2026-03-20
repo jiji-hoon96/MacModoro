@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import SwiftData
 
 final class ScreenSaverController: ObservableObject {
     static let shared = ScreenSaverController()
@@ -27,16 +28,18 @@ final class ScreenSaverController: ObservableObject {
         let screen = NSScreen.main ?? NSScreen.screens.first!
         let window = ScreenSaverWindow(screen: screen)
 
-        let hostView = NSHostingView(
-            rootView: ScreenSaverContentView(onExit: { [weak self] in
-                self?.deactivate()
-            })
-        )
+        let contentView = ScreenSaverContentView(onExit: { [weak self] in
+            self?.deactivate()
+        })
+        .modelContainer(SharedModelContainer.shared)
+
+        let hostView = NSHostingView(rootView: contentView)
         window.contentView = hostView
         window.makeKeyAndOrderFront(nil)
 
         windows.append(window)
         NSCursor.hide()
+        NSApp.activate(ignoringOtherApps: true)
         setupEventMonitors()
     }
 

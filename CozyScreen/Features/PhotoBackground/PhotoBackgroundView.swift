@@ -32,8 +32,13 @@ final class PhotoBackgroundViewModel: ObservableObject {
 
     func startSlideshow() {
         collectPhotoSources()
-        guard !photoURLs.isEmpty else { return }
 
+        guard !photoURLs.isEmpty else {
+            print("[PhotoBackground] No photo sources found")
+            return
+        }
+
+        print("[PhotoBackground] Found \(photoURLs.count) photos")
         loadPhoto(at: 0)
 
         let interval = AppSettings.shared.photoTransitionInterval
@@ -53,26 +58,30 @@ final class PhotoBackgroundViewModel: ObservableObject {
         var urls: [URL] = []
         let settings = AppSettings.shared
         let downloadService = BackgroundDownloadService.shared
+        let fm = FileManager.default
 
-        // 1. 다운로드된 Poly Haven 배경 (선택된 것 우선)
-        if let bgID = settings.selectedBackgroundID, downloadService.isDownloaded(bgID) {
-            let previewURL = downloadService.previewURL(for: bgID)
-            if FileManager.default.fileExists(atPath: previewURL.path) {
-                urls.append(previewURL)
+        // 1. 선택된 Poly Haven 배경
+        if let bgID = settings.selectedBackgroundID {
+            let localURL = downloadService.localURL(for: bgID)
+            if fm.fileExists(atPath: localURL.path(percentEncoded: false)) {
+                urls.append(localURL)
+                print("[PhotoBackground] Selected background: \(localURL.lastPathComponent)")
+            } else {
+                print("[PhotoBackground] Selected background file not found: \(localURL.path(percentEncoded: false))")
             }
         }
 
-        // 2. 다운로드된 다른 배경들도 추가
+        // 2. 다운로드된 다른 배경들도 슬라이드쇼에 추가
         for pack in BackgroundCatalog.curated where downloadService.isDownloaded(pack.id) {
-            let previewURL = downloadService.previewURL(for: pack.id)
-            if FileManager.default.fileExists(atPath: previewURL.path) && !urls.contains(previewURL) {
-                urls.append(previewURL)
+            let localURL = downloadService.localURL(for: pack.id)
+            if fm.fileExists(atPath: localURL.path(percentEncoded: false)) && !urls.contains(localURL) {
+                urls.append(localURL)
             }
         }
 
         // 3. 사용자 사진 세트
         if let photoSet = settings.selectedPhotoSet {
-            let setURLs = photoSet.photoURLs().filter { FileManager.default.fileExists(atPath: $0.path) }
+            let setURLs = photoSet.photoURLs().filter { fm.fileExists(atPath: $0.path(percentEncoded: false)) }
             urls.append(contentsOf: setURLs)
         }
 
@@ -87,6 +96,17 @@ final class PhotoBackgroundViewModel: ObservableObject {
 
     private func loadPhoto(at index: Int) {
         guard index < photoURLs.count else { return }
-        currentImage = NSImage(contentsOf: photoURLs[index])
+        let url = photoURLs[index]
+
+        if let image = NSImage(contentsOf: url) {
+            currentImage = image
+        } else {
+            // file URL path로 직접 시도
+            let image = NSImage(contentsOfFile: url.path(percentEncoded: false))
+            currentImage = image
+            if image == nil {
+                print("[PhotoBackground] Failed to load: \(url.path(percentEncoded: false))")
+            }
+        }
     }
 }
