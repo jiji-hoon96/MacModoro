@@ -11,37 +11,35 @@
 		0A7F822C069DD7EE3D65CCF7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFA74BBF0C5F200A3EA99D2 /* SettingsView.swift */; };
 		0F7B51E106ABC29DADD3544E /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A082E83203C5D3093F35050E /* PermissionManager.swift */; };
 		1647F33EA6137401153B4F91 /* ScreenSaverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4AD8F014277FF3DF2ABB01 /* ScreenSaverController.swift */; };
-		17796974CF99444884C9A04C /* CharacterBehaviorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFFFE08D7B1B241C6D81AB6 /* CharacterBehaviorState.swift */; };
-		2761BBD39BB2AF6BFE8B8B10 /* Scene3DContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A01F19008E3381221F00262 /* Scene3DContainerView.swift */; };
 		299AC1C4B37AB6ED8EAA2445 /* CozyScreenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF5BA0223919D3CF146CA6C /* CozyScreenApp.swift */; };
 		3AB2328A62E47683727BFF7B /* GeneralSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC260E628E6181E5C5B2C3FA /* GeneralSettingsTab.swift */; };
 		4D3A0EFCDE464C47BCD8EC72 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED088F701AF0565BC1A372A9 /* AppSettings.swift */; };
 		4FCF1631E0008349EAD27E04 /* ScreenSaverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B85E4BCC387C3C066B3B436 /* ScreenSaverWindow.swift */; };
-		5C1F0B55E36E839973A63844 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2736F2F0D33D0D8A938C636D /* SceneCoordinator.swift */; };
 		6BD26B7D94843D8CF353B2FA /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0258E429A2FA31504A9410F /* MenuBarView.swift */; };
 		6D434A063392ED23E014CF6C /* MemoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7AFB0ECE42E0B6ED36E41 /* MemoItem.swift */; };
 		6D854E2511C0A2FDB14800D4 /* GlobalShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B7C76489AD59DCA6745D2F /* GlobalShortcutService.swift */; };
 		73116395B6D8404F335198D4 /* PhotoSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BAD56E1D3704DB4818EE33 /* PhotoSettingsTab.swift */; };
 		7848C73E6F0A23B86D62F1B0 /* PhotoSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E081EBE4101FF68C27D40E /* PhotoSet.swift */; };
-		7D032C80D16F87BC29628015 /* CharacterSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB748EE29FBD5E5A458A135C /* CharacterSettingsTab.swift */; };
-		8C2E886B83501C1C03BEF5C3 /* CharacterAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DAC9F95695E7F5F0AA6D32 /* CharacterAsset.swift */; };
 		A5506139DBA2A89ED05EDA3E /* PhotoBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C93FC516D072853D9F5233 /* PhotoBackgroundView.swift */; };
-		AD586DB3C0F9D70C1EABA384 /* CharacterBehaviorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35543CA1BD3AF11A969331AC /* CharacterBehaviorController.swift */; };
 		C9E9C69F72E689E6D8726268 /* ScreenSaverContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67C9625179C3503775028B1 /* ScreenSaverContentView.swift */; };
 		CEF656904759ECBA2AE153C9 /* MemoOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0717416390DED071B17656 /* MemoOverlayView.swift */; };
 		EC93162F014C09DCEA539F09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D165CDF7F6DF263761BC58 /* AppDelegate.swift */; };
 		FFEE0DE4D9D0D63D635714A7 /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C216843BFCA5E4EF074080EE /* AssetManager.swift */; };
-		E4D5F60718293041C5D6E7F8 /* BackgroundCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2C3D4E5F60718293A4B5C /* BackgroundCatalog.swift */; };
-		F5E607182930415AD6E7F809 /* BackgroundDownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3D4E5F6071829A3B4C5D6 /* BackgroundDownloadService.swift */; };
-		A6F7081929304152E7F80910 /* BackgroundSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4E5F607182930B4C5D6E7 /* BackgroundSettingsTab.swift */; };
+		BB11223344556677889900A1 /* WidgetOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A1 /* WidgetOverlayView.swift */; };
+		BB11223344556677889900A2 /* WidgetCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A2 /* WidgetCardModifier.swift */; };
+		BB11223344556677889900A3 /* ClockWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A3 /* ClockWidgetView.swift */; };
+		BB11223344556677889900A4 /* MemoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A4 /* MemoWidgetView.swift */; };
+		BB11223344556677889900A5 /* RemindersWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A5 /* RemindersWidgetView.swift */; };
+		BB11223344556677889900A6 /* CalendarWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A6 /* CalendarWidgetView.swift */; };
+		BB11223344556677889900A7 /* NowPlayingWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A7 /* NowPlayingWidgetView.swift */; };
+		BB11223344556677889900A8 /* WidgetSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A8 /* WidgetSettingsTab.swift */; };
+		BB11223344556677889900A9 /* EventKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900A9 /* EventKitService.swift */; };
+		BB11223344556677889900B0 /* NowPlayingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11223344556677889900B0 /* NowPlayingService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A01F19008E3381221F00262 /* Scene3DContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene3DContainerView.swift; sourceTree = "<group>"; };
 		21E081EBE4101FF68C27D40E /* PhotoSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSet.swift; sourceTree = "<group>"; };
-		2736F2F0D33D0D8A938C636D /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		2F6B2E5BE9698302DE50AC91 /* MemoSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoSettingsTab.swift; sourceTree = "<group>"; };
-		35543CA1BD3AF11A969331AC /* CharacterBehaviorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterBehaviorController.swift; sourceTree = "<group>"; };
 		3B85E4BCC387C3C066B3B436 /* ScreenSaverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWindow.swift; sourceTree = "<group>"; };
 		59C93FC516D072853D9F5233 /* PhotoBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBackgroundView.swift; sourceTree = "<group>"; };
 		63BAD56E1D3704DB4818EE33 /* PhotoSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSettingsTab.swift; sourceTree = "<group>"; };
@@ -50,7 +48,6 @@
 		6EF5BA0223919D3CF146CA6C /* CozyScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CozyScreenApp.swift; sourceTree = "<group>"; };
 		8BD7AFB0ECE42E0B6ED36E41 /* MemoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoItem.swift; sourceTree = "<group>"; };
 		8DFA74BBF0C5F200A3EA99D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		8DFFFE08D7B1B241C6D81AB6 /* CharacterBehaviorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterBehaviorState.swift; sourceTree = "<group>"; };
 		8E60ED0364739F6DDDE11DF9 /* CozyScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CozyScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0258E429A2FA31504A9410F /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		A082E83203C5D3093F35050E /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
@@ -60,13 +57,18 @@
 		DC58C6F82C274F22B5C4BE32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DE4AD8F014277FF3DF2ABB01 /* ScreenSaverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverController.swift; sourceTree = "<group>"; };
 		DF0717416390DED071B17656 /* MemoOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoOverlayView.swift; sourceTree = "<group>"; };
-		E5DAC9F95695E7F5F0AA6D32 /* CharacterAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAsset.swift; sourceTree = "<group>"; };
 		ED088F701AF0565BC1A372A9 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		F67C9625179C3503775028B1 /* ScreenSaverContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverContentView.swift; sourceTree = "<group>"; };
-		FB748EE29FBD5E5A458A135C /* CharacterSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSettingsTab.swift; sourceTree = "<group>"; };
-		B1A2C3D4E5F60718293A4B5C /* BackgroundCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCatalog.swift; sourceTree = "<group>"; };
-		C2B3D4E5F6071829A3B4C5D6 /* BackgroundDownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundDownloadService.swift; sourceTree = "<group>"; };
-		D3C4E5F607182930B4C5D6E7 /* BackgroundSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSettingsTab.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A1 /* WidgetOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetOverlayView.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A2 /* WidgetCardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCardModifier.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A3 /* ClockWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWidgetView.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A4 /* MemoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoWidgetView.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A5 /* RemindersWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersWidgetView.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A6 /* CalendarWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWidgetView.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A7 /* NowPlayingWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingWidgetView.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A8 /* WidgetSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSettingsTab.swift; sourceTree = "<group>"; };
+		AA11223344556677889900A9 /* EventKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitService.swift; sourceTree = "<group>"; };
+		AA11223344556677889900B0 /* NowPlayingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -74,7 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				A74ACF526195D0E657F5FF2D /* AssetManager */,
-				B7A80920304152630F091A2B /* BackgroundProvider */,
+				CC11223344556677889900A2 /* EventKitService */,
+				CC11223344556677889900A3 /* NowPlayingService */,
 				AA6D31CE03BAB67BE40ABA58 /* ShortcutService */,
 			);
 			path = Services;
@@ -83,12 +86,11 @@
 		045F64324AF85C7620B2BBE4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D3C4E5F607182930B4C5D6E7 /* BackgroundSettingsTab.swift */,
-				FB748EE29FBD5E5A458A135C /* CharacterSettingsTab.swift */,
 				CC260E628E6181E5C5B2C3FA /* GeneralSettingsTab.swift */,
 				2F6B2E5BE9698302DE50AC91 /* MemoSettingsTab.swift */,
 				63BAD56E1D3704DB4818EE33 /* PhotoSettingsTab.swift */,
 				8DFA74BBF0C5F200A3EA99D2 /* SettingsView.swift */,
+				AA11223344556677889900A8 /* WidgetSettingsTab.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -104,8 +106,6 @@
 		38C9BBDD6C0D72D4DF1FD92B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E5DAC9F95695E7F5F0AA6D32 /* CharacterAsset.swift */,
-				8DFFFE08D7B1B241C6D81AB6 /* CharacterBehaviorState.swift */,
 				8BD7AFB0ECE42E0B6ED36E41 /* MemoItem.swift */,
 				21E081EBE4101FF68C27D40E /* PhotoSet.swift */,
 			);
@@ -117,9 +117,9 @@
 			children = (
 				2FDC96C371E4830B2AD1CBFF /* Memo */,
 				DDE287D9F9ACA4ED1A0A96DA /* PhotoBackground */,
-				9DD00E890F2CBD2DE109603B /* Scene3D */,
 				79AF31F1CA90CF220FA54CAD /* ScreenSaver */,
 				045F64324AF85C7620B2BBE4 /* Settings */,
+				CC11223344556677889900A1 /* Widgets */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -170,14 +170,18 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		9DD00E890F2CBD2DE109603B /* Scene3D */ = {
+		CC11223344556677889900A1 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				35543CA1BD3AF11A969331AC /* CharacterBehaviorController.swift */,
-				1A01F19008E3381221F00262 /* Scene3DContainerView.swift */,
-				2736F2F0D33D0D8A938C636D /* SceneCoordinator.swift */,
+				AA11223344556677889900A6 /* CalendarWidgetView.swift */,
+				AA11223344556677889900A3 /* ClockWidgetView.swift */,
+				AA11223344556677889900A4 /* MemoWidgetView.swift */,
+				AA11223344556677889900A7 /* NowPlayingWidgetView.swift */,
+				AA11223344556677889900A5 /* RemindersWidgetView.swift */,
+				AA11223344556677889900A2 /* WidgetCardModifier.swift */,
+				AA11223344556677889900A1 /* WidgetOverlayView.swift */,
 			);
-			path = Scene3D;
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		A74ACF526195D0E657F5FF2D /* AssetManager */ = {
@@ -188,13 +192,20 @@
 			path = AssetManager;
 			sourceTree = "<group>";
 		};
-		B7A80920304152630F091A2B /* BackgroundProvider */ = {
+		CC11223344556677889900A2 /* EventKitService */ = {
 			isa = PBXGroup;
 			children = (
-				B1A2C3D4E5F60718293A4B5C /* BackgroundCatalog.swift */,
-				C2B3D4E5F6071829A3B4C5D6 /* BackgroundDownloadService.swift */,
+				AA11223344556677889900A9 /* EventKitService.swift */,
 			);
-			path = BackgroundProvider;
+			path = EventKitService;
+			sourceTree = "<group>";
+		};
+		CC11223344556677889900A3 /* NowPlayingService */ = {
+			isa = PBXGroup;
+			children = (
+				AA11223344556677889900B0 /* NowPlayingService.swift */,
+			);
+			path = NowPlayingService;
 			sourceTree = "<group>";
 		};
 		AA6D31CE03BAB67BE40ABA58 /* ShortcutService */ = {
@@ -303,30 +314,31 @@
 				EC93162F014C09DCEA539F09 /* AppDelegate.swift in Sources */,
 				4D3A0EFCDE464C47BCD8EC72 /* AppSettings.swift in Sources */,
 				FFEE0DE4D9D0D63D635714A7 /* AssetManager.swift in Sources */,
-				E4D5F60718293041C5D6E7F8 /* BackgroundCatalog.swift in Sources */,
-				F5E607182930415AD6E7F809 /* BackgroundDownloadService.swift in Sources */,
-				A6F7081929304152E7F80910 /* BackgroundSettingsTab.swift in Sources */,
-				8C2E886B83501C1C03BEF5C3 /* CharacterAsset.swift in Sources */,
-				AD586DB3C0F9D70C1EABA384 /* CharacterBehaviorController.swift in Sources */,
-				17796974CF99444884C9A04C /* CharacterBehaviorState.swift in Sources */,
-				7D032C80D16F87BC29628015 /* CharacterSettingsTab.swift in Sources */,
+				BB11223344556677889900A6 /* CalendarWidgetView.swift in Sources */,
+				BB11223344556677889900A3 /* ClockWidgetView.swift in Sources */,
 				299AC1C4B37AB6ED8EAA2445 /* CozyScreenApp.swift in Sources */,
+				BB11223344556677889900A9 /* EventKitService.swift in Sources */,
 				3AB2328A62E47683727BFF7B /* GeneralSettingsTab.swift in Sources */,
 				6D854E2511C0A2FDB14800D4 /* GlobalShortcutService.swift in Sources */,
 				6D434A063392ED23E014CF6C /* MemoItem.swift in Sources */,
 				CEF656904759ECBA2AE153C9 /* MemoOverlayView.swift in Sources */,
 				04C3708E52D3A6192A8D3E99 /* MemoSettingsTab.swift in Sources */,
+				BB11223344556677889900A4 /* MemoWidgetView.swift in Sources */,
 				6BD26B7D94843D8CF353B2FA /* MenuBarView.swift in Sources */,
+				BB11223344556677889900B0 /* NowPlayingService.swift in Sources */,
+				BB11223344556677889900A7 /* NowPlayingWidgetView.swift in Sources */,
 				0F7B51E106ABC29DADD3544E /* PermissionManager.swift in Sources */,
 				A5506139DBA2A89ED05EDA3E /* PhotoBackgroundView.swift in Sources */,
 				7848C73E6F0A23B86D62F1B0 /* PhotoSet.swift in Sources */,
 				73116395B6D8404F335198D4 /* PhotoSettingsTab.swift in Sources */,
-				2761BBD39BB2AF6BFE8B8B10 /* Scene3DContainerView.swift in Sources */,
-				5C1F0B55E36E839973A63844 /* SceneCoordinator.swift in Sources */,
+				BB11223344556677889900A5 /* RemindersWidgetView.swift in Sources */,
 				C9E9C69F72E689E6D8726268 /* ScreenSaverContentView.swift in Sources */,
 				1647F33EA6137401153B4F91 /* ScreenSaverController.swift in Sources */,
 				4FCF1631E0008349EAD27E04 /* ScreenSaverWindow.swift in Sources */,
 				0A7F822C069DD7EE3D65CCF7 /* SettingsView.swift in Sources */,
+				BB11223344556677889900A2 /* WidgetCardModifier.swift in Sources */,
+				BB11223344556677889900A1 /* WidgetOverlayView.swift in Sources */,
+				BB11223344556677889900A8 /* WidgetSettingsTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,52 +3,29 @@ import Carbon.HIToolbox
 
 struct GeneralSettingsTab: View {
     @StateObject private var settings = AppSettings.shared
-    @StateObject private var permissions = PermissionManager.shared
-    @State private var isRecordingShortcut = false
 
     var body: some View {
         Form {
-            Section("권한") {
-                HStack {
-                    Image(systemName: permissions.isAccessibilityGranted ? "checkmark.circle.fill" : "xmark.circle.fill")
-                        .foregroundColor(permissions.isAccessibilityGranted ? .green : .red)
-                    Text("접근성 권한")
-                    Spacer()
-                    if !permissions.isAccessibilityGranted {
-                        Button("권한 요청") {
-                            permissions.requestAccessibility()
-                        }
-                    } else {
-                        Text("허용됨")
-                            .foregroundColor(.secondary)
-                    }
-                }
-            }
-
             Section("단축키") {
                 HStack {
-                    Text("활성화 단축키")
+                    Text("스크린세이버 활성화")
                     Spacer()
-                    Button(isRecordingShortcut ? "키 입력 대기 중..." : shortcutDisplayString) {
-                        isRecordingShortcut.toggle()
-                    }
-                    .onKeyPress { press in
-                        guard isRecordingShortcut else { return .ignored }
-                        // SwiftUI onKeyPress is limited; full implementation requires NSEvent
-                        isRecordingShortcut = false
-                        return .handled
-                    }
+                    Text(shortcutDisplayString)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(.quaternary)
+                        .cornerRadius(6)
                 }
             }
 
             Section("종료 방식") {
-                Toggle("ESC 키로 종료", isOn: .constant(true))
+                Toggle("ESC 키로 종료 (항상 활성)", isOn: .constant(true))
                     .disabled(true)
                 Toggle("마우스 이동 시 종료", isOn: $settings.exitOnMouseMove)
                 Toggle("아무 키 입력 시 종료", isOn: $settings.exitOnKeyPress)
             }
 
-            Section("배경") {
+            Section("배경 사진") {
                 HStack {
                     Text("사진 전환 간격")
                     Spacer()
@@ -57,13 +34,10 @@ struct GeneralSettingsTab: View {
                         Text("10초").tag(TimeInterval(10))
                         Text("30초").tag(TimeInterval(30))
                         Text("1분").tag(TimeInterval(60))
+                        Text("5분").tag(TimeInterval(300))
                     }
                     .frame(width: 100)
                 }
-            }
-
-            Section("오버레이") {
-                Toggle("메모 오버레이 표시", isOn: $settings.showMemoOverlay)
             }
         }
         .formStyle(.grouped)

@@ -6,22 +6,18 @@ final class AssetManager {
 
     let baseDirectory: URL
     let photoDirectory: URL
-    let characterDirectory: URL
-    let backgroundDirectory: URL
 
     private init() {
         let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         baseDirectory = appSupport.appendingPathComponent("CozyScreen", isDirectory: true)
         photoDirectory = baseDirectory.appendingPathComponent("Photos", isDirectory: true)
-        characterDirectory = baseDirectory.appendingPathComponent("Characters", isDirectory: true)
-        backgroundDirectory = baseDirectory.appendingPathComponent("Backgrounds", isDirectory: true)
 
         createDirectoriesIfNeeded()
     }
 
     private func createDirectoriesIfNeeded() {
         let fm = FileManager.default
-        for dir in [baseDirectory, photoDirectory, characterDirectory, backgroundDirectory] {
+        for dir in [baseDirectory, photoDirectory] {
             if !fm.fileExists(atPath: dir.path) {
                 try? fm.createDirectory(at: dir, withIntermediateDirectories: true)
             }
@@ -48,28 +44,8 @@ final class AssetManager {
         return fileNames
     }
 
-    func importCharacter(from url: URL) -> String? {
-        guard url.startAccessingSecurityScopedResource() else { return nil }
-        defer { url.stopAccessingSecurityScopedResource() }
-
-        let uniqueName = "\(UUID().uuidString)_\(url.lastPathComponent)"
-        let dest = characterDirectory.appendingPathComponent(uniqueName)
-        do {
-            try FileManager.default.copyItem(at: url, to: dest)
-            return uniqueName
-        } catch {
-            print("Failed to import character: \(error)")
-            return nil
-        }
-    }
-
     func deletePhoto(named fileName: String) {
         let url = photoDirectory.appendingPathComponent(fileName)
-        try? FileManager.default.removeItem(at: url)
-    }
-
-    func deleteCharacter(named fileName: String) {
-        let url = characterDirectory.appendingPathComponent(fileName)
         try? FileManager.default.removeItem(at: url)
     }
 
