@@ -116,7 +116,7 @@ final class AppSettings: ObservableObject {
 
         self.exitOnMouseMove = d.object(forKey: Keys.exitOnMouseMove) as? Bool ?? false
         self.exitOnKeyPress = d.object(forKey: Keys.exitOnKeyPress) as? Bool ?? true
-        self.showMemoOverlay = d.object(forKey: Keys.showMemoOverlay) as? Bool ?? false
+        self.showMemoOverlay = d.object(forKey: Keys.showMemoOverlay) as? Bool ?? true
         self.selectedCharacterID = d.string(forKey: Keys.selectedCharacterID)
         self.selectedPhotoSetID = d.string(forKey: Keys.selectedPhotoSetID)
         self.photoTransitionInterval = d.object(forKey: Keys.photoTransitionInterval) as? TimeInterval ?? 10.0

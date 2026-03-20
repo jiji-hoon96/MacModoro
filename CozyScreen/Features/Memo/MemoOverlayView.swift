@@ -5,38 +5,41 @@ struct MemoOverlayView: View {
     @Query(sort: \MemoItem.createdAt, order: .reverse) private var memos: [MemoItem]
 
     var body: some View {
-        HStack {
-            Spacer()
+        VStack {
+            Spacer().frame(height: 60)
 
-            VStack(alignment: .leading, spacing: 8) {
-                Text("메모")
-                    .font(.headline)
-                    .foregroundColor(.white)
+            HStack {
+                Spacer()
 
-                ScrollView {
-                    LazyVStack(alignment: .leading, spacing: 6) {
-                        ForEach(memos) { memo in
-                            MemoOverlayRow(memo: memo)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("메모")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.white)
+
+                    Divider()
+                        .background(Color.white.opacity(0.3))
+
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 6) {
+                            ForEach(memos) { memo in
+                                MemoOverlayRow(memo: memo)
+                            }
                         }
                     }
                 }
-
-                if memos.isEmpty {
-                    Text("메모가 없습니다")
-                        .foregroundColor(.white.opacity(0.5))
-                        .font(.caption)
-                }
+                .padding(16)
+                .frame(width: 280, height: min(CGFloat(memos.count * 50 + 80), 400))
+                .background(Color.black.opacity(0.7))
+                .cornerRadius(16)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                )
+                .padding(.trailing, 24)
             }
-            .padding()
-            .frame(width: 280, height: 400)
-            .background(.ultraThinMaterial.opacity(0.8))
-            .cornerRadius(16)
-            .padding(.trailing, 24)
-            .padding(.top, 60)
 
-            Spacer().frame(width: 0)
+            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
     }
 }
 
@@ -53,12 +56,12 @@ struct MemoOverlayRow: View {
                 Text(memo.title)
                     .foregroundColor(.white)
                     .strikethrough(memo.isCompleted)
-                    .font(.body)
+                    .font(.system(size: 14))
 
                 if !memo.content.isEmpty {
                     Text(memo.content)
                         .foregroundColor(.white.opacity(0.6))
-                        .font(.caption)
+                        .font(.system(size: 12))
                         .lineLimit(2)
                 }
             }

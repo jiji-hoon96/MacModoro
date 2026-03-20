@@ -1,22 +1,20 @@
 import SwiftUI
+import SwiftData
 
 struct ScreenSaverContentView: View {
     let onExit: () -> Void
     @StateObject private var settings = AppSettings.shared
+    @Query(sort: \MemoItem.createdAt, order: .reverse) private var memos: [MemoItem]
 
     var body: some View {
         ZStack {
-            // 최하단: 사진 배경
             PhotoBackgroundView()
 
-            // 중간: 3D 씬 (투명 배경)
             Scene3DContainerView()
                 .allowsHitTesting(false)
 
-            // 최상단: 메모 오버레이
-            if settings.showMemoOverlay {
+            if settings.showMemoOverlay && !memos.isEmpty {
                 MemoOverlayView()
-                    .transition(.move(edge: .trailing))
                     .allowsHitTesting(false)
             }
         }
