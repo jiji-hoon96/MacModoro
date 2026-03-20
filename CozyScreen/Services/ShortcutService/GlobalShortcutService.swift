@@ -4,73 +4,56 @@ import AppKit
 final class GlobalShortcutService {
     static let shared = GlobalShortcutService()
 
-    private var eventTap: CFMachPort?
-    private var runLoopSource: CFRunLoopSource?
-    private let settings = AppSettings.shared
+    private var hotKeyRef: EventHotKeyRef?
+    private var eventHandlerRef: EventHandlerRef?
+    private let hotKeyID = EventHotKeyID(signature: OSType(0x435A5343), id: 1) // "CZSC"
 
     private init() {}
 
     func register() {
-        guard PermissionManager.shared.isAccessibilityGranted else {
-            PermissionManager.shared.requestAccessibility()
-            return
-        }
-
         unregister()
 
-        let eventMask: CGEventMask = (1 << CGEventType.keyDown.rawValue)
+        let settings = AppSettings.shared
+        let keyCode = settings.shortcutKeyCode
+        let modifiers = settings.shortcutModifiers
 
-        eventTap = CGEvent.tapCreate(
-            tap: .cgSessionEventTap,
-            place: .headInsertEventTap,
-            options: .defaultTap,
-            eventsOfInterest: eventMask,
-            callback: { (proxy, type, event, refcon) -> Unmanaged<CGEvent>? in
-                guard type == .keyDown else { return Unmanaged.passRetained(event) }
+        var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
 
-                let service = GlobalShortcutService.shared
-                let keyCode = UInt32(event.getIntegerValueField(.keyboardEventKeycode))
-                let flags = event.flags
+        let handler: EventHandlerUPP = { _, event, _ -> OSStatus in
+            DispatchQueue.main.async {
+                ScreenSaverController.shared.toggle()
+            }
+            return noErr
+        }
 
-                let expectedKey = service.settings.shortcutKeyCode
-                let expectedMods = service.settings.shortcutModifiers
-
-                var currentMods: UInt32 = 0
-                if flags.contains(.maskCommand) { currentMods |= UInt32(cmdKey) }
-                if flags.contains(.maskShift) { currentMods |= UInt32(shiftKey) }
-                if flags.contains(.maskAlternate) { currentMods |= UInt32(optionKey) }
-                if flags.contains(.maskControl) { currentMods |= UInt32(controlKey) }
-
-                if keyCode == expectedKey && currentMods == expectedMods {
-                    DispatchQueue.main.async {
-                        ScreenSaverController.shared.toggle()
-                    }
-                    return nil
-                }
-
-                return Unmanaged.passRetained(event)
-            },
-            userInfo: nil
+        InstallEventHandler(
+            GetApplicationEventTarget(),
+            handler,
+            1,
+            &eventType,
+            nil,
+            &eventHandlerRef
         )
 
-        guard let eventTap else { return }
-
-        runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
-
-        if let source = runLoopSource {
-            CFRunLoopAddSource(CFRunLoopGetCurrent(), source, .commonModes)
-            CGEvent.tapEnable(tap: eventTap, enable: true)
-        }
+        var hotKeyIDVar = hotKeyID
+        RegisterEventHotKey(
+            keyCode,
+            modifiers,
+            hotKeyIDVar,
+            GetApplicationEventTarget(),
+            0,
+            &hotKeyRef
+        )
     }
 
     func unregister() {
-        if let source = runLoopSource {
-            CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, .commonModes)
+        if let ref = hotKeyRef {
+            UnregisterEventHotKey(ref)
+            hotKeyRef = nil
         }
-        if let tap = eventTap {
-            CGEvent.tapEnable(tap: tap, enable: false)
+        if let ref = eventHandlerRef {
+            RemoveEventHandler(ref)
+            eventHandlerRef = nil
         }
-        eventTap = nil
-        runLoopSource = nil
     }
 }

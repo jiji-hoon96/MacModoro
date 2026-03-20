@@ -1,36 +1,15 @@
 import AppKit
-import ApplicationServices
 
 final class PermissionManager: ObservableObject {
     static let shared = PermissionManager()
 
-    @Published var isAccessibilityGranted: Bool = false
+    // Carbon RegisterEventHotKey는 접근성 권한이 필요 없음
+    // 향후 CGEvent 기반 기능 추가 시 권한 체크 활성화
+    @Published var isAccessibilityGranted: Bool = true
 
-    private init() {
-        checkAccessibility()
-    }
-
-    func checkAccessibility() {
-        isAccessibilityGranted = AXIsProcessTrusted()
-    }
+    private init() {}
 
     func requestAccessibility() {
-        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary
-        let trusted = AXIsProcessTrustedWithOptions(options)
-        isAccessibilityGranted = trusted
-
-        if !trusted {
-            startPollingForPermission()
-        }
-    }
-
-    private func startPollingForPermission() {
-        Task { @MainActor in
-            while !isAccessibilityGranted {
-                try? await Task.sleep(for: .seconds(2))
-                checkAccessibility()
-            }
-            GlobalShortcutService.shared.register()
-        }
+        // no-op: Carbon HotKey는 권한 불필요
     }
 }
