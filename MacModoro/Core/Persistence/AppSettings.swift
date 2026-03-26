@@ -15,6 +15,7 @@ final class AppSettings: ObservableObject {
         static let selectedAnimationTheme = "selectedAnimationTheme"
         static let animationSpeed = "animationSpeed"
         static let playCompletionSound = "playCompletionSound"
+        static let enableDistractionDetection = "enableDistractionDetection"
     }
 
     // MARK: - Timer
@@ -43,6 +44,11 @@ final class AppSettings: ObservableObject {
         didSet { defaults.set(playCompletionSound, forKey: Keys.playCompletionSound) }
     }
 
+    // MARK: - Distraction
+    @Published var enableDistractionDetection: Bool {
+        didSet { defaults.set(enableDistractionDetection, forKey: Keys.enableDistractionDetection) }
+    }
+
     // MARK: - Animation
     @Published var selectedAnimationTheme: String {
         didSet { defaults.set(selectedAnimationTheme, forKey: Keys.selectedAnimationTheme) }
@@ -65,6 +71,7 @@ final class AppSettings: ObservableObject {
         self.showRemainingTimeInMenuBar = d.object(forKey: Keys.showRemainingTimeInMenuBar) as? Bool ?? false
         self.enableScreenFlash = d.object(forKey: Keys.enableScreenFlash) as? Bool ?? true
         self.playCompletionSound = d.object(forKey: Keys.playCompletionSound) as? Bool ?? true
+        self.enableDistractionDetection = d.object(forKey: Keys.enableDistractionDetection) as? Bool ?? true
         self.selectedAnimationTheme = d.string(forKey: Keys.selectedAnimationTheme) ?? "cat"
         self.animationSpeed = d.object(forKey: Keys.animationSpeed) as? Double ?? 0.2
     }

@@ -10,6 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var timerStateObserver: AnyCancellable?
     private var timeTextObserver: AnyCancellable?
     private var speedObserver: AnyCancellable?
+    private var eventMonitor: Any?
 
     private var statusItem: NSStatusItem!
     private var popover: NSPopover!
@@ -36,7 +37,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.handleTimerStateChange(state)
             }
 
-        // #4: 남은 시간에 따라 애니메이션 속도 가변
         speedObserver = TimerService.shared.$remainingSeconds
             .receive(on: RunLoop.main)
             .sink { [weak self] remaining in
@@ -49,12 +49,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         shortcutService.register()
 
         TimerService.shared.requestNotificationPermission()
+
+        // #4: 앱 전환 감지 서비스 시작
+        DistractionDetector.shared.onDistraction = {
+            TimerService.shared.recordFocusBreak()
+        }
     }
 
     func applicationWillTerminate(_ notification: Notification) {
         TimerService.shared.handleAppTermination()
         shortcutService.unregister()
         animationService?.stopAnimation()
+        DistractionDetector.shared.stop()
+        WhiteNoiseService.shared.stop()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
@@ -68,12 +75,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         case .running:
             animationService?.startAnimation()
             observeTimeText()
+            DistractionDetector.shared.start()
         case .paused:
             animationService?.stopAnimation()
             animationService?.updateTimeText(nil)
+            DistractionDetector.shared.stop()
         case .idle, .finished:
             animationService?.stopAnimation()
             animationService?.updateTimeText(nil)
+            DistractionDetector.shared.stop()
         }
     }
 
@@ -128,12 +138,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         animationService?.showIdle()
     }
 
-    // MARK: - Popover
+    // MARK: - Popover (#1: 외부 클릭 시 닫기)
 
     private func setupPopover() {
         popover = NSPopover()
         popover.contentSize = NSSize(width: 320, height: 480)
-        popover.behavior = .semitransient
+        popover.behavior = .transient
         popover.contentViewController = NSHostingController(
             rootView: MenuBarPopoverView()
                 .modelContainer(SharedModelContainer.shared)
@@ -166,7 +176,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             let window = NSWindow(contentViewController: controller)
             window.title = "MacModoro 설정"
             window.styleMask = [.titled, .closable]
-            window.setContentSize(NSSize(width: 480, height: 360))
+            window.setContentSize(NSSize(width: 480, height: 400))
             window.center()
             window.isReleasedWhenClosed = false
             settingsWindow = window

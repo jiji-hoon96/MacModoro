@@ -13,6 +13,7 @@
 		1C954D49BFE5AE31D817452A /* PreSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559FF0BC314C72E2C181B601 /* PreSessionView.swift */; };
 		1CC991DB3E3DBD52B4911C12 /* ShortcutRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB1AB13606E6C8194384F9 /* ShortcutRecorderView.swift */; };
 		23C2768A1DE45AE0DACAB01B /* BreakTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DEAA3F66EEBAFD6E885493 /* BreakTimelineView.swift */; };
+		2F84E11FE34B71163CC25F75 /* DistractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4D83C11E201BEE4B529FA /* DistractionDetector.swift */; };
 		39FCBC08178E7B850BD2FA99 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03131A21590F8EB4F54F98B /* TimerService.swift */; };
 		497CC5ACFDC425E16D4D1179 /* ShortcutSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517303756ECFB573A0B4C119 /* ShortcutSettingsTab.swift */; };
 		4BFF7DA6AC3785E22D13EB06 /* DataExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7440B559BBEA83E84B700C /* DataExportService.swift */; };
@@ -27,6 +28,7 @@
 		B1937A8CEE9615702841B789 /* DataSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8A3A656D16AD2FD8A5BE2 /* DataSettingsTab.swift */; };
 		B308E077A45829A6A463D05B /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF38ECD9718A30395146DBF /* TimerPreset.swift */; };
 		B3478AF3AE1E89F4FF8E044B /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7EC4106933DEE600E09AF /* CircularTimerView.swift */; };
+		B7D04B994017316B9BD61A63 /* WhiteNoiseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FFC692FDA381A98AD3C91B /* WhiteNoiseService.swift */; };
 		C347C0F303F7EBD2A8AF4838 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA3AD1C1CE39B3A81536E6 /* AppSettings.swift */; };
 		C5A5C269F444850C05B4FD85 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D625875D58D9ABB934A91 /* HistoryView.swift */; };
 		D41EC59E25A23C41785493BD /* GoalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD7F11C1D07B24648753518 /* GoalInputView.swift */; };
@@ -44,6 +46,7 @@
 		1DBB1AB13606E6C8194384F9 /* ShortcutRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderView.swift; sourceTree = "<group>"; };
 		1F44BCA81359CBEDA1832B37 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		2D9C9DBA47C645439B921958 /* MacModoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacModoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32F4D83C11E201BEE4B529FA /* DistractionDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistractionDetector.swift; sourceTree = "<group>"; };
 		39B347806910EFF62154FCCF /* AnimationFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFrameProvider.swift; sourceTree = "<group>"; };
 		3AC9EFCF6F24A364F56888BD /* PomodoroSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroSession.swift; sourceTree = "<group>"; };
 		46F56F902109AA382647BB63 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		559FF0BC314C72E2C181B601 /* PreSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSessionView.swift; sourceTree = "<group>"; };
 		56B8CB2424BC58F25F3C238C /* TodoReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoReviewView.swift; sourceTree = "<group>"; };
 		6B2239DD4F77010E6AE73923 /* FocusBreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusBreak.swift; sourceTree = "<group>"; };
+		71FFC692FDA381A98AD3C91B /* WhiteNoiseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteNoiseService.swift; sourceTree = "<group>"; };
 		73BC489A5998EBC9148DB912 /* GlobalShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalShortcutService.swift; sourceTree = "<group>"; };
 		75DEAA3F66EEBAFD6E885493 /* BreakTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTimelineView.swift; sourceTree = "<group>"; };
 		7B7440B559BBEA83E84B700C /* DataExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExportService.swift; sourceTree = "<group>"; };
@@ -76,6 +80,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0185B35E172870FD738E0F05 /* DistractionDetector */ = {
+			isa = PBXGroup;
+			children = (
+				32F4D83C11E201BEE4B529FA /* DistractionDetector.swift */,
+			);
+			path = DistractionDetector;
+			sourceTree = "<group>";
+		};
 		1058FCF8B9FF706BC6272F7E /* MacModoro */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,12 +238,22 @@
 			isa = PBXGroup;
 			children = (
 				C2581F0A3105B15C7C57F311 /* DataExportService */,
+				0185B35E172870FD738E0F05 /* DistractionDetector */,
 				648E3BB1BD94234D00FEA57F /* MenuBarAnimation */,
 				285C53D476452939E0742521 /* ScreenFlashService */,
 				59DB89D65521D398D83D8F37 /* ShortcutService */,
 				F79FFD84697FF99C46FE261D /* TimerService */,
+				E852CB9BB395CEBEADADAD84 /* WhiteNoiseService */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		E852CB9BB395CEBEADADAD84 /* WhiteNoiseService */ = {
+			isa = PBXGroup;
+			children = (
+				71FFC692FDA381A98AD3C91B /* WhiteNoiseService.swift */,
+			);
+			path = WhiteNoiseService;
 			sourceTree = "<group>";
 		};
 		F2FDAF3E356C5331862AA794 = {
@@ -327,6 +349,7 @@
 				F7AA03A06292A315C2B0A89D /* CozyScreenApp.swift in Sources */,
 				4BFF7DA6AC3785E22D13EB06 /* DataExportService.swift in Sources */,
 				B1937A8CEE9615702841B789 /* DataSettingsTab.swift in Sources */,
+				2F84E11FE34B71163CC25F75 /* DistractionDetector.swift in Sources */,
 				068FAE22B80CF4A842A4BC3A /* FocusBreak.swift in Sources */,
 				087105501E06D9DA010F64DD /* GlobalShortcutService.swift in Sources */,
 				D41EC59E25A23C41785493BD /* GoalInputView.swift in Sources */,
@@ -347,6 +370,7 @@
 				E9B5058961CB7341D049C395 /* TodoItem.swift in Sources */,
 				E1215FBADF4BB337639E46FE /* TodoListView.swift in Sources */,
 				B014BF24C99ED9DE25FC3EB0 /* TodoReviewView.swift in Sources */,
+				B7D04B994017316B9BD61A63 /* WhiteNoiseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,18 +7,21 @@ struct CircularTimerView: View {
 
     var body: some View {
         ZStack {
+            // 배경 트랙
             Circle()
                 .stroke(Color.primary.opacity(0.08), lineWidth: 6)
 
+            // 진행 링 (단색 + round cap)
             Circle()
-                .trim(from: 0, to: progress)
+                .trim(from: 0, to: min(progress, 1.0))
                 .stroke(
-                    progressGradient,
+                    progressColor,
                     style: StrokeStyle(lineWidth: 6, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
-                .animation(.linear(duration: 1), value: progress)
+                .animation(.linear(duration: 0.5), value: progress)
 
+            // 시간 텍스트
             VStack(spacing: 2) {
                 Text(remainingTime)
                     .font(.system(size: 40, weight: .light, design: .rounded))
@@ -29,16 +32,6 @@ struct CircularTimerView: View {
                     .foregroundStyle(.secondary)
             }
         }
-    }
-
-    private var progressGradient: AngularGradient {
-        let color = progressColor
-        return AngularGradient(
-            colors: [color.opacity(0.6), color],
-            center: .center,
-            startAngle: .degrees(-90),
-            endAngle: .degrees(-90 + 360 * progress)
-        )
     }
 
     private var progressColor: Color {
