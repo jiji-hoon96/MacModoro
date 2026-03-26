@@ -3,7 +3,7 @@ import AppKit
 final class ScreenFlashService {
     static let shared = ScreenFlashService()
 
-    private var flashWindows: [NSWindow] = []
+    private var dimWindows: [NSWindow] = []
     private var flashTimer: Timer?
     private var flashCount = 0
 
@@ -13,18 +13,18 @@ final class ScreenFlashService {
         guard AppSettings.shared.enableScreenFlash else { return }
 
         flashCount = 0
-        createFlashWindows()
+        createDimWindows()
         startFlashing()
     }
 
     func stop() {
         flashTimer?.invalidate()
         flashTimer = nil
-        removeFlashWindows()
+        removeDimWindows()
     }
 
-    private func createFlashWindows() {
-        removeFlashWindows()
+    private func createDimWindows() {
+        removeDimWindows()
 
         for screen in NSScreen.screens {
             let window = NSWindow(
@@ -34,41 +34,42 @@ final class ScreenFlashService {
                 defer: false
             )
             window.level = .floating
-            window.backgroundColor = NSColor.red.withAlphaComponent(0)
+            window.backgroundColor = NSColor.black.withAlphaComponent(0)
             window.isOpaque = false
             window.ignoresMouseEvents = true
             window.collectionBehavior = [.canJoinAllSpaces, .stationary]
             window.orderFront(nil)
-            flashWindows.append(window)
+            dimWindows.append(window)
         }
     }
 
     private func startFlashing() {
-        flashTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
+        flashTimer = Timer.scheduledTimer(withTimeInterval: 0.6, repeats: true) { [weak self] _ in
             guard let self else { return }
             self.flashCount += 1
 
-            let isOn = self.flashCount % 2 == 1
-            let alpha: CGFloat = isOn ? 0.15 : 0
+            // 화면이 어두워졌다 밝아지는 패턴 (opacity dim)
+            let isDim = self.flashCount % 2 == 1
+            let alpha: CGFloat = isDim ? 0.25 : 0
 
             NSAnimationContext.runAnimationGroup { context in
-                context.duration = 0.25
-                for window in self.flashWindows {
-                    window.animator().backgroundColor = NSColor.red.withAlphaComponent(alpha)
+                context.duration = 0.3
+                for window in self.dimWindows {
+                    window.animator().backgroundColor = NSColor.black.withAlphaComponent(alpha)
                 }
             }
 
-            // 5초 = 10회 (0.5초 간격)
-            if self.flashCount >= 10 {
+            // 5초간 약 8회 (0.6초 간격)
+            if self.flashCount >= 8 {
                 self.stop()
             }
         }
     }
 
-    private func removeFlashWindows() {
-        for window in flashWindows {
+    private func removeDimWindows() {
+        for window in dimWindows {
             window.orderOut(nil)
         }
-        flashWindows.removeAll()
+        dimWindows.removeAll()
     }
 }

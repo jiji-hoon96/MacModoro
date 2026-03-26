@@ -1,82 +1,140 @@
 import SwiftUI
+import SwiftData
 
 struct PreSessionView: View {
     @ObservedObject var timerService: TimerService
     @Binding var showHistory: Bool
+    @Query(sort: \TimerPreset.sortOrder) private var presets: [TimerPreset]
+
     @State private var durationMinutes: Int = AppSettings.shared.defaultDurationMinutes
+    @State private var durationText: String = ""
     @State private var goal: String = ""
     @State private var todos: [String] = []
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                // 헤더
-                Text("MacModoro")
-                    .font(.title2.bold())
-
-                // 시간 설정
-                VStack(spacing: 8) {
-                    Text("\(durationMinutes)분")
-                        .font(.system(size: 48, weight: .light, design: .rounded))
+        VStack(spacing: 0) {
+            // 시간 선택 영역
+            VStack(spacing: 12) {
+                // 직접 입력
+                HStack(alignment: .firstTextBaseline, spacing: 2) {
+                    TextField("", text: $durationText)
+                        .font(.system(size: 56, weight: .ultraLight, design: .rounded))
                         .monospacedDigit()
+                        .multilineTextAlignment(.trailing)
+                        .frame(width: 120)
+                        .textFieldStyle(.plain)
+                        .onChange(of: durationText) { _, newValue in
+                            if let val = Int(newValue), val > 0 {
+                                durationMinutes = min(val, 999)
+                            }
+                        }
 
-                    HStack(spacing: 12) {
-                        Button("-5") { adjustDuration(-5) }
-                            .buttonStyle(.bordered)
-                        Button("-1") { adjustDuration(-1) }
-                            .buttonStyle(.bordered)
-                        Button("+1") { adjustDuration(1) }
-                            .buttonStyle(.bordered)
-                        Button("+5") { adjustDuration(5) }
-                            .buttonStyle(.bordered)
+                    Text("min")
+                        .font(.system(size: 18, weight: .light, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .padding(.bottom, 8)
+                }
+                .frame(maxWidth: .infinity)
+
+                // 프리셋 버튼
+                HStack(spacing: 6) {
+                    ForEach(presets) { preset in
+                        Button {
+                            durationMinutes = preset.durationMinutes
+                            durationText = "\(preset.durationMinutes)"
+                        } label: {
+                            VStack(spacing: 2) {
+                                Text("\(preset.durationMinutes)")
+                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                Text(preset.label)
+                                    .font(.system(size: 9))
+                                    .foregroundStyle(.secondary)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 6)
+                            .background(
+                                durationMinutes == preset.durationMinutes
+                                    ? Color.accentColor.opacity(0.15)
+                                    : Color.primary.opacity(0.05),
+                                in: RoundedRectangle(cornerRadius: 8)
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .strokeBorder(
+                                        durationMinutes == preset.durationMinutes
+                                            ? Color.accentColor.opacity(0.3)
+                                            : Color.clear,
+                                        lineWidth: 1
+                                    )
+                            )
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
+            .padding(.bottom, 12)
 
-                // 프리셋
-                PresetsBarView(selectedMinutes: $durationMinutes)
+            Divider()
+                .padding(.horizontal, 16)
 
-                Divider()
+            // 목표 & TODO
+            ScrollView {
+                VStack(spacing: 12) {
+                    GoalInputView(goal: $goal)
+                    TodoListView(todos: $todos)
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+            }
+            .frame(maxHeight: 140)
 
-                // 목표 입력
-                GoalInputView(goal: $goal)
+            Spacer(minLength: 0)
 
-                // TODO 리스트
-                TodoListView(todos: $todos)
-
-                // 시작 버튼
+            // 시작 버튼
+            VStack(spacing: 10) {
                 Button(action: startSession) {
                     Text("집중 시작")
-                        .font(.headline)
+                        .font(.system(size: 15, weight: .semibold))
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
+                        .padding(.vertical, 10)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.orange)
+                .tint(.accentColor)
                 .controlSize(.large)
-
-                Divider()
+                .padding(.horizontal, 16)
 
                 // 하단 메뉴
                 HStack {
-                    Button("히스토리") { showHistory = true }
-                        .buttonStyle(.plain)
-                        .foregroundStyle(.secondary)
+                    Button { showHistory = true } label: {
+                        Label("기록", systemImage: "clock.arrow.circlepath")
+                            .font(.caption)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.secondary)
+
                     Spacer()
-                    Button("설정") {
-                        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+
+                    Button {
+                        if let delegate = NSApp.delegate as? AppDelegate {
+                            delegate.openSettings()
+                        }
+                    } label: {
+                        Label("설정", systemImage: "gearshape")
+                            .font(.caption)
                     }
                     .buttonStyle(.plain)
                     .foregroundStyle(.secondary)
                 }
-                .font(.caption)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 12)
             }
-            .padding()
         }
         .frame(width: 300, height: 420)
-    }
-
-    private func adjustDuration(_ delta: Int) {
-        durationMinutes = max(1, durationMinutes + delta)
+        .onAppear {
+            durationText = "\(durationMinutes)"
+        }
     }
 
     private func startSession() {

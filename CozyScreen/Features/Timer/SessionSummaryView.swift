@@ -4,57 +4,62 @@ struct SessionSummaryView: View {
     @ObservedObject var timerService: TimerService
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                // 완료 아이콘
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 48))
-                    .foregroundStyle(.green)
+        VStack(spacing: 0) {
+            ScrollView {
+                VStack(spacing: 16) {
+                    Spacer(minLength: 8)
 
-                Text("세션 완료!")
-                    .font(.title2.bold())
+                    // 완료 아이콘
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 44))
+                        .foregroundStyle(.green)
 
-                // 통계
-                if let session = timerService.currentSession {
-                    VStack(spacing: 12) {
-                        StatRow(icon: "clock.fill", label: "집중 시간", value: "\(session.focusedMinutes)분")
+                    Text("집중 완료")
+                        .font(.system(size: 20, weight: .semibold))
 
-                        if !session.goal.isEmpty {
-                            StatRow(icon: "target", label: "목표", value: session.goal)
+                    // 통계
+                    if let session = timerService.currentSession {
+                        VStack(spacing: 10) {
+                            StatRow(icon: "clock.fill", label: "집중 시간", value: "\(session.focusedMinutes)분")
+
+                            if !session.goal.isEmpty {
+                                StatRow(icon: "target", label: "목표", value: session.goal)
+                            }
+
+                            StatRow(icon: "brain.head.profile", label: "집중 깨짐", value: "\(session.breakCount)회")
+
+                            if !session.focusBreaks.isEmpty {
+                                BreakTimelineView(breaks: session.focusBreaks)
+                            }
                         }
+                        .padding(12)
+                        .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
 
-                        StatRow(icon: "brain.head.profile", label: "집중 깨짐", value: "\(session.breakCount)회")
-
-                        // 깨짐 타임라인
-                        if !session.focusBreaks.isEmpty {
-                            BreakTimelineView(breaks: session.focusBreaks)
+                        if !session.todos.isEmpty {
+                            TodoReviewView(todos: session.todos) { todo in
+                                todo.isCompleted.toggle()
+                                todo.completedAt = todo.isCompleted ? .now : nil
+                            }
+                            .padding(12)
+                            .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
                         }
                     }
-                    .padding()
-                    .background(.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 12))
-
-                    // TODO 점검
-                    if !session.todos.isEmpty {
-                        TodoReviewView(todos: session.todos) { todo in
-                            todo.isCompleted.toggle()
-                            todo.completedAt = todo.isCompleted ? .now : nil
-                        }
-                        .padding()
-                        .background(.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 12))
-                    }
                 }
-
-                // 완료 버튼
-                Button(action: { timerService.dismiss() }) {
-                    Text("확인")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .padding(.horizontal, 16)
             }
-            .padding()
+
+            // 완료 버튼
+            Button(action: { timerService.dismiss() }) {
+                Text("확인")
+                    .font(.system(size: 15, weight: .semibold))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 12)
+            .padding(.top, 8)
         }
         .frame(width: 300, height: 420)
     }
@@ -69,13 +74,13 @@ private struct StatRow: View {
         HStack {
             Image(systemName: icon)
                 .foregroundStyle(.secondary)
-                .frame(width: 20)
+                .frame(width: 18)
             Text(label)
+                .font(.system(size: 13))
                 .foregroundStyle(.secondary)
             Spacer()
             Text(value)
-                .fontWeight(.medium)
+                .font(.system(size: 13, weight: .medium))
         }
-        .font(.subheadline)
     }
 }

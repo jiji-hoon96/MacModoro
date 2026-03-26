@@ -13,8 +13,8 @@ struct SettingsView: View {
                 .tabItem { Label("알림", systemImage: "bell") }
 
             DataSettingsTab()
-                .tabItem { Label("데이터", systemImage: "square.and.arrow.up") }
+                .tabItem { Label("데이터", systemImage: "externaldrive") }
         }
-        .frame(width: 520, height: 460)
+        .frame(width: 480, height: 360)
     }
 }

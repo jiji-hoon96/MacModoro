@@ -4,13 +4,17 @@ struct ActiveSessionView: View {
     @ObservedObject var timerService: TimerService
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 0) {
+            Spacer(minLength: 12)
+
             // 목표 표시
             if let session = timerService.currentSession, !session.goal.isEmpty {
                 Text(session.goal)
-                    .font(.subheadline)
+                    .font(.system(size: 13))
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 8)
             }
 
             // 타이머 링
@@ -19,48 +23,61 @@ struct ActiveSessionView: View {
                 remainingTime: timerService.formattedRemainingTime,
                 isRunning: timerService.state == .running
             )
-            .frame(width: 160, height: 160)
+            .frame(width: 180, height: 180)
+            .padding(.vertical, 8)
 
             // 집중 깨짐 카운트
-            if timerService.focusBreakCount > 0 {
-                HStack(spacing: 4) {
-                    Image(systemName: "brain.head.profile")
-                    Text("집중 깨짐: \(timerService.focusBreakCount)회")
+            Group {
+                if timerService.focusBreakCount > 0 {
+                    HStack(spacing: 4) {
+                        Image(systemName: "brain.head.profile")
+                        Text("\(timerService.focusBreakCount)회 깨짐")
+                    }
+                    .font(.system(size: 12))
+                    .foregroundStyle(.orange)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 5)
+                    .background(.orange.opacity(0.08), in: Capsule())
+                } else {
+                    Text(" ")
+                        .font(.system(size: 12))
                 }
-                .font(.caption)
-                .foregroundStyle(.orange)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 4)
-                .background(.orange.opacity(0.1), in: Capsule())
             }
+            .padding(.top, 4)
+
+            Spacer(minLength: 12)
 
             // 컨트롤 버튼
-            HStack(spacing: 16) {
+            HStack(spacing: 12) {
                 if timerService.state == .running {
                     Button(action: { timerService.pause() }) {
-                        Label("일시정지", systemImage: "pause.fill")
+                        Image(systemName: "pause.fill")
+                            .frame(width: 44, height: 36)
                     }
                     .buttonStyle(.bordered)
                 } else if timerService.state == .paused {
                     Button(action: { timerService.resume() }) {
-                        Label("재개", systemImage: "play.fill")
+                        Image(systemName: "play.fill")
+                            .frame(width: 44, height: 36)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.green)
                 }
 
                 Button(action: { timerService.cancel() }) {
-                    Label("취소", systemImage: "xmark")
+                    Image(systemName: "xmark")
+                        .frame(width: 44, height: 36)
                 }
                 .buttonStyle(.bordered)
                 .tint(.red)
             }
+            .padding(.bottom, 8)
 
-            Text("Cmd+Shift+B로 집중 깨짐 기록")
-                .font(.caption2)
-                .foregroundStyle(.tertiary)
+            Text("Cmd+Shift+B 집중 깨짐 기록")
+                .font(.system(size: 10))
+                .foregroundStyle(.quaternary)
+                .padding(.bottom, 12)
         }
-        .padding()
-        .frame(width: 300)
+        .frame(width: 300, height: 400)
     }
 }

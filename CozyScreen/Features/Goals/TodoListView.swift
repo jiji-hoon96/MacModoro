@@ -5,43 +5,46 @@ struct TodoListView: View {
     @State private var newTodoText: String = ""
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 6) {
             Label("할 일", systemImage: "checklist")
-                .font(.caption.bold())
+                .font(.system(size: 11, weight: .semibold))
                 .foregroundStyle(.secondary)
 
             ForEach(todos.indices, id: \.self) { index in
-                HStack {
+                HStack(spacing: 6) {
                     Image(systemName: "circle")
-                        .font(.caption)
+                        .font(.system(size: 10))
                         .foregroundStyle(.tertiary)
 
                     Text(todos[index])
-                        .font(.subheadline)
+                        .font(.system(size: 13))
 
                     Spacer()
 
                     Button {
                         todos.remove(at: index)
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
+                        Image(systemName: "minus.circle.fill")
+                            .font(.system(size: 12))
                             .foregroundStyle(.tertiary)
                     }
                     .buttonStyle(.plain)
                 }
             }
 
-            HStack {
+            HStack(spacing: 6) {
                 TextField("할 일 추가...", text: $newTodoText)
                     .textFieldStyle(.roundedBorder)
-                    .font(.subheadline)
+                    .font(.system(size: 13))
                     .onSubmit { addTodo() }
 
                 Button(action: addTodo) {
                     Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 14))
                 }
                 .buttonStyle(.plain)
                 .disabled(newTodoText.isEmpty)
+                .foregroundStyle(newTodoText.isEmpty ? Color.gray : Color.accentColor)
             }
         }
     }

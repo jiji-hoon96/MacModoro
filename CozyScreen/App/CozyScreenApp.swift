@@ -20,19 +20,27 @@ struct MacModoroApp: App {
 }
 
 enum DefaultPresets {
+    private static let currentVersion = 2
+
     static func seedIfNeeded(container: ModelContainer) {
         let context = ModelContext(container)
-        let descriptor = FetchDescriptor<TimerPreset>()
-        guard (try? context.fetchCount(descriptor)) == 0 else { return }
+        let savedVersion = UserDefaults.standard.integer(forKey: "presetVersion")
+
+        guard savedVersion < currentVersion else { return }
+
+        // 기존 프리셋 삭제
+        try? context.delete(model: TimerPreset.self)
 
         let defaults = [
-            TimerPreset(label: "집중", durationMinutes: 25, sortOrder: 0),
-            TimerPreset(label: "짧은 휴식", durationMinutes: 5, sortOrder: 1),
-            TimerPreset(label: "긴 집중", durationMinutes: 50, sortOrder: 2),
-            TimerPreset(label: "긴 휴식", durationMinutes: 15, sortOrder: 3),
+            TimerPreset(label: "몰입", durationMinutes: 90, sortOrder: 0),
+            TimerPreset(label: "집중", durationMinutes: 40, sortOrder: 1),
+            TimerPreset(label: "짧은 집중", durationMinutes: 20, sortOrder: 2),
+            TimerPreset(label: "휴식", durationMinutes: 5, sortOrder: 3),
         ]
         defaults.forEach { context.insert($0) }
         try? context.save()
+
+        UserDefaults.standard.set(currentVersion, forKey: "presetVersion")
     }
 }
 

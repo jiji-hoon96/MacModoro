@@ -18,7 +18,6 @@
 		4609BB197BBED43D79BCC802 /* BreakTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD78FD7EFFD8D4BEF84E11D /* BreakTimelineView.swift */; };
 		4E0BF020FB284C1B36B45DCA /* AnimationFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */; };
 		57F410ED438704DE5ED3DE0B /* ScreenFlashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */; };
-		5A3DF7D24422CA2AE890DA1E /* PresetsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952775094AEC463B6F9B8D9E /* PresetsBarView.swift */; };
 		6616B7ACAEB9C4E5539683E7 /* DataSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F72184AD50E93A126907FC /* DataSettingsTab.swift */; };
 		7D3F6693C8D3CA6CE2265316 /* FocusBreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B296EC571F125464047B76 /* FocusBreak.swift */; };
 		8242559976BC45989CAB8A20 /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306790F66451FD641CAB5D4D /* TimerPreset.swift */; };
@@ -56,7 +55,6 @@
 		6E8AE15F76D61C97807A0A10 /* MenuBarAnimationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarAnimationService.swift; sourceTree = "<group>"; };
 		7F80D92847525A570986CA5D /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		86BE47BD4C8B3C1F1D16DEF0 /* DataExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExportService.swift; sourceTree = "<group>"; };
-		952775094AEC463B6F9B8D9E /* PresetsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsBarView.swift; sourceTree = "<group>"; };
 		A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFlashService.swift; sourceTree = "<group>"; };
 		A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFrameProvider.swift; sourceTree = "<group>"; };
 		A61BF3CAB29773A901678AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				FB0E35A0C4E44AB8BE92B5A3 /* PresetManagementView.swift */,
-				952775094AEC463B6F9B8D9E /* PresetsBarView.swift */,
 			);
 			path = Presets;
 			sourceTree = "<group>";
@@ -339,7 +336,6 @@
 				AC45BDB2BD033B07DB2DA22F /* PomodoroSession.swift in Sources */,
 				B000A275BF0F5DEE5C39678B /* PreSessionView.swift in Sources */,
 				35533BAE0E414FF6A9F11DAE /* PresetManagementView.swift in Sources */,
-				5A3DF7D24422CA2AE890DA1E /* PresetsBarView.swift in Sources */,
 				57F410ED438704DE5ED3DE0B /* ScreenFlashService.swift in Sources */,
 				F14B670808C5BE3021EB7B9B /* SessionSummaryView.swift in Sources */,
 				A061E10F11A523F1006E01A1 /* SettingsView.swift in Sources */,

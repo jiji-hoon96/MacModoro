@@ -8,6 +8,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let shortcutService = GlobalShortcutService.shared
     private var animationService: MenuBarAnimationService?
     private var timerStateObserver: AnyCancellable?
+    private var timeTextObserver: AnyCancellable?
 
     private var statusItem: NSStatusItem!
     private var popover: NSPopover!
@@ -17,24 +18,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         setupPopover()
         setupAnimationService()
 
-        // TimerService에 ModelContext 전달
         let context = ModelContext(SharedModelContainer.shared)
         TimerService.shared.configure(modelContext: context)
 
-        // 타이머 상태 관찰 → 애니메이션 제어
         timerStateObserver = TimerService.shared.$state
             .receive(on: RunLoop.main)
             .sink { [weak self] state in
                 self?.handleTimerStateChange(state)
             }
 
-        // 집중 깨짐 단축키 핸들러
         shortcutService.onHotKeyPressed = {
             TimerService.shared.recordFocusBreak()
         }
         shortcutService.register()
 
-        // 알림 권한 요청
         TimerService.shared.requestNotificationPermission()
     }
 
@@ -63,8 +60,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             animationService?.updateTimeText(nil)
         }
     }
-
-    private var timeTextObserver: AnyCancellable?
 
     private func observeTimeText() {
         guard AppSettings.shared.showRemainingTimeInMenuBar else {
@@ -99,8 +94,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setupPopover() {
         popover = NSPopover()
-        popover.contentSize = NSSize(width: 320, height: 400)
-        popover.behavior = .transient
+        popover.contentSize = NSSize(width: 320, height: 480)
+        popover.behavior = .semitransient
         popover.contentViewController = NSHostingController(
             rootView: MenuBarPopoverView()
                 .modelContainer(SharedModelContainer.shared)
@@ -115,5 +110,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
             popover.contentViewController?.view.window?.makeKey()
         }
+    }
+
+    // MARK: - Settings
+
+    func openSettings() {
+        popover.performClose(nil)
+        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
 }

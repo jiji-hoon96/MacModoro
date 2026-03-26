@@ -5,35 +5,30 @@ struct HistoryView: View {
     @Query(sort: \PomodoroSession.startedAt, order: .reverse) private var sessions: [PomodoroSession]
 
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Label("히스토리", systemImage: "clock.arrow.circlepath")
-                    .font(.headline)
-                Spacer()
-            }
-
+        VStack(spacing: 0) {
             if sessions.isEmpty {
                 VStack(spacing: 8) {
                     Image(systemName: "tray")
-                        .font(.title)
-                        .foregroundStyle(.tertiary)
+                        .font(.title2)
+                        .foregroundStyle(.quaternary)
                     Text("아직 기록이 없습니다")
-                        .font(.subheadline)
+                        .font(.system(size: 13))
                         .foregroundStyle(.secondary)
                 }
-                .frame(maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
                 ScrollView {
-                    LazyVStack(spacing: 8) {
+                    LazyVStack(spacing: 6) {
                         ForEach(sessions) { session in
                             SessionRowView(session: session)
                         }
                     }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
                 }
             }
         }
-        .padding()
-        .frame(width: 300, height: 420)
+        .frame(width: 300, height: 380)
     }
 }
 
@@ -42,48 +37,50 @@ private struct SessionRowView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Image(systemName: session.wasCompleted ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    .foregroundStyle(session.wasCompleted ? .green : .red)
-                    .font(.caption)
+            HStack(spacing: 6) {
+                Circle()
+                    .fill(session.wasCompleted ? Color.green : Color.red.opacity(0.6))
+                    .frame(width: 6, height: 6)
 
                 Text(session.startedAt, style: .date)
-                    .font(.caption)
+                    .font(.system(size: 11))
                     .foregroundStyle(.secondary)
 
                 Text(session.startedAt, style: .time)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.tertiary)
 
                 Spacer()
 
                 Text("\(session.focusedMinutes)분")
-                    .font(.caption.bold())
+                    .font(.system(size: 12, weight: .medium, design: .rounded))
             }
 
             if !session.goal.isEmpty {
                 Text(session.goal)
-                    .font(.subheadline)
+                    .font(.system(size: 12))
                     .lineLimit(1)
             }
 
-            HStack(spacing: 12) {
-                if session.breakCount > 0 {
-                    Label("\(session.breakCount)회 깨짐", systemImage: "brain.head.profile")
-                        .font(.caption2)
-                        .foregroundStyle(.orange)
-                }
+            if session.breakCount > 0 || !session.todos.isEmpty {
+                HStack(spacing: 8) {
+                    if session.breakCount > 0 {
+                        Label("\(session.breakCount)회", systemImage: "brain.head.profile")
+                            .font(.system(size: 10))
+                            .foregroundStyle(.orange)
+                    }
 
-                let completedTodos = session.todos.filter(\.isCompleted).count
-                let totalTodos = session.todos.count
-                if totalTodos > 0 {
-                    Label("\(completedTodos)/\(totalTodos)", systemImage: "checklist")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    let done = session.todos.filter(\.isCompleted).count
+                    let total = session.todos.count
+                    if total > 0 {
+                        Label("\(done)/\(total)", systemImage: "checklist")
+                            .font(.system(size: 10))
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
         }
-        .padding(8)
-        .background(.gray.opacity(0.05), in: RoundedRectangle(cornerRadius: 8))
+        .padding(10)
+        .background(Color.primary.opacity(0.03), in: RoundedRectangle(cornerRadius: 8))
     }
 }
