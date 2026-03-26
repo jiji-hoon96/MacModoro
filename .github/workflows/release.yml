@@ -7,11 +7,14 @@ on:
 
 jobs:
   release:
-    runs-on: macos-14
+    runs-on: macos-15
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -20,7 +23,7 @@ jobs:
         run: xcodegen generate
 
       - name: Build Release
-        run: xcodebuild -project MacModoro.xcodeproj -scheme MacModoro -configuration Release build
+        run: xcodebuild -project MacModoro.xcodeproj -scheme MacModoro -configuration Release CODE_SIGNING_ALLOWED=NO build
 
       - name: Package app
         run: |
