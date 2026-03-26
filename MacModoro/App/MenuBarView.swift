@@ -8,22 +8,23 @@ struct MenuBarPopoverView: View {
         Group {
             if showHistory {
                 VStack(spacing: 0) {
-                    HStack {
-                        Button {
-                            showHistory = false
-                        } label: {
-                            HStack(spacing: 4) {
-                                Image(systemName: "chevron.left")
-                                Text("뒤로")
-                            }
-                            .font(.system(size: 12))
+                    Button {
+                        showHistory = false
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "chevron.left")
+                            Text("뒤로")
+                            Spacer()
                         }
-                        .buttonStyle(.plain)
+                        .font(.system(size: 13))
                         .foregroundStyle(.secondary)
-                        Spacer()
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .contentShape(Rectangle())
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 10)
+                    .buttonStyle(.plain)
+
+                    Divider()
 
                     HistoryView()
                 }

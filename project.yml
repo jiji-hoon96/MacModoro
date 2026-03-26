@@ -11,11 +11,11 @@ targets:
     type: application
     platform: macOS
     sources:
-      - CozyScreen
+      - MacModoro
     settings:
       base:
-        INFOPLIST_FILE: CozyScreen/Info.plist
-        CODE_SIGN_ENTITLEMENTS: CozyScreen/CozyScreen.entitlements
+        INFOPLIST_FILE: MacModoro/Info.plist
+        CODE_SIGN_ENTITLEMENTS: MacModoro/MacModoro.entitlements
         PRODUCT_BUNDLE_IDENTIFIER: com.macmodoro.app
         SWIFT_VERSION: "5.9"
         MACOSX_DEPLOYMENT_TARGET: "14.0"
@@ -23,4 +23,4 @@ targets:
         GENERATE_INFOPLIST_FILE: false
         CODE_SIGN_STYLE: Automatic
     entitlements:
-      path: CozyScreen/CozyScreen.entitlements
+      path: MacModoro/MacModoro.entitlements

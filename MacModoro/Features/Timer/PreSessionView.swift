@@ -15,7 +15,6 @@ struct PreSessionView: View {
         VStack(spacing: 0) {
             // 시간 선택 영역
             VStack(spacing: 12) {
-                // 직접 입력
                 HStack(alignment: .firstTextBaseline, spacing: 2) {
                     TextField("", text: $durationText)
                         .font(.system(size: 56, weight: .ultraLight, design: .rounded))
@@ -93,43 +92,50 @@ struct PreSessionView: View {
             Spacer(minLength: 0)
 
             // 시작 버튼
-            VStack(spacing: 10) {
-                Button(action: startSession) {
-                    Text("집중 시작")
-                        .font(.system(size: 15, weight: .semibold))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 10)
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.accentColor)
-                .controlSize(.large)
-                .padding(.horizontal, 16)
-
-                // 하단 메뉴
-                HStack {
-                    Button { showHistory = true } label: {
-                        Label("기록", systemImage: "clock.arrow.circlepath")
-                            .font(.caption)
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundStyle(.secondary)
-
-                    Spacer()
-
-                    Button {
-                        if let delegate = NSApp.delegate as? AppDelegate {
-                            delegate.openSettings()
-                        }
-                    } label: {
-                        Label("설정", systemImage: "gearshape")
-                            .font(.caption)
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundStyle(.secondary)
-                }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 12)
+            Button(action: startSession) {
+                Text("집중 시작")
+                    .font(.system(size: 15, weight: .semibold))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 10)
             }
+            .buttonStyle(.borderedProminent)
+            .tint(.accentColor)
+            .controlSize(.large)
+            .padding(.horizontal, 16)
+
+            // #2: 하단 버튼 넓은 터치 영역
+            HStack(spacing: 0) {
+                Button { showHistory = true } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "clock.arrow.circlepath")
+                        Text("기록")
+                    }
+                    .font(.system(size: 12))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
+
+                Button {
+                    if let delegate = NSApp.delegate as? AppDelegate {
+                        delegate.openSettings()
+                    }
+                } label: {
+                    HStack(spacing: 4) {
+                        Image(systemName: "gearshape")
+                        Text("설정")
+                    }
+                    .font(.system(size: 12))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
+            }
+            .frame(height: 36)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 8)
         }
         .frame(width: 300, height: 420)
         .onAppear {

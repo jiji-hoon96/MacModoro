@@ -7,213 +7,195 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		085C279F43353BECD4109CB6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A851170B2F0C01F8C78CB /* AppSettings.swift */; };
-		1F6CF4A12010AE988A06AA9B /* GoalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA261AB95E4151FBFD64D /* GoalInputView.swift */; };
-		21E5C3C3C4834917B44F2E3E /* ShortcutRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A2221E6D32F313F080C55 /* ShortcutRecorderView.swift */; };
-		2B9BD702533DC048126664B5 /* MenuBarAnimationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8AE15F76D61C97807A0A10 /* MenuBarAnimationService.swift */; };
-		2D23E6F6278925C064212753 /* AlertSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BFFF482576A8893FD5256 /* AlertSettingsTab.swift */; };
-		31AB90A3C56809DB302B45A2 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94CB1414B6CFD75EA131D66 /* TodoItem.swift */; };
-		35533BAE0E414FF6A9F11DAE /* PresetManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E35A0C4E44AB8BE92B5A3 /* PresetManagementView.swift */; };
-		3A8678BF1460D25ACEA892DE /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F80D92847525A570986CA5D /* TodoListView.swift */; };
-		4609BB197BBED43D79BCC802 /* BreakTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD78FD7EFFD8D4BEF84E11D /* BreakTimelineView.swift */; };
-		4E0BF020FB284C1B36B45DCA /* AnimationFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */; };
-		57F410ED438704DE5ED3DE0B /* ScreenFlashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */; };
-		6616B7ACAEB9C4E5539683E7 /* DataSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F72184AD50E93A126907FC /* DataSettingsTab.swift */; };
-		7D3F6693C8D3CA6CE2265316 /* FocusBreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B296EC571F125464047B76 /* FocusBreak.swift */; };
-		8242559976BC45989CAB8A20 /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306790F66451FD641CAB5D4D /* TimerPreset.swift */; };
-		83E32B8B624DC332FEDE7468 /* ActiveSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F8C6F15AB99F121DD1EF /* ActiveSessionView.swift */; };
-		8594A91A58832BDBD1F396C2 /* CozyScreenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88F7D1EF1D66D71FB9410A /* CozyScreenApp.swift */; };
-		9056FCEB631A9C522CBE2464 /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C9F36D8E9B60D250AC550F /* CircularTimerView.swift */; };
-		A061E10F11A523F1006E01A1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69FA93A5D122ECBEA27B12 /* SettingsView.swift */; };
-		AC45BDB2BD033B07DB2DA22F /* PomodoroSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2562DEE0E98DBE0709469B /* PomodoroSession.swift */; };
-		ACE79280650BFF96D85FE129 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE301AA729AF3BC04C61CD7A /* TimerService.swift */; };
-		B000A275BF0F5DEE5C39678B /* PreSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9CC1B46AA61CE56CD07ADF /* PreSessionView.swift */; };
-		B12819CE5657D0B07874D5A1 /* ShortcutSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DCF939B5A67772EF922F01 /* ShortcutSettingsTab.swift */; };
-		BF1C505DFC25080DEEB97309 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC7DB89982875A4DEDA360A /* HistoryView.swift */; };
-		C14BBA98460A6C231220D767 /* DataExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BE47BD4C8B3C1F1D16DEF0 /* DataExportService.swift */; };
-		D9A77CD5A56F86AC89D1226F /* GlobalShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683EAC975FE0571BBAD4F27 /* GlobalShortcutService.swift */; };
-		E3602A8D244502C50E2A330D /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18EA65EB5FA9A21EABF8AF6 /* MenuBarView.swift */; };
-		E8111F6B9089C952BFF5D305 /* TodoReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66552F383ECE401999A2B331 /* TodoReviewView.swift */; };
-		F0AFC061D8EBA01D91F77DAC /* TimerSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E7C0B26DE5E6BA03AC709F /* TimerSettingsTab.swift */; };
-		F14B670808C5BE3021EB7B9B /* SessionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD147346D8E3BD986D275C /* SessionSummaryView.swift */; };
-		F761056533010A92C11DCE2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61BF3CAB29773A901678AAF /* AppDelegate.swift */; };
+		068FAE22B80CF4A842A4BC3A /* FocusBreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2239DD4F77010E6AE73923 /* FocusBreak.swift */; };
+		087105501E06D9DA010F64DD /* GlobalShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BC489A5998EBC9148DB912 /* GlobalShortcutService.swift */; };
+		1800FA0E2D40A7B3B51A93AF /* ActiveSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C10B67242616F4F8D9B835 /* ActiveSessionView.swift */; };
+		1C954D49BFE5AE31D817452A /* PreSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559FF0BC314C72E2C181B601 /* PreSessionView.swift */; };
+		1CC991DB3E3DBD52B4911C12 /* ShortcutRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB1AB13606E6C8194384F9 /* ShortcutRecorderView.swift */; };
+		23C2768A1DE45AE0DACAB01B /* BreakTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DEAA3F66EEBAFD6E885493 /* BreakTimelineView.swift */; };
+		39FCBC08178E7B850BD2FA99 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03131A21590F8EB4F54F98B /* TimerService.swift */; };
+		497CC5ACFDC425E16D4D1179 /* ShortcutSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517303756ECFB573A0B4C119 /* ShortcutSettingsTab.swift */; };
+		4BFF7DA6AC3785E22D13EB06 /* DataExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7440B559BBEA83E84B700C /* DataExportService.swift */; };
+		4C48D5A3B145DE03EA878B3A /* AnimationFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B347806910EFF62154FCCF /* AnimationFrameProvider.swift */; };
+		63BEBE8301FC9629004C102E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E3598423543D1F04D8EAF4 /* AppDelegate.swift */; };
+		738380BD44D7C00F9FF975EF /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E8BCFFF6CAE8054D5CA471 /* MenuBarView.swift */; };
+		7CD2DF786E8E49B1BD5A9919 /* PomodoroSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC9EFCF6F24A364F56888BD /* PomodoroSession.swift */; };
+		8AF85AC410BA6D7966690843 /* ScreenFlashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF9F8EC23BF7F5785029B1C /* ScreenFlashService.swift */; };
+		94B6C9C48E7B9B8001F0AB0E /* AlertSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CCB73C1BC6F5D4753EB4 /* AlertSettingsTab.swift */; };
+		9FF59F71C7A8F22ACA875D24 /* PresetManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97127D2A04F902B28C541AD3 /* PresetManagementView.swift */; };
+		B014BF24C99ED9DE25FC3EB0 /* TodoReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8CB2424BC58F25F3C238C /* TodoReviewView.swift */; };
+		B1937A8CEE9615702841B789 /* DataSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD8A3A656D16AD2FD8A5BE2 /* DataSettingsTab.swift */; };
+		B308E077A45829A6A463D05B /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF38ECD9718A30395146DBF /* TimerPreset.swift */; };
+		B3478AF3AE1E89F4FF8E044B /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF7EC4106933DEE600E09AF /* CircularTimerView.swift */; };
+		C347C0F303F7EBD2A8AF4838 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EA3AD1C1CE39B3A81536E6 /* AppSettings.swift */; };
+		C5A5C269F444850C05B4FD85 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135D625875D58D9ABB934A91 /* HistoryView.swift */; };
+		D41EC59E25A23C41785493BD /* GoalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD7F11C1D07B24648753518 /* GoalInputView.swift */; };
+		D8C4A03D7BEA8B7A174F0ED2 /* SessionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE53452115A65D7FD6019965 /* SessionSummaryView.swift */; };
+		DE3AF2A6DF515CEAED191C2B /* TimerSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF907F7BEBC8F32D74E827CA /* TimerSettingsTab.swift */; };
+		E1215FBADF4BB337639E46FE /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44BCA81359CBEDA1832B37 /* TodoListView.swift */; };
+		E9B5058961CB7341D049C395 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F56F902109AA382647BB63 /* TodoItem.swift */; };
+		EE44DC76457585C9B5BE963B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB08C57C09F4A41D77ED3DD /* SettingsView.swift */; };
+		EEC8AE2E925B168FCB2CB197 /* MenuBarAnimationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C382ECEFDB4E9B4A24C4C5F3 /* MenuBarAnimationService.swift */; };
+		F7AA03A06292A315C2B0A89D /* CozyScreenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B3399898E1EA079EBD7297 /* CozyScreenApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		18C8F8C6F15AB99F121DD1EF /* ActiveSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSessionView.swift; sourceTree = "<group>"; };
-		1BCDD0ABDC3DF867D1A3A2C4 /* CozyScreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CozyScreen.entitlements; sourceTree = "<group>"; };
-		1D9CC1B46AA61CE56CD07ADF /* PreSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSessionView.swift; sourceTree = "<group>"; };
-		1E69FA93A5D122ECBEA27B12 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		22F72184AD50E93A126907FC /* DataSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSettingsTab.swift; sourceTree = "<group>"; };
-		25C9F36D8E9B60D250AC550F /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
+		135D625875D58D9ABB934A91 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		1DBB1AB13606E6C8194384F9 /* ShortcutRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderView.swift; sourceTree = "<group>"; };
+		1F44BCA81359CBEDA1832B37 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		2D9C9DBA47C645439B921958 /* MacModoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacModoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		306790F66451FD641CAB5D4D /* TimerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPreset.swift; sourceTree = "<group>"; };
-		30BD147346D8E3BD986D275C /* SessionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSummaryView.swift; sourceTree = "<group>"; };
-		5B88F7D1EF1D66D71FB9410A /* CozyScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CozyScreenApp.swift; sourceTree = "<group>"; };
-		66552F383ECE401999A2B331 /* TodoReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoReviewView.swift; sourceTree = "<group>"; };
-		66E7C0B26DE5E6BA03AC709F /* TimerSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingsTab.swift; sourceTree = "<group>"; };
-		6E8AE15F76D61C97807A0A10 /* MenuBarAnimationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarAnimationService.swift; sourceTree = "<group>"; };
-		7F80D92847525A570986CA5D /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
-		86BE47BD4C8B3C1F1D16DEF0 /* DataExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExportService.swift; sourceTree = "<group>"; };
-		A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFlashService.swift; sourceTree = "<group>"; };
-		A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFrameProvider.swift; sourceTree = "<group>"; };
-		A61BF3CAB29773A901678AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A83A2221E6D32F313F080C55 /* ShortcutRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderView.swift; sourceTree = "<group>"; };
-		AB2562DEE0E98DBE0709469B /* PomodoroSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroSession.swift; sourceTree = "<group>"; };
-		B3DCF939B5A67772EF922F01 /* ShortcutSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutSettingsTab.swift; sourceTree = "<group>"; };
-		C94CB1414B6CFD75EA131D66 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
-		CBC7DB89982875A4DEDA360A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		CF4FA261AB95E4151FBFD64D /* GoalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalInputView.swift; sourceTree = "<group>"; };
-		CFD78FD7EFFD8D4BEF84E11D /* BreakTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTimelineView.swift; sourceTree = "<group>"; };
-		D4B296EC571F125464047B76 /* FocusBreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusBreak.swift; sourceTree = "<group>"; };
-		D683EAC975FE0571BBAD4F27 /* GlobalShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalShortcutService.swift; sourceTree = "<group>"; };
-		DE301AA729AF3BC04C61CD7A /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
-		E11AA49695702DB35160BBAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		F13A851170B2F0C01F8C78CB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		F18EA65EB5FA9A21EABF8AF6 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
-		F49BFFF482576A8893FD5256 /* AlertSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingsTab.swift; sourceTree = "<group>"; };
-		FB0E35A0C4E44AB8BE92B5A3 /* PresetManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetManagementView.swift; sourceTree = "<group>"; };
+		39B347806910EFF62154FCCF /* AnimationFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFrameProvider.swift; sourceTree = "<group>"; };
+		3AC9EFCF6F24A364F56888BD /* PomodoroSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroSession.swift; sourceTree = "<group>"; };
+		46F56F902109AA382647BB63 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		47C10B67242616F4F8D9B835 /* ActiveSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSessionView.swift; sourceTree = "<group>"; };
+		517303756ECFB573A0B4C119 /* ShortcutSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutSettingsTab.swift; sourceTree = "<group>"; };
+		559FF0BC314C72E2C181B601 /* PreSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSessionView.swift; sourceTree = "<group>"; };
+		56B8CB2424BC58F25F3C238C /* TodoReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoReviewView.swift; sourceTree = "<group>"; };
+		6B2239DD4F77010E6AE73923 /* FocusBreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusBreak.swift; sourceTree = "<group>"; };
+		73BC489A5998EBC9148DB912 /* GlobalShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalShortcutService.swift; sourceTree = "<group>"; };
+		75DEAA3F66EEBAFD6E885493 /* BreakTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTimelineView.swift; sourceTree = "<group>"; };
+		7B7440B559BBEA83E84B700C /* DataExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExportService.swift; sourceTree = "<group>"; };
+		82E3598423543D1F04D8EAF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		88EA3AD1C1CE39B3A81536E6 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		8EB6CCB73C1BC6F5D4753EB4 /* AlertSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingsTab.swift; sourceTree = "<group>"; };
+		97127D2A04F902B28C541AD3 /* PresetManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetManagementView.swift; sourceTree = "<group>"; };
+		9AF9F8EC23BF7F5785029B1C /* ScreenFlashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFlashService.swift; sourceTree = "<group>"; };
+		9FF38ECD9718A30395146DBF /* TimerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPreset.swift; sourceTree = "<group>"; };
+		A0B3399898E1EA079EBD7297 /* CozyScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CozyScreenApp.swift; sourceTree = "<group>"; };
+		BA5A5AEE506DB9B08F678467 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BF907F7BEBC8F32D74E827CA /* TimerSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingsTab.swift; sourceTree = "<group>"; };
+		C03131A21590F8EB4F54F98B /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		C382ECEFDB4E9B4A24C4C5F3 /* MenuBarAnimationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarAnimationService.swift; sourceTree = "<group>"; };
+		C7E8BCFFF6CAE8054D5CA471 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		CAD8A3A656D16AD2FD8A5BE2 /* DataSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSettingsTab.swift; sourceTree = "<group>"; };
+		ECD7F11C1D07B24648753518 /* GoalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalInputView.swift; sourceTree = "<group>"; };
+		EDF7EC4106933DEE600E09AF /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
+		EE53452115A65D7FD6019965 /* SessionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSummaryView.swift; sourceTree = "<group>"; };
+		EEB08C57C09F4A41D77ED3DD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F609C73F7E0CEDBDA7846210 /* MacModoro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacModoro.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		0CBD4FF59D0640970D960BC5 /* Core */ = {
+		1058FCF8B9FF706BC6272F7E /* MacModoro */ = {
 			isa = PBXGroup;
 			children = (
-				DC7DBD73E93298CF180571E9 /* Models */,
-				BEA13CAEBA3E884F74E9601E /* Persistence */,
+				BA5A5AEE506DB9B08F678467 /* Info.plist */,
+				F609C73F7E0CEDBDA7846210 /* MacModoro.entitlements */,
+				34D2CFCF42944968FDB4DEB7 /* App */,
+				FE3C8F4F0D9490F109AEE0D1 /* Core */,
+				33712DB613BD4DA62B8B73E9 /* Features */,
+				D94C96D54EBFDEF18A698572 /* Services */,
 			);
-			path = Core;
+			path = MacModoro;
 			sourceTree = "<group>";
 		};
-		17857115BCF6A72BD51273D8 /* App */ = {
+		285C53D476452939E0742521 /* ScreenFlashService */ = {
 			isa = PBXGroup;
 			children = (
-				A61BF3CAB29773A901678AAF /* AppDelegate.swift */,
-				5B88F7D1EF1D66D71FB9410A /* CozyScreenApp.swift */,
-				F18EA65EB5FA9A21EABF8AF6 /* MenuBarView.swift */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		48881BE26DF9C4334923556C /* TimerService */ = {
-			isa = PBXGroup;
-			children = (
-				DE301AA729AF3BC04C61CD7A /* TimerService.swift */,
-			);
-			path = TimerService;
-			sourceTree = "<group>";
-		};
-		55F20982989E22DF2C306CEA /* DataExportService */ = {
-			isa = PBXGroup;
-			children = (
-				86BE47BD4C8B3C1F1D16DEF0 /* DataExportService.swift */,
-			);
-			path = DataExportService;
-			sourceTree = "<group>";
-		};
-		578B70475EE34FFF413BBD97 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				A76D1F35E01B15E3FCF1D947 /* Goals */,
-				C71F60528301B7400771D007 /* History */,
-				693A087E2A4639FF9CE5E5AD /* Presets */,
-				9DD53E0059441F698FE9309D /* Settings */,
-				83800895CC12DDD706DAE4D2 /* Timer */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		5CCFBA68AB48AA2C0ACA18FC /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				55F20982989E22DF2C306CEA /* DataExportService */,
-				5E11980DBACE19AD9A8302B5 /* MenuBarAnimation */,
-				79E5024913A5F043FC09DAC2 /* ScreenFlashService */,
-				C3C752A9A1ADE6419C127355 /* ShortcutService */,
-				48881BE26DF9C4334923556C /* TimerService */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		5E11980DBACE19AD9A8302B5 /* MenuBarAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */,
-				6E8AE15F76D61C97807A0A10 /* MenuBarAnimationService.swift */,
-			);
-			path = MenuBarAnimation;
-			sourceTree = "<group>";
-		};
-		693A087E2A4639FF9CE5E5AD /* Presets */ = {
-			isa = PBXGroup;
-			children = (
-				FB0E35A0C4E44AB8BE92B5A3 /* PresetManagementView.swift */,
-			);
-			path = Presets;
-			sourceTree = "<group>";
-		};
-		79E5024913A5F043FC09DAC2 /* ScreenFlashService */ = {
-			isa = PBXGroup;
-			children = (
-				A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */,
+				9AF9F8EC23BF7F5785029B1C /* ScreenFlashService.swift */,
 			);
 			path = ScreenFlashService;
 			sourceTree = "<group>";
 		};
-		83800895CC12DDD706DAE4D2 /* Timer */ = {
+		33712DB613BD4DA62B8B73E9 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				18C8F8C6F15AB99F121DD1EF /* ActiveSessionView.swift */,
-				CFD78FD7EFFD8D4BEF84E11D /* BreakTimelineView.swift */,
-				25C9F36D8E9B60D250AC550F /* CircularTimerView.swift */,
-				1D9CC1B46AA61CE56CD07ADF /* PreSessionView.swift */,
-				30BD147346D8E3BD986D275C /* SessionSummaryView.swift */,
+				7C783B5AA3CB3B89C736D971 /* Goals */,
+				75D5423A3927EAA7CD9EC606 /* History */,
+				B704B45896DA4568CAE67E92 /* Presets */,
+				82AACC631DBE9E362FC07684 /* Settings */,
+				677CE429D0ACD06A6B6B249D /* Timer */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		34D2CFCF42944968FDB4DEB7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				82E3598423543D1F04D8EAF4 /* AppDelegate.swift */,
+				A0B3399898E1EA079EBD7297 /* CozyScreenApp.swift */,
+				C7E8BCFFF6CAE8054D5CA471 /* MenuBarView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		59DB89D65521D398D83D8F37 /* ShortcutService */ = {
+			isa = PBXGroup;
+			children = (
+				73BC489A5998EBC9148DB912 /* GlobalShortcutService.swift */,
+			);
+			path = ShortcutService;
+			sourceTree = "<group>";
+		};
+		648E3BB1BD94234D00FEA57F /* MenuBarAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				39B347806910EFF62154FCCF /* AnimationFrameProvider.swift */,
+				C382ECEFDB4E9B4A24C4C5F3 /* MenuBarAnimationService.swift */,
+			);
+			path = MenuBarAnimation;
+			sourceTree = "<group>";
+		};
+		677CE429D0ACD06A6B6B249D /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				47C10B67242616F4F8D9B835 /* ActiveSessionView.swift */,
+				75DEAA3F66EEBAFD6E885493 /* BreakTimelineView.swift */,
+				EDF7EC4106933DEE600E09AF /* CircularTimerView.swift */,
+				559FF0BC314C72E2C181B601 /* PreSessionView.swift */,
+				EE53452115A65D7FD6019965 /* SessionSummaryView.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
 		};
-		9DD53E0059441F698FE9309D /* Settings */ = {
+		75D5423A3927EAA7CD9EC606 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				F49BFFF482576A8893FD5256 /* AlertSettingsTab.swift */,
-				22F72184AD50E93A126907FC /* DataSettingsTab.swift */,
-				1E69FA93A5D122ECBEA27B12 /* SettingsView.swift */,
-				A83A2221E6D32F313F080C55 /* ShortcutRecorderView.swift */,
-				B3DCF939B5A67772EF922F01 /* ShortcutSettingsTab.swift */,
-				66E7C0B26DE5E6BA03AC709F /* TimerSettingsTab.swift */,
+				135D625875D58D9ABB934A91 /* HistoryView.swift */,
 			);
-			path = Settings;
+			path = History;
 			sourceTree = "<group>";
 		};
-		A76D1F35E01B15E3FCF1D947 /* Goals */ = {
+		7C783B5AA3CB3B89C736D971 /* Goals */ = {
 			isa = PBXGroup;
 			children = (
-				CF4FA261AB95E4151FBFD64D /* GoalInputView.swift */,
-				7F80D92847525A570986CA5D /* TodoListView.swift */,
-				66552F383ECE401999A2B331 /* TodoReviewView.swift */,
+				ECD7F11C1D07B24648753518 /* GoalInputView.swift */,
+				1F44BCA81359CBEDA1832B37 /* TodoListView.swift */,
+				56B8CB2424BC58F25F3C238C /* TodoReviewView.swift */,
 			);
 			path = Goals;
 			sourceTree = "<group>";
 		};
-		BD4CE92FD53C9D02F2703982 /* CozyScreen */ = {
+		82AACC631DBE9E362FC07684 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				1BCDD0ABDC3DF867D1A3A2C4 /* CozyScreen.entitlements */,
-				E11AA49695702DB35160BBAD /* Info.plist */,
-				17857115BCF6A72BD51273D8 /* App */,
-				0CBD4FF59D0640970D960BC5 /* Core */,
-				578B70475EE34FFF413BBD97 /* Features */,
-				5CCFBA68AB48AA2C0ACA18FC /* Services */,
+				8EB6CCB73C1BC6F5D4753EB4 /* AlertSettingsTab.swift */,
+				CAD8A3A656D16AD2FD8A5BE2 /* DataSettingsTab.swift */,
+				EEB08C57C09F4A41D77ED3DD /* SettingsView.swift */,
+				1DBB1AB13606E6C8194384F9 /* ShortcutRecorderView.swift */,
+				517303756ECFB573A0B4C119 /* ShortcutSettingsTab.swift */,
+				BF907F7BEBC8F32D74E827CA /* TimerSettingsTab.swift */,
 			);
-			path = CozyScreen;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		BEA13CAEBA3E884F74E9601E /* Persistence */ = {
+		9BB3A09E86737C4812C12E9A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F13A851170B2F0C01F8C78CB /* AppSettings.swift */,
+				6B2239DD4F77010E6AE73923 /* FocusBreak.swift */,
+				3AC9EFCF6F24A364F56888BD /* PomodoroSession.swift */,
+				9FF38ECD9718A30395146DBF /* TimerPreset.swift */,
+				46F56F902109AA382647BB63 /* TodoItem.swift */,
 			);
-			path = Persistence;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B704B45896DA4568CAE67E92 /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				97127D2A04F902B28C541AD3 /* PresetManagementView.swift */,
+			);
+			path = Presets;
 			sourceTree = "<group>";
 		};
 		C0E58D390746B06195B9AD78 /* Products */ = {
@@ -224,39 +206,57 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C3C752A9A1ADE6419C127355 /* ShortcutService */ = {
+		C2581F0A3105B15C7C57F311 /* DataExportService */ = {
 			isa = PBXGroup;
 			children = (
-				D683EAC975FE0571BBAD4F27 /* GlobalShortcutService.swift */,
+				7B7440B559BBEA83E84B700C /* DataExportService.swift */,
 			);
-			path = ShortcutService;
+			path = DataExportService;
 			sourceTree = "<group>";
 		};
-		C71F60528301B7400771D007 /* History */ = {
+		D73F53AD7789B0415D156E1E /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				CBC7DB89982875A4DEDA360A /* HistoryView.swift */,
+				88EA3AD1C1CE39B3A81536E6 /* AppSettings.swift */,
 			);
-			path = History;
+			path = Persistence;
 			sourceTree = "<group>";
 		};
-		DC7DBD73E93298CF180571E9 /* Models */ = {
+		D94C96D54EBFDEF18A698572 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D4B296EC571F125464047B76 /* FocusBreak.swift */,
-				AB2562DEE0E98DBE0709469B /* PomodoroSession.swift */,
-				306790F66451FD641CAB5D4D /* TimerPreset.swift */,
-				C94CB1414B6CFD75EA131D66 /* TodoItem.swift */,
+				C2581F0A3105B15C7C57F311 /* DataExportService */,
+				648E3BB1BD94234D00FEA57F /* MenuBarAnimation */,
+				285C53D476452939E0742521 /* ScreenFlashService */,
+				59DB89D65521D398D83D8F37 /* ShortcutService */,
+				F79FFD84697FF99C46FE261D /* TimerService */,
 			);
-			path = Models;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		F2FDAF3E356C5331862AA794 = {
 			isa = PBXGroup;
 			children = (
-				BD4CE92FD53C9D02F2703982 /* CozyScreen */,
+				1058FCF8B9FF706BC6272F7E /* MacModoro */,
 				C0E58D390746B06195B9AD78 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		F79FFD84697FF99C46FE261D /* TimerService */ = {
+			isa = PBXGroup;
+			children = (
+				C03131A21590F8EB4F54F98B /* TimerService.swift */,
+			);
+			path = TimerService;
+			sourceTree = "<group>";
+		};
+		FE3C8F4F0D9490F109AEE0D1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9BB3A09E86737C4812C12E9A /* Models */,
+				D73F53AD7789B0415D156E1E /* Persistence */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,36 +317,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83E32B8B624DC332FEDE7468 /* ActiveSessionView.swift in Sources */,
-				2D23E6F6278925C064212753 /* AlertSettingsTab.swift in Sources */,
-				4E0BF020FB284C1B36B45DCA /* AnimationFrameProvider.swift in Sources */,
-				F761056533010A92C11DCE2E /* AppDelegate.swift in Sources */,
-				085C279F43353BECD4109CB6 /* AppSettings.swift in Sources */,
-				4609BB197BBED43D79BCC802 /* BreakTimelineView.swift in Sources */,
-				9056FCEB631A9C522CBE2464 /* CircularTimerView.swift in Sources */,
-				8594A91A58832BDBD1F396C2 /* CozyScreenApp.swift in Sources */,
-				C14BBA98460A6C231220D767 /* DataExportService.swift in Sources */,
-				6616B7ACAEB9C4E5539683E7 /* DataSettingsTab.swift in Sources */,
-				7D3F6693C8D3CA6CE2265316 /* FocusBreak.swift in Sources */,
-				D9A77CD5A56F86AC89D1226F /* GlobalShortcutService.swift in Sources */,
-				1F6CF4A12010AE988A06AA9B /* GoalInputView.swift in Sources */,
-				BF1C505DFC25080DEEB97309 /* HistoryView.swift in Sources */,
-				2B9BD702533DC048126664B5 /* MenuBarAnimationService.swift in Sources */,
-				E3602A8D244502C50E2A330D /* MenuBarView.swift in Sources */,
-				AC45BDB2BD033B07DB2DA22F /* PomodoroSession.swift in Sources */,
-				B000A275BF0F5DEE5C39678B /* PreSessionView.swift in Sources */,
-				35533BAE0E414FF6A9F11DAE /* PresetManagementView.swift in Sources */,
-				57F410ED438704DE5ED3DE0B /* ScreenFlashService.swift in Sources */,
-				F14B670808C5BE3021EB7B9B /* SessionSummaryView.swift in Sources */,
-				A061E10F11A523F1006E01A1 /* SettingsView.swift in Sources */,
-				21E5C3C3C4834917B44F2E3E /* ShortcutRecorderView.swift in Sources */,
-				B12819CE5657D0B07874D5A1 /* ShortcutSettingsTab.swift in Sources */,
-				8242559976BC45989CAB8A20 /* TimerPreset.swift in Sources */,
-				ACE79280650BFF96D85FE129 /* TimerService.swift in Sources */,
-				F0AFC061D8EBA01D91F77DAC /* TimerSettingsTab.swift in Sources */,
-				31AB90A3C56809DB302B45A2 /* TodoItem.swift in Sources */,
-				3A8678BF1460D25ACEA892DE /* TodoListView.swift in Sources */,
-				E8111F6B9089C952BFF5D305 /* TodoReviewView.swift in Sources */,
+				1800FA0E2D40A7B3B51A93AF /* ActiveSessionView.swift in Sources */,
+				94B6C9C48E7B9B8001F0AB0E /* AlertSettingsTab.swift in Sources */,
+				4C48D5A3B145DE03EA878B3A /* AnimationFrameProvider.swift in Sources */,
+				63BEBE8301FC9629004C102E /* AppDelegate.swift in Sources */,
+				C347C0F303F7EBD2A8AF4838 /* AppSettings.swift in Sources */,
+				23C2768A1DE45AE0DACAB01B /* BreakTimelineView.swift in Sources */,
+				B3478AF3AE1E89F4FF8E044B /* CircularTimerView.swift in Sources */,
+				F7AA03A06292A315C2B0A89D /* CozyScreenApp.swift in Sources */,
+				4BFF7DA6AC3785E22D13EB06 /* DataExportService.swift in Sources */,
+				B1937A8CEE9615702841B789 /* DataSettingsTab.swift in Sources */,
+				068FAE22B80CF4A842A4BC3A /* FocusBreak.swift in Sources */,
+				087105501E06D9DA010F64DD /* GlobalShortcutService.swift in Sources */,
+				D41EC59E25A23C41785493BD /* GoalInputView.swift in Sources */,
+				C5A5C269F444850C05B4FD85 /* HistoryView.swift in Sources */,
+				EEC8AE2E925B168FCB2CB197 /* MenuBarAnimationService.swift in Sources */,
+				738380BD44D7C00F9FF975EF /* MenuBarView.swift in Sources */,
+				7CD2DF786E8E49B1BD5A9919 /* PomodoroSession.swift in Sources */,
+				1C954D49BFE5AE31D817452A /* PreSessionView.swift in Sources */,
+				9FF59F71C7A8F22ACA875D24 /* PresetManagementView.swift in Sources */,
+				8AF85AC410BA6D7966690843 /* ScreenFlashService.swift in Sources */,
+				D8C4A03D7BEA8B7A174F0ED2 /* SessionSummaryView.swift in Sources */,
+				EE44DC76457585C9B5BE963B /* SettingsView.swift in Sources */,
+				1CC991DB3E3DBD52B4911C12 /* ShortcutRecorderView.swift in Sources */,
+				497CC5ACFDC425E16D4D1179 /* ShortcutSettingsTab.swift in Sources */,
+				B308E077A45829A6A463D05B /* TimerPreset.swift in Sources */,
+				39FCBC08178E7B850BD2FA99 /* TimerService.swift in Sources */,
+				DE3AF2A6DF515CEAED191C2B /* TimerSettingsTab.swift in Sources */,
+				E9B5058961CB7341D049C395 /* TodoItem.swift in Sources */,
+				E1215FBADF4BB337639E46FE /* TodoListView.swift in Sources */,
+				B014BF24C99ED9DE25FC3EB0 /* TodoReviewView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,11 +357,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CozyScreen/CozyScreen.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MacModoro/MacModoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = CozyScreen/Info.plist;
+				INFOPLIST_FILE = MacModoro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -378,11 +378,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CozyScreen/CozyScreen.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MacModoro/MacModoro.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = CozyScreen/Info.plist;
+				INFOPLIST_FILE = MacModoro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

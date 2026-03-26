@@ -9,9 +9,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var animationService: MenuBarAnimationService?
     private var timerStateObserver: AnyCancellable?
     private var timeTextObserver: AnyCancellable?
+    private var speedObserver: AnyCancellable?
 
     private var statusItem: NSStatusItem!
     private var popover: NSPopover!
+    private var settingsWindow: NSWindow?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupStatusItem()
@@ -25,6 +27,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .receive(on: RunLoop.main)
             .sink { [weak self] state in
                 self?.handleTimerStateChange(state)
+            }
+
+        // #4: 남은 시간에 따라 애니메이션 속도 가변
+        speedObserver = TimerService.shared.$remainingSeconds
+            .receive(on: RunLoop.main)
+            .sink { [weak self] remaining in
+                self?.updateAnimationSpeed(remaining: remaining)
             }
 
         shortcutService.onHotKeyPressed = {
@@ -59,6 +68,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             animationService?.stopAnimation()
             animationService?.updateTimeText(nil)
         }
+    }
+
+    private func updateAnimationSpeed(remaining: Int) {
+        guard TimerService.shared.state == .running else { return }
+        let total = TimerService.shared.totalSeconds
+        guard total > 0 else { return }
+
+        let ratio = Double(remaining) / Double(total)
+        let baseSpeed = AppSettings.shared.animationSpeed
+
+        let speed: Double
+        if ratio < 0.1 {
+            speed = baseSpeed * 0.3
+        } else if ratio < 0.25 {
+            speed = baseSpeed * 0.5
+        } else if ratio < 0.5 {
+            speed = baseSpeed * 0.7
+        } else {
+            speed = baseSpeed
+        }
+
+        animationService?.updateSpeed(speed)
     }
 
     private func observeTimeText() {
@@ -116,7 +147,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func openSettings() {
         popover.performClose(nil)
-        NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+
+        if settingsWindow == nil {
+            let settingsView = SettingsView()
+                .modelContainer(SharedModelContainer.shared)
+            let controller = NSHostingController(rootView: settingsView)
+            let window = NSWindow(contentViewController: controller)
+            window.title = "MacModoro 설정"
+            window.styleMask = [.titled, .closable]
+            window.setContentSize(NSSize(width: 480, height: 360))
+            window.center()
+            window.isReleasedWhenClosed = false
+            settingsWindow = window
+        }
+
+        settingsWindow?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 }
