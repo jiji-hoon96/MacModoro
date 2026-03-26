@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		085C279F43353BECD4109CB6 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13A851170B2F0C01F8C78CB /* AppSettings.swift */; };
+		1F6CF4A12010AE988A06AA9B /* GoalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4FA261AB95E4151FBFD64D /* GoalInputView.swift */; };
+		21E5C3C3C4834917B44F2E3E /* ShortcutRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83A2221E6D32F313F080C55 /* ShortcutRecorderView.swift */; };
+		2B9BD702533DC048126664B5 /* MenuBarAnimationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8AE15F76D61C97807A0A10 /* MenuBarAnimationService.swift */; };
+		2D23E6F6278925C064212753 /* AlertSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49BFFF482576A8893FD5256 /* AlertSettingsTab.swift */; };
+		31AB90A3C56809DB302B45A2 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94CB1414B6CFD75EA131D66 /* TodoItem.swift */; };
+		35533BAE0E414FF6A9F11DAE /* PresetManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0E35A0C4E44AB8BE92B5A3 /* PresetManagementView.swift */; };
+		3A8678BF1460D25ACEA892DE /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F80D92847525A570986CA5D /* TodoListView.swift */; };
+		4609BB197BBED43D79BCC802 /* BreakTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD78FD7EFFD8D4BEF84E11D /* BreakTimelineView.swift */; };
+		4E0BF020FB284C1B36B45DCA /* AnimationFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */; };
+		57F410ED438704DE5ED3DE0B /* ScreenFlashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */; };
+		5A3DF7D24422CA2AE890DA1E /* PresetsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952775094AEC463B6F9B8D9E /* PresetsBarView.swift */; };
+		6616B7ACAEB9C4E5539683E7 /* DataSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F72184AD50E93A126907FC /* DataSettingsTab.swift */; };
+		7D3F6693C8D3CA6CE2265316 /* FocusBreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B296EC571F125464047B76 /* FocusBreak.swift */; };
+		8242559976BC45989CAB8A20 /* TimerPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306790F66451FD641CAB5D4D /* TimerPreset.swift */; };
+		83E32B8B624DC332FEDE7468 /* ActiveSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8F8C6F15AB99F121DD1EF /* ActiveSessionView.swift */; };
+		8594A91A58832BDBD1F396C2 /* CozyScreenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B88F7D1EF1D66D71FB9410A /* CozyScreenApp.swift */; };
+		9056FCEB631A9C522CBE2464 /* CircularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C9F36D8E9B60D250AC550F /* CircularTimerView.swift */; };
+		A061E10F11A523F1006E01A1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E69FA93A5D122ECBEA27B12 /* SettingsView.swift */; };
+		AC45BDB2BD033B07DB2DA22F /* PomodoroSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2562DEE0E98DBE0709469B /* PomodoroSession.swift */; };
+		ACE79280650BFF96D85FE129 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE301AA729AF3BC04C61CD7A /* TimerService.swift */; };
+		B000A275BF0F5DEE5C39678B /* PreSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9CC1B46AA61CE56CD07ADF /* PreSessionView.swift */; };
+		B12819CE5657D0B07874D5A1 /* ShortcutSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DCF939B5A67772EF922F01 /* ShortcutSettingsTab.swift */; };
+		BF1C505DFC25080DEEB97309 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC7DB89982875A4DEDA360A /* HistoryView.swift */; };
+		C14BBA98460A6C231220D767 /* DataExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BE47BD4C8B3C1F1D16DEF0 /* DataExportService.swift */; };
+		D9A77CD5A56F86AC89D1226F /* GlobalShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683EAC975FE0571BBAD4F27 /* GlobalShortcutService.swift */; };
+		E3602A8D244502C50E2A330D /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18EA65EB5FA9A21EABF8AF6 /* MenuBarView.swift */; };
+		E8111F6B9089C952BFF5D305 /* TodoReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66552F383ECE401999A2B331 /* TodoReviewView.swift */; };
+		F0AFC061D8EBA01D91F77DAC /* TimerSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E7C0B26DE5E6BA03AC709F /* TimerSettingsTab.swift */; };
+		F14B670808C5BE3021EB7B9B /* SessionSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD147346D8E3BD986D275C /* SessionSummaryView.swift */; };
+		F761056533010A92C11DCE2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61BF3CAB29773A901678AAF /* AppDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		18C8F8C6F15AB99F121DD1EF /* ActiveSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSessionView.swift; sourceTree = "<group>"; };
+		1BCDD0ABDC3DF867D1A3A2C4 /* CozyScreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CozyScreen.entitlements; sourceTree = "<group>"; };
+		1D9CC1B46AA61CE56CD07ADF /* PreSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreSessionView.swift; sourceTree = "<group>"; };
+		1E69FA93A5D122ECBEA27B12 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		22F72184AD50E93A126907FC /* DataSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSettingsTab.swift; sourceTree = "<group>"; };
+		25C9F36D8E9B60D250AC550F /* CircularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTimerView.swift; sourceTree = "<group>"; };
+		2D9C9DBA47C645439B921958 /* MacModoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacModoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		306790F66451FD641CAB5D4D /* TimerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPreset.swift; sourceTree = "<group>"; };
+		30BD147346D8E3BD986D275C /* SessionSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSummaryView.swift; sourceTree = "<group>"; };
+		5B88F7D1EF1D66D71FB9410A /* CozyScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CozyScreenApp.swift; sourceTree = "<group>"; };
+		66552F383ECE401999A2B331 /* TodoReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoReviewView.swift; sourceTree = "<group>"; };
+		66E7C0B26DE5E6BA03AC709F /* TimerSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingsTab.swift; sourceTree = "<group>"; };
+		6E8AE15F76D61C97807A0A10 /* MenuBarAnimationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarAnimationService.swift; sourceTree = "<group>"; };
+		7F80D92847525A570986CA5D /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
+		86BE47BD4C8B3C1F1D16DEF0 /* DataExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExportService.swift; sourceTree = "<group>"; };
+		952775094AEC463B6F9B8D9E /* PresetsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsBarView.swift; sourceTree = "<group>"; };
+		A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFlashService.swift; sourceTree = "<group>"; };
+		A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFrameProvider.swift; sourceTree = "<group>"; };
+		A61BF3CAB29773A901678AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A83A2221E6D32F313F080C55 /* ShortcutRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutRecorderView.swift; sourceTree = "<group>"; };
+		AB2562DEE0E98DBE0709469B /* PomodoroSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroSession.swift; sourceTree = "<group>"; };
+		B3DCF939B5A67772EF922F01 /* ShortcutSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutSettingsTab.swift; sourceTree = "<group>"; };
+		C94CB1414B6CFD75EA131D66 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		CBC7DB89982875A4DEDA360A /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		CF4FA261AB95E4151FBFD64D /* GoalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalInputView.swift; sourceTree = "<group>"; };
+		CFD78FD7EFFD8D4BEF84E11D /* BreakTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTimelineView.swift; sourceTree = "<group>"; };
+		D4B296EC571F125464047B76 /* FocusBreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusBreak.swift; sourceTree = "<group>"; };
+		D683EAC975FE0571BBAD4F27 /* GlobalShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalShortcutService.swift; sourceTree = "<group>"; };
+		DE301AA729AF3BC04C61CD7A /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		E11AA49695702DB35160BBAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F13A851170B2F0C01F8C78CB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		F18EA65EB5FA9A21EABF8AF6 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
+		F49BFFF482576A8893FD5256 /* AlertSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingsTab.swift; sourceTree = "<group>"; };
+		FB0E35A0C4E44AB8BE92B5A3 /* PresetManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetManagementView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0CBD4FF59D0640970D960BC5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DC7DBD73E93298CF180571E9 /* Models */,
+				BEA13CAEBA3E884F74E9601E /* Persistence */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		17857115BCF6A72BD51273D8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A61BF3CAB29773A901678AAF /* AppDelegate.swift */,
+				5B88F7D1EF1D66D71FB9410A /* CozyScreenApp.swift */,
+				F18EA65EB5FA9A21EABF8AF6 /* MenuBarView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		48881BE26DF9C4334923556C /* TimerService */ = {
+			isa = PBXGroup;
+			children = (
+				DE301AA729AF3BC04C61CD7A /* TimerService.swift */,
+			);
+			path = TimerService;
+			sourceTree = "<group>";
+		};
+		55F20982989E22DF2C306CEA /* DataExportService */ = {
+			isa = PBXGroup;
+			children = (
+				86BE47BD4C8B3C1F1D16DEF0 /* DataExportService.swift */,
+			);
+			path = DataExportService;
+			sourceTree = "<group>";
+		};
+		578B70475EE34FFF413BBD97 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A76D1F35E01B15E3FCF1D947 /* Goals */,
+				C71F60528301B7400771D007 /* History */,
+				693A087E2A4639FF9CE5E5AD /* Presets */,
+				9DD53E0059441F698FE9309D /* Settings */,
+				83800895CC12DDD706DAE4D2 /* Timer */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		5CCFBA68AB48AA2C0ACA18FC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				55F20982989E22DF2C306CEA /* DataExportService */,
+				5E11980DBACE19AD9A8302B5 /* MenuBarAnimation */,
+				79E5024913A5F043FC09DAC2 /* ScreenFlashService */,
+				C3C752A9A1ADE6419C127355 /* ShortcutService */,
+				48881BE26DF9C4334923556C /* TimerService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5E11980DBACE19AD9A8302B5 /* MenuBarAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				A3CDDF1C53DCE7B4F05B9F66 /* AnimationFrameProvider.swift */,
+				6E8AE15F76D61C97807A0A10 /* MenuBarAnimationService.swift */,
+			);
+			path = MenuBarAnimation;
+			sourceTree = "<group>";
+		};
+		693A087E2A4639FF9CE5E5AD /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				FB0E35A0C4E44AB8BE92B5A3 /* PresetManagementView.swift */,
+				952775094AEC463B6F9B8D9E /* PresetsBarView.swift */,
+			);
+			path = Presets;
+			sourceTree = "<group>";
+		};
+		79E5024913A5F043FC09DAC2 /* ScreenFlashService */ = {
+			isa = PBXGroup;
+			children = (
+				A1997669456F1D15E6F2B6F2 /* ScreenFlashService.swift */,
+			);
+			path = ScreenFlashService;
+			sourceTree = "<group>";
+		};
+		83800895CC12DDD706DAE4D2 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				18C8F8C6F15AB99F121DD1EF /* ActiveSessionView.swift */,
+				CFD78FD7EFFD8D4BEF84E11D /* BreakTimelineView.swift */,
+				25C9F36D8E9B60D250AC550F /* CircularTimerView.swift */,
+				1D9CC1B46AA61CE56CD07ADF /* PreSessionView.swift */,
+				30BD147346D8E3BD986D275C /* SessionSummaryView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		9DD53E0059441F698FE9309D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F49BFFF482576A8893FD5256 /* AlertSettingsTab.swift */,
+				22F72184AD50E93A126907FC /* DataSettingsTab.swift */,
+				1E69FA93A5D122ECBEA27B12 /* SettingsView.swift */,
+				A83A2221E6D32F313F080C55 /* ShortcutRecorderView.swift */,
+				B3DCF939B5A67772EF922F01 /* ShortcutSettingsTab.swift */,
+				66E7C0B26DE5E6BA03AC709F /* TimerSettingsTab.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A76D1F35E01B15E3FCF1D947 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				CF4FA261AB95E4151FBFD64D /* GoalInputView.swift */,
+				7F80D92847525A570986CA5D /* TodoListView.swift */,
+				66552F383ECE401999A2B331 /* TodoReviewView.swift */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
+		BD4CE92FD53C9D02F2703982 /* CozyScreen */ = {
+			isa = PBXGroup;
+			children = (
+				1BCDD0ABDC3DF867D1A3A2C4 /* CozyScreen.entitlements */,
+				E11AA49695702DB35160BBAD /* Info.plist */,
+				17857115BCF6A72BD51273D8 /* App */,
+				0CBD4FF59D0640970D960BC5 /* Core */,
+				578B70475EE34FFF413BBD97 /* Features */,
+				5CCFBA68AB48AA2C0ACA18FC /* Services */,
+			);
+			path = CozyScreen;
+			sourceTree = "<group>";
+		};
+		BEA13CAEBA3E884F74E9601E /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				F13A851170B2F0C01F8C78CB /* AppSettings.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		C0E58D390746B06195B9AD78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D9C9DBA47C645439B921958 /* MacModoro.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C3C752A9A1ADE6419C127355 /* ShortcutService */ = {
+			isa = PBXGroup;
+			children = (
+				D683EAC975FE0571BBAD4F27 /* GlobalShortcutService.swift */,
+			);
+			path = ShortcutService;
+			sourceTree = "<group>";
+		};
+		C71F60528301B7400771D007 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				CBC7DB89982875A4DEDA360A /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		DC7DBD73E93298CF180571E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4B296EC571F125464047B76 /* FocusBreak.swift */,
+				AB2562DEE0E98DBE0709469B /* PomodoroSession.swift */,
+				306790F66451FD641CAB5D4D /* TimerPreset.swift */,
+				C94CB1414B6CFD75EA131D66 /* TodoItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F2FDAF3E356C5331862AA794 = {
+			isa = PBXGroup;
+			children = (
+				BD4CE92FD53C9D02F2703982 /* CozyScreen */,
+				C0E58D390746B06195B9AD78 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4518D5F6D9533DC806C9DAB3 /* MacModoro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 641C0C8039CAC56FB6584DF7 /* Build configuration list for PBXNativeTarget "MacModoro" */;
+			buildPhases = (
+				5CF68B3D363F6679FFCA680D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacModoro;
+			packageProductDependencies = (
+			);
+			productName = MacModoro;
+			productReference = 2D9C9DBA47C645439B921958 /* MacModoro.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F2DD37205E8807886209F9A4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					4518D5F6D9533DC806C9DAB3 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D43DB054341D40C155B5C538 /* Build configuration list for PBXProject "MacModoro" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = F2FDAF3E356C5331862AA794;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C0E58D390746B06195B9AD78 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4518D5F6D9533DC806C9DAB3 /* MacModoro */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5CF68B3D363F6679FFCA680D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83E32B8B624DC332FEDE7468 /* ActiveSessionView.swift in Sources */,
+				2D23E6F6278925C064212753 /* AlertSettingsTab.swift in Sources */,
+				4E0BF020FB284C1B36B45DCA /* AnimationFrameProvider.swift in Sources */,
+				F761056533010A92C11DCE2E /* AppDelegate.swift in Sources */,
+				085C279F43353BECD4109CB6 /* AppSettings.swift in Sources */,
+				4609BB197BBED43D79BCC802 /* BreakTimelineView.swift in Sources */,
+				9056FCEB631A9C522CBE2464 /* CircularTimerView.swift in Sources */,
+				8594A91A58832BDBD1F396C2 /* CozyScreenApp.swift in Sources */,
+				C14BBA98460A6C231220D767 /* DataExportService.swift in Sources */,
+				6616B7ACAEB9C4E5539683E7 /* DataSettingsTab.swift in Sources */,
+				7D3F6693C8D3CA6CE2265316 /* FocusBreak.swift in Sources */,
+				D9A77CD5A56F86AC89D1226F /* GlobalShortcutService.swift in Sources */,
+				1F6CF4A12010AE988A06AA9B /* GoalInputView.swift in Sources */,
+				BF1C505DFC25080DEEB97309 /* HistoryView.swift in Sources */,
+				2B9BD702533DC048126664B5 /* MenuBarAnimationService.swift in Sources */,
+				E3602A8D244502C50E2A330D /* MenuBarView.swift in Sources */,
+				AC45BDB2BD033B07DB2DA22F /* PomodoroSession.swift in Sources */,
+				B000A275BF0F5DEE5C39678B /* PreSessionView.swift in Sources */,
+				35533BAE0E414FF6A9F11DAE /* PresetManagementView.swift in Sources */,
+				5A3DF7D24422CA2AE890DA1E /* PresetsBarView.swift in Sources */,
+				57F410ED438704DE5ED3DE0B /* ScreenFlashService.swift in Sources */,
+				F14B670808C5BE3021EB7B9B /* SessionSummaryView.swift in Sources */,
+				A061E10F11A523F1006E01A1 /* SettingsView.swift in Sources */,
+				21E5C3C3C4834917B44F2E3E /* ShortcutRecorderView.swift in Sources */,
+				B12819CE5657D0B07874D5A1 /* ShortcutSettingsTab.swift in Sources */,
+				8242559976BC45989CAB8A20 /* TimerPreset.swift in Sources */,
+				ACE79280650BFF96D85FE129 /* TimerService.swift in Sources */,
+				F0AFC061D8EBA01D91F77DAC /* TimerSettingsTab.swift in Sources */,
+				31AB90A3C56809DB302B45A2 /* TodoItem.swift in Sources */,
+				3A8678BF1460D25ACEA892DE /* TodoListView.swift in Sources */,
+				E8111F6B9089C952BFF5D305 /* TodoReviewView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		313EFE9DA83E8CA9561FBAE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CozyScreen/CozyScreen.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CozyScreen/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macmodoro.app;
+				PRODUCT_NAME = MacModoro;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		37BEC5A6A2998064E159F8CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CozyScreen/CozyScreen.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CozyScreen/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macmodoro.app;
+				PRODUCT_NAME = MacModoro;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		A4A5BA97B11E4BC5EE22663B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A8CE5CF876FC84A8918707F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		641C0C8039CAC56FB6584DF7 /* Build configuration list for PBXNativeTarget "MacModoro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				313EFE9DA83E8CA9561FBAE2 /* Debug */,
+				37BEC5A6A2998064E159F8CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D43DB054341D40C155B5C538 /* Build configuration list for PBXProject "MacModoro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A4A5BA97B11E4BC5EE22663B /* Debug */,
+				A8CE5CF876FC84A8918707F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F2DD37205E8807886209F9A4 /* Project object */;
+}

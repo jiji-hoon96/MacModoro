@@ -4,9 +4,5 @@
 <dict>
     <key>LSUIElement</key>
     <true/>
-    <key>NSCalendarsUsageDescription</key>
-    <string>스크린세이버에 다가오는 일정을 표시하기 위해 캘린더 접근이 필요합니다.</string>
-    <key>NSRemindersUsageDescription</key>
-    <string>스크린세이버에 미리알림을 표시하기 위해 접근이 필요합니다.</string>
 </dict>
 </plist>

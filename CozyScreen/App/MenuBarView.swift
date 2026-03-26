@@ -1,33 +1,37 @@
 import SwiftUI
 
-struct MenuBarView: View {
-    @State private var permissionGranted = PermissionManager.shared.isAccessibilityGranted
+struct MenuBarPopoverView: View {
+    @StateObject private var timerService = TimerService.shared
+    @State private var showHistory = false
 
     var body: some View {
-        Button("스크린세이버 시작") {
-            ScreenSaverController.shared.activate()
-        }
-        .keyboardShortcut("s", modifiers: [.command, .shift])
+        Group {
+            if showHistory {
+                VStack {
+                    HStack {
+                        Button {
+                            showHistory = false
+                        } label: {
+                            Label("뒤로", systemImage: "chevron.left")
+                        }
+                        .buttonStyle(.plain)
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 8)
 
-        Divider()
-
-        Button("설정 열기...") {
-            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-            NSApp.activate(ignoringOtherApps: true)
-        }
-
-        if !permissionGranted {
-            Divider()
-            Button("접근성 권한 설정...") {
-                PermissionManager.shared.requestAccessibility()
+                    HistoryView()
+                }
+            } else {
+                switch timerService.state {
+                case .idle:
+                    PreSessionView(timerService: timerService, showHistory: $showHistory)
+                case .running, .paused:
+                    ActiveSessionView(timerService: timerService)
+                case .finished:
+                    SessionSummaryView(timerService: timerService)
+                }
             }
         }
-
-        Divider()
-
-        Button("종료") {
-            NSApplication.shared.terminate(nil)
-        }
-        .keyboardShortcut("q")
     }
 }

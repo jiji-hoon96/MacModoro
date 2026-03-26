@@ -6,7 +6,9 @@ final class GlobalShortcutService {
 
     private var hotKeyRef: EventHotKeyRef?
     private var eventHandlerRef: EventHandlerRef?
-    private let hotKeyID = EventHotKeyID(signature: OSType(0x435A5343), id: 1) // "CZSC"
+    private let hotKeyID = EventHotKeyID(signature: OSType(0x4D4D4452), id: 1) // "MMDR"
+
+    var onHotKeyPressed: (() -> Void)?
 
     private init() {}
 
@@ -14,14 +16,14 @@ final class GlobalShortcutService {
         unregister()
 
         let settings = AppSettings.shared
-        let keyCode = settings.shortcutKeyCode
-        let modifiers = settings.shortcutModifiers
+        let keyCode = settings.focusBreakKeyCode
+        let modifiers = settings.focusBreakModifiers
 
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
 
         let handler: EventHandlerUPP = { _, event, _ -> OSStatus in
             DispatchQueue.main.async {
-                ScreenSaverController.shared.toggle()
+                GlobalShortcutService.shared.onHotKeyPressed?()
             }
             return noErr
         }

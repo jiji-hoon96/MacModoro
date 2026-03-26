@@ -1,13 +1,13 @@
-name: CozyScreen
+name: MacModoro
 options:
-  bundleIdPrefix: com.cozyscreen
+  bundleIdPrefix: com.macmodoro
   deploymentTarget:
     macOS: "14.0"
   xcodeVersion: "15.0"
   createIntermediateGroups: true
 
 targets:
-  CozyScreen:
+  MacModoro:
     type: application
     platform: macOS
     sources:
@@ -16,10 +16,10 @@ targets:
       base:
         INFOPLIST_FILE: CozyScreen/Info.plist
         CODE_SIGN_ENTITLEMENTS: CozyScreen/CozyScreen.entitlements
-        PRODUCT_BUNDLE_IDENTIFIER: com.cozyscreen.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.macmodoro.app
         SWIFT_VERSION: "5.9"
         MACOSX_DEPLOYMENT_TARGET: "14.0"
-        PRODUCT_NAME: CozyScreen
+        PRODUCT_NAME: MacModoro
         GENERATE_INFOPLIST_FILE: false
         CODE_SIGN_STYLE: Automatic
     entitlements:
