@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: macos-14
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate project
+        run: xcodegen generate
+
+      - name: Build Release
+        run: xcodebuild -project MacModoro.xcodeproj -scheme MacModoro -configuration Release build
+
+      - name: Package app
+        run: |
+          APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData/MacModoro-*/Build/Products/Release -name "MacModoro.app" -maxdepth 1 | head -1)
+          cd "$(dirname "$APP_PATH")"
+          ditto -c -k --keepParent MacModoro.app MacModoro-${GITHUB_REF_NAME}.zip
+          echo "ZIP_PATH=$(dirname "$APP_PATH")/MacModoro-${GITHUB_REF_NAME}.zip" >> $GITHUB_ENV
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_PATH }}
+          generate_release_notes: true
