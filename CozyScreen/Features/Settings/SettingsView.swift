@@ -3,17 +3,17 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         TabView {
-            GeneralSettingsTab()
-                .tabItem { Label("일반", systemImage: "gear") }
+            TimerSettingsTab()
+                .tabItem { Label("타이머", systemImage: "timer") }
 
-            PhotoSettingsTab()
-                .tabItem { Label("사진", systemImage: "photo.on.rectangle") }
+            ShortcutSettingsTab()
+                .tabItem { Label("단축키", systemImage: "keyboard") }
 
-            WidgetSettingsTab()
-                .tabItem { Label("위젯", systemImage: "square.grid.2x2") }
+            AlertSettingsTab()
+                .tabItem { Label("알림", systemImage: "bell") }
 
-            MemoSettingsTab()
-                .tabItem { Label("메모", systemImage: "note.text") }
+            DataSettingsTab()
+                .tabItem { Label("데이터", systemImage: "square.and.arrow.up") }
         }
         .frame(width: 520, height: 460)
     }
