@@ -15,10 +15,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var popover: NSPopover!
     private var settingsWindow: NSWindow?
 
+    static let openSettingsNotification = Notification.Name("MacModoro.openSettings")
+
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupStatusItem()
         setupPopover()
         setupAnimationService()
+
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(handleOpenSettings),
+            name: Self.openSettingsNotification, object: nil
+        )
 
         let context = ModelContext(SharedModelContainer.shared)
         TimerService.shared.configure(modelContext: context)
@@ -144,6 +151,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     // MARK: - Settings
+
+    @objc private func handleOpenSettings() {
+        openSettings()
+    }
 
     func openSettings() {
         popover.performClose(nil)

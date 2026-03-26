@@ -118,9 +118,7 @@ struct PreSessionView: View {
                 .foregroundStyle(.secondary)
 
                 Button {
-                    if let delegate = NSApp.delegate as? AppDelegate {
-                        delegate.openSettings()
-                    }
+                    NotificationCenter.default.post(name: AppDelegate.openSettingsNotification, object: nil)
                 } label: {
                     HStack(spacing: 4) {
                         Image(systemName: "gearshape")
