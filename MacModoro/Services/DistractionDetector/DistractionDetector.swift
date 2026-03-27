@@ -4,7 +4,7 @@ import Foundation
 final class DistractionDetector {
     static let shared = DistractionDetector()
 
-    var onDistraction: (() -> Void)?
+    var onDistraction: ((String) -> Void)?
 
     private var observer: NSObjectProtocol?
     private var lastRecordedTime: Date = .distantPast
@@ -72,7 +72,6 @@ final class DistractionDetector {
 
     private func recordDistraction(appName: String) {
         lastRecordedTime = .now
-        print("[MacModoro] 집중 깨짐 감지: \(appName)")
-        onDistraction?()
+        onDistraction?(appName)
     }
 }

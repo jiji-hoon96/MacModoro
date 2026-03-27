@@ -12,9 +12,14 @@ struct BreakTimelineView: View {
                     Circle()
                         .fill(Color.orange.opacity(0.5))
                         .frame(width: 4, height: 4)
+
                     Text("\(String(format: "%d:%02d", min, sec))")
                         .font(.system(size: 10, design: .monospaced))
                         .foregroundStyle(.tertiary)
+
+                    Text(brk.reason)
+                        .font(.system(size: 10))
+                        .foregroundStyle(.orange.opacity(0.7))
                 }
             }
         }

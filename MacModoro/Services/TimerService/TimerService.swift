@@ -88,11 +88,11 @@ final class TimerService: ObservableObject {
 
     // MARK: - Focus Break
 
-    func recordFocusBreak() {
+    func recordFocusBreak(reason: String = "manual") {
         guard state == .running, let session = currentSession else { return }
 
         let elapsed = totalSeconds - remainingSeconds
-        let focusBreak = FocusBreak(secondsSinceSessionStart: elapsed)
+        let focusBreak = FocusBreak(secondsSinceSessionStart: elapsed, reason: reason)
         focusBreak.session = session
         session.focusBreaks.append(focusBreak)
         modelContext?.insert(focusBreak)

@@ -45,14 +45,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
 
         shortcutService.onHotKeyPressed = {
-            TimerService.shared.recordFocusBreak()
+            TimerService.shared.recordFocusBreak(reason: "단축키")
         }
         shortcutService.register()
 
         TimerService.shared.requestNotificationPermission()
 
-        DistractionDetector.shared.onDistraction = {
-            TimerService.shared.recordFocusBreak()
+        DistractionDetector.shared.onDistraction = { appName in
+            TimerService.shared.recordFocusBreak(reason: appName)
         }
 
         // #4: 설정 변경 즉시 반영
