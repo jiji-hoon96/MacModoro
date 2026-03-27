@@ -1,44 +1,52 @@
 import SwiftUI
 
+enum TimerPhase {
+    case focus, rest, paused
+}
+
 struct CircularTimerView: View {
     let progress: Double
     let remainingTime: String
-    let isRunning: Bool
+    let phase: TimerPhase
 
     @State private var displayedProgress: Double = 0
 
+    init(progress: Double, remainingTime: String, isRunning: Bool) {
+        self.progress = progress
+        self.remainingTime = remainingTime
+        // 호환: isRunning이면 TimerService에서 판단
+        let service = TimerService.shared
+        if service.isRestPhase && isRunning {
+            self.phase = .rest
+        } else if isRunning {
+            self.phase = .focus
+        } else {
+            self.phase = .paused
+        }
+    }
+
     var body: some View {
         ZStack {
-            // 트랙
             Circle()
                 .stroke(Color.primary.opacity(0.06), lineWidth: 3)
 
-            // 진행
             Circle()
                 .trim(from: 0, to: displayedProgress)
                 .stroke(
-                    progressColor,
+                    ringColor,
                     style: StrokeStyle(lineWidth: 3, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
 
-            // 시간
             VStack(spacing: 2) {
                 Text(remainingTime)
                     .font(.system(size: 44, weight: .thin, design: .rounded))
                     .monospacedDigit()
 
-                if isRunning {
-                    Text("FOCUS")
-                        .font(.system(size: 9, weight: .medium))
-                        .foregroundStyle(.tertiary)
-                        .kerning(2)
-                } else {
-                    Text("PAUSED")
-                        .font(.system(size: 9, weight: .medium))
-                        .foregroundStyle(.orange.opacity(0.6))
-                        .kerning(2)
-                }
+                Text(phaseLabel)
+                    .font(.system(size: 9, weight: .medium))
+                    .foregroundStyle(phaseLabelColor)
+                    .kerning(2)
             }
         }
         .onChange(of: progress) { _, newValue in
@@ -51,9 +59,30 @@ struct CircularTimerView: View {
         }
     }
 
-    private var progressColor: Color {
-        if displayedProgress > 0.9 { return .red.opacity(0.7) }
-        if displayedProgress > 0.7 { return .orange.opacity(0.7) }
-        return .primary.opacity(0.3)
+    private var phaseLabel: String {
+        switch phase {
+        case .focus: return "FOCUS"
+        case .rest: return "REST"
+        case .paused: return "PAUSED"
+        }
+    }
+
+    private var phaseLabelColor: Color {
+        switch phase {
+        case .focus: return .primary.opacity(0.3)
+        case .rest: return .green.opacity(0.6)
+        case .paused: return .orange.opacity(0.6)
+        }
+    }
+
+    private var ringColor: Color {
+        switch phase {
+        case .rest: return .green.opacity(0.5)
+        case .paused: return .orange.opacity(0.3)
+        case .focus:
+            if displayedProgress > 0.9 { return .red.opacity(0.7) }
+            if displayedProgress > 0.7 { return .orange.opacity(0.7) }
+            return .primary.opacity(0.3)
+        }
     }
 }

@@ -33,7 +33,7 @@ struct MenuBarPopoverView: View {
                 switch timerService.state {
                 case .idle:
                     PreSessionView(timerService: timerService, showHistory: $showHistory)
-                case .running, .paused:
+                case .running, .paused, .resting:
                     ActiveSessionView(timerService: timerService)
                 case .finished:
                     SessionSummaryView(timerService: timerService)

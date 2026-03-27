@@ -124,6 +124,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             animationService?.startAnimation()
             observeTimeText()
             DistractionDetector.shared.start()
+        case .resting:
+            animationService?.stopAnimation()
+            animationService?.showIdle()
+            animationService?.updateTimeText(nil)
+            DistractionDetector.shared.stop()
         case .paused:
             animationService?.stopAnimation()
             animationService?.updateTimeText(nil)

@@ -9,8 +9,13 @@ struct ActiveSessionView: View {
         VStack(spacing: 0) {
             Spacer(minLength: 16)
 
-            // 목표
-            if let session = timerService.currentSession, !session.goal.isEmpty {
+            // 사이클 라벨
+            if let cycleLabel = timerService.cycleLabel {
+                Text(cycleLabel)
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(timerService.isRestPhase ? Color.green.opacity(0.7) : Color.secondary)
+                    .kerning(1.5)
+            } else if let session = timerService.currentSession, !session.goal.isEmpty {
                 Text(session.goal)
                     .font(.system(size: 12))
                     .foregroundStyle(.tertiary)
@@ -24,7 +29,7 @@ struct ActiveSessionView: View {
             CircularTimerView(
                 progress: timerService.progress,
                 remainingTime: timerService.formattedRemainingTime,
-                isRunning: timerService.state == .running
+                isRunning: timerService.state == .running || timerService.state == .resting
             )
             .frame(width: 180, height: 180)
 
