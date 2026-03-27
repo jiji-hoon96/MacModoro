@@ -1,20 +1,17 @@
 import SwiftUI
-import SwiftData
 
 struct PreSessionView: View {
     @ObservedObject var timerService: TimerService
     @Binding var showHistory: Bool
-
-    @State private var durationMinutes: Int = AppSettings.shared.defaultDurationMinutes
-    @State private var durationText: String = ""
-    @State private var todos: [String] = []
+    @Binding var durationMinutes: Int
+    @Binding var durationText: String
+    @Binding var todos: [String]
 
     @State private var showCycleSheet = false
     @State private var cycleFocus: Int = 40
     @State private var cycleRest: Int = 5
     @State private var cycleRounds: Int = 2
 
-    // 하드코딩 프리셋 (DB 의존 없음)
     private let quickPresets = [90, 40, 20, 5]
 
     var body: some View {
@@ -44,7 +41,7 @@ struct PreSessionView: View {
 
             Spacer(minLength: 14)
 
-            // 프리셋 버튼: 90 · 40 · 20 · 5
+            // 프리셋
             HStack(spacing: 6) {
                 ForEach(quickPresets, id: \.self) { mins in
                     Button {
@@ -67,7 +64,7 @@ struct PreSessionView: View {
                 }
             }
 
-            // 사이클 버튼
+            // 사이클
             HStack(spacing: 6) {
                 Button {
                     timerService.startCycleSession(
@@ -117,7 +114,7 @@ struct PreSessionView: View {
 
             Spacer(minLength: 4)
 
-            // 시작 버튼
+            // 시작
             Button(action: startSession) {
                 Text("Start Focus")
                     .font(.system(size: 14, weight: .semibold))
@@ -132,7 +129,7 @@ struct PreSessionView: View {
             .padding(.horizontal, 40)
             .pointerCursor()
 
-            // 하단 네비게이션
+            // 하단
             HStack(spacing: 0) {
                 Button { showHistory = true } label: {
                     Image(systemName: "chart.bar")
@@ -159,9 +156,6 @@ struct PreSessionView: View {
             .padding(.bottom, 4)
         }
         .frame(width: 280, height: 420)
-        .onAppear {
-            durationText = "\(durationMinutes)"
-        }
         .sheet(isPresented: $showCycleSheet) {
             CycleConfigSheet(focus: $cycleFocus, rest: $cycleRest, rounds: $cycleRounds)
         }

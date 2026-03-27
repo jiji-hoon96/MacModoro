@@ -4,6 +4,11 @@ struct MenuBarPopoverView: View {
     @StateObject private var timerService = TimerService.shared
     @State private var showHistory = false
 
+    // PreSessionView 상태를 여기서 유지 (화면 전환해도 초기화 안 됨)
+    @State private var durationMinutes: Int = AppSettings.shared.defaultDurationMinutes
+    @State private var durationText: String = "\(AppSettings.shared.defaultDurationMinutes)"
+    @State private var todos: [String] = []
+
     var body: some View {
         Group {
             if showHistory {
@@ -32,7 +37,13 @@ struct MenuBarPopoverView: View {
             } else {
                 switch timerService.state {
                 case .idle:
-                    PreSessionView(timerService: timerService, showHistory: $showHistory)
+                    PreSessionView(
+                        timerService: timerService,
+                        showHistory: $showHistory,
+                        durationMinutes: $durationMinutes,
+                        durationText: $durationText,
+                        todos: $todos
+                    )
                 case .running, .paused, .resting:
                     ActiveSessionView(timerService: timerService)
                 case .finished:
