@@ -31,7 +31,7 @@ final class TimerService: ObservableObject {
     @Published var totalRounds: Int = 1
     @Published var isRestPhase: Bool = false
 
-    private(set) var currentSession: PomodoroSession?
+    @Published private(set) var currentSession: PomodoroSession?
     private var timer: Timer?
     private var modelContext: ModelContext?
 

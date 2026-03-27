@@ -134,7 +134,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             animationService?.stopAnimation()
             animationService?.updateTimeText(nil)
             DistractionDetector.shared.stop()
-        case .idle, .finished:
+        case .finished:
+            animationService?.stopAnimation()
+            animationService?.updateTimeText(nil)
+            DistractionDetector.shared.stop()
+            showPopover()
+        case .idle:
             animationService?.stopAnimation()
             animationService?.updateTimeText(nil)
             DistractionDetector.shared.stop()
@@ -203,8 +208,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if popover.isShown {
             popover.performClose(nil)
         } else {
+            showPopover()
+        }
+    }
+
+    private func showPopover() {
+        guard let button = statusItem.button else { return }
+        if !popover.isShown {
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
             popover.contentViewController?.view.window?.makeKey()
+            NSApp.activate(ignoringOtherApps: true)
         }
     }
 
