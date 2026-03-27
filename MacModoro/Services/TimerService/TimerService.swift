@@ -72,13 +72,16 @@ final class TimerService: ObservableObject {
         let durationSeconds = durationMinutes * 60
         let session = PomodoroSession(goal: goal, durationSeconds: durationSeconds)
 
+        modelContext?.insert(session)
+
         for todoText in todos where !todoText.isEmpty {
             let todo = TodoItem(text: todoText)
             todo.session = session
             session.todos.append(todo)
+            modelContext?.insert(todo)
         }
 
-        modelContext?.insert(session)
+        saveContext()
         currentSession = session
 
         totalSeconds = durationSeconds
