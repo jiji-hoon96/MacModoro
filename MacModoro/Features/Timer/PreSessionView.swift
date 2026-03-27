@@ -13,129 +13,114 @@ struct PreSessionView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            // 시간 선택 영역
-            VStack(spacing: 12) {
-                HStack(alignment: .firstTextBaseline, spacing: 2) {
-                    TextField("", text: $durationText)
-                        .font(.system(size: 56, weight: .ultraLight, design: .rounded))
-                        .monospacedDigit()
-                        .multilineTextAlignment(.trailing)
-                        .frame(width: 120)
-                        .textFieldStyle(.plain)
-                        .onChange(of: durationText) { _, newValue in
-                            if let val = Int(newValue), val > 0 {
-                                durationMinutes = min(val, 999)
-                            }
+            Spacer(minLength: 20)
+
+            // 타이머 입력 — 큰 숫자 중심
+            VStack(spacing: 4) {
+                TextField("", text: $durationText)
+                    .font(.system(size: 64, weight: .thin, design: .rounded))
+                    .monospacedDigit()
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(.plain)
+                    .frame(maxWidth: .infinity)
+                    .onChange(of: durationText) { _, newValue in
+                        if let val = Int(newValue), val > 0 {
+                            durationMinutes = min(val, 999)
                         }
+                    }
 
-                    Text("min")
-                        .font(.system(size: 18, weight: .light, design: .rounded))
-                        .foregroundStyle(.secondary)
-                        .padding(.bottom, 8)
-                }
-                .frame(maxWidth: .infinity)
+                Text("minutes")
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundStyle(.tertiary)
+                    .textCase(.uppercase)
+                    .kerning(2)
+            }
 
-                // 프리셋 버튼
-                HStack(spacing: 6) {
-                    ForEach(presets) { preset in
-                        Button {
-                            durationMinutes = preset.durationMinutes
-                            durationText = "\(preset.durationMinutes)"
-                        } label: {
-                            VStack(spacing: 2) {
-                                Text("\(preset.durationMinutes)")
-                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
-                                Text(preset.label)
-                                    .font(.system(size: 9))
-                                    .foregroundStyle(.secondary)
-                            }
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 6)
+            Spacer(minLength: 16)
+
+            // 프리셋 — 알약형 버튼
+            HStack(spacing: 8) {
+                ForEach(presets) { preset in
+                    Button {
+                        durationMinutes = preset.durationMinutes
+                        durationText = "\(preset.durationMinutes)"
+                    } label: {
+                        Text("\(preset.durationMinutes)")
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 7)
                             .background(
                                 durationMinutes == preset.durationMinutes
-                                    ? Color.accentColor.opacity(0.15)
-                                    : Color.primary.opacity(0.05),
-                                in: RoundedRectangle(cornerRadius: 8)
+                                    ? Color.primary.opacity(0.12)
+                                    : Color.primary.opacity(0.04)
                             )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .strokeBorder(
-                                        durationMinutes == preset.durationMinutes
-                                            ? Color.accentColor.opacity(0.3)
-                                            : Color.clear,
-                                        lineWidth: 1
-                                    )
-                            )
-                        }
-                        .buttonStyle(.plain)
+                            .clipShape(Capsule())
                     }
+                    .buttonStyle(.plain)
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 16)
-            .padding(.bottom, 12)
 
-            Divider()
-                .padding(.horizontal, 16)
+            Spacer(minLength: 20)
 
-            // 목표 & TODO
-            ScrollView {
-                VStack(spacing: 12) {
-                    GoalInputView(goal: $goal)
-                    TodoListView(todos: $todos)
+            // 목표 & TODO — 접히는 영역
+            VStack(spacing: 0) {
+                Divider()
+                    .padding(.horizontal, 24)
+
+                ScrollView {
+                    VStack(spacing: 10) {
+                        GoalInputView(goal: $goal)
+                        if !goal.isEmpty || !todos.isEmpty {
+                            TodoListView(todos: $todos)
+                        }
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 12)
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
+                .frame(maxHeight: goal.isEmpty && todos.isEmpty ? 60 : 130)
             }
-            .frame(maxHeight: 140)
 
-            Spacer(minLength: 0)
+            Spacer(minLength: 8)
 
-            // 시작 버튼
+            // 시작 버튼 — 둥글고 넓게
             Button(action: startSession) {
-                Text("집중 시작")
-                    .font(.system(size: 15, weight: .semibold))
+                Text("Start Focus")
+                    .font(.system(size: 14, weight: .semibold))
+                    .kerning(0.5)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 11)
             }
             .buttonStyle(.borderedProminent)
-            .tint(.accentColor)
+            .tint(Color.primary.opacity(0.85))
+            .clipShape(Capsule())
             .controlSize(.large)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 40)
 
-            // #2: 하단 버튼 넓은 터치 영역
+            // 하단 네비게이션
             HStack(spacing: 0) {
                 Button { showHistory = true } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "clock.arrow.circlepath")
-                        Text("기록")
-                    }
-                    .font(.system(size: 12))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .contentShape(Rectangle())
+                    Image(systemName: "chart.bar")
+                        .font(.system(size: 13))
+                        .frame(maxWidth: .infinity, minHeight: 36)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.tertiary)
 
                 Button {
                     NotificationCenter.default.post(name: AppDelegate.openSettingsNotification, object: nil)
                 } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "gearshape")
-                        Text("설정")
-                    }
-                    .font(.system(size: 12))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .contentShape(Rectangle())
+                    Image(systemName: "gearshape")
+                        .font(.system(size: 13))
+                        .frame(maxWidth: .infinity, minHeight: 36)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.tertiary)
             }
-            .frame(height: 36)
-            .padding(.horizontal, 16)
-            .padding(.bottom, 8)
+            .padding(.bottom, 4)
         }
-        .frame(width: 300, height: 420)
+        .frame(width: 280, height: 400)
         .onAppear {
             durationText = "\(durationMinutes)"
         }
