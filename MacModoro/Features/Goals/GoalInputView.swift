@@ -4,14 +4,11 @@ struct GoalInputView: View {
     @Binding var goal: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Label("목표", systemImage: "target")
-                .font(.system(size: 11, weight: .semibold))
-                .foregroundStyle(.secondary)
-
-            TextField("이번 세션에서 이루고 싶은 것...", text: $goal)
-                .textFieldStyle(.roundedBorder)
-                .font(.system(size: 13))
-        }
+        TextField("목표를 입력하세요", text: $goal)
+            .textFieldStyle(.plain)
+            .font(.system(size: 12))
+            .padding(.horizontal, 10)
+            .padding(.vertical, 7)
+            .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 6))
     }
 }

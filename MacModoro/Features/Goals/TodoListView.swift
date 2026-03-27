@@ -6,46 +6,48 @@ struct TodoListView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Label("할 일", systemImage: "checklist")
-                .font(.system(size: 11, weight: .semibold))
-                .foregroundStyle(.secondary)
-
             ForEach(todos.indices, id: \.self) { index in
                 HStack(spacing: 6) {
-                    Image(systemName: "circle")
-                        .font(.system(size: 10))
-                        .foregroundStyle(.tertiary)
+                    Circle()
+                        .stroke(Color.primary.opacity(0.15), lineWidth: 1)
+                        .frame(width: 12, height: 12)
 
                     Text(todos[index])
-                        .font(.system(size: 13))
+                        .font(.system(size: 12))
 
                     Spacer()
 
                     Button {
                         todos.remove(at: index)
                     } label: {
-                        Image(systemName: "minus.circle.fill")
-                            .font(.system(size: 12))
+                        Image(systemName: "minus")
+                            .font(.system(size: 8, weight: .medium))
                             .foregroundStyle(.tertiary)
+                            .frame(width: 16, height: 16)
+                            .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                 }
             }
 
             HStack(spacing: 6) {
-                TextField("할 일 추가...", text: $newTodoText)
-                    .textFieldStyle(.roundedBorder)
-                    .font(.system(size: 13))
+                TextField("할 일 추가", text: $newTodoText)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 12))
                     .onSubmit { addTodo() }
 
-                Button(action: addTodo) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 14))
+                if !newTodoText.isEmpty {
+                    Button(action: addTodo) {
+                        Image(systemName: "plus")
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
-                .disabled(newTodoText.isEmpty)
-                .foregroundStyle(newTodoText.isEmpty ? Color.gray : Color.accentColor)
             }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 6))
         }
     }
 

@@ -9,28 +9,36 @@ struct CircularTimerView: View {
 
     var body: some View {
         ZStack {
-            // 배경 트랙
+            // 트랙
             Circle()
-                .stroke(Color.primary.opacity(0.08), lineWidth: 6)
+                .stroke(Color.primary.opacity(0.06), lineWidth: 3)
 
-            // 진행 링
+            // 진행
             Circle()
                 .trim(from: 0, to: displayedProgress)
                 .stroke(
                     progressColor,
-                    style: StrokeStyle(lineWidth: 6, lineCap: .round)
+                    style: StrokeStyle(lineWidth: 3, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
 
-            // 시간 텍스트
+            // 시간
             VStack(spacing: 2) {
                 Text(remainingTime)
-                    .font(.system(size: 40, weight: .light, design: .rounded))
+                    .font(.system(size: 44, weight: .thin, design: .rounded))
                     .monospacedDigit()
 
-                Text(isRunning ? "집중 중" : "일시정지")
-                    .font(.system(size: 11))
-                    .foregroundStyle(.secondary)
+                if isRunning {
+                    Text("FOCUS")
+                        .font(.system(size: 9, weight: .medium))
+                        .foregroundStyle(.tertiary)
+                        .kerning(2)
+                } else {
+                    Text("PAUSED")
+                        .font(.system(size: 9, weight: .medium))
+                        .foregroundStyle(.orange.opacity(0.6))
+                        .kerning(2)
+                }
             }
         }
         .onChange(of: progress) { _, newValue in
@@ -44,8 +52,8 @@ struct CircularTimerView: View {
     }
 
     private var progressColor: Color {
-        if displayedProgress > 0.9 { return .red }
-        if displayedProgress > 0.7 { return .orange }
-        return .accentColor
+        if displayedProgress > 0.9 { return .red.opacity(0.7) }
+        if displayedProgress > 0.7 { return .orange.opacity(0.7) }
+        return .primary.opacity(0.3)
     }
 }
