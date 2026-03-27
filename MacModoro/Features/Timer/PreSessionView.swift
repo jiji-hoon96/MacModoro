@@ -10,15 +10,15 @@ struct PreSessionView: View {
     @State private var durationText: String = ""
     @State private var todos: [String] = []
 
-    private let cyclePresets: [(label: String, focus: Int, rest: Int, rounds: Int)] = [
-        ("40+5 ×2", 40, 5, 2),
-        ("25+5 ×4", 25, 5, 4),
-        ("50+10 ×2", 50, 10, 2),
-    ]
+    // #2: 사이클 설정
+    @State private var showCycleSheet = false
+    @State private var cycleFocus: Int = 40
+    @State private var cycleRest: Int = 5
+    @State private var cycleRounds: Int = 2
 
     var body: some View {
         VStack(spacing: 0) {
-            Spacer(minLength: 20)
+            Spacer(minLength: 16)
 
             // 타이머 입력
             VStack(spacing: 4) {
@@ -29,82 +29,90 @@ struct PreSessionView: View {
                     .textFieldStyle(.plain)
                     .frame(maxWidth: .infinity)
                     .onChange(of: durationText) { _, newValue in
-                        if let val = Int(newValue), val > 0 {
-                            durationMinutes = min(val, 999)
+                        // #4: 1~999 범위 제한
+                        if let val = Int(newValue) {
+                            durationMinutes = max(1, min(val, 999))
                         }
                     }
 
                 Text("minutes")
-                    .font(.system(size: 12, weight: .regular))
-                    .foregroundStyle(.tertiary)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.quaternary)
                     .textCase(.uppercase)
                     .kerning(2)
             }
 
-            Spacer(minLength: 14)
+            Spacer(minLength: 12)
 
-            // 단일 프리셋
-            HStack(spacing: 8) {
-                ForEach(presets) { preset in
-                    Button {
-                        durationMinutes = preset.durationMinutes
-                        durationText = "\(preset.durationMinutes)"
-                    } label: {
-                        Text("\(preset.durationMinutes)")
-                            .font(.system(size: 13, weight: .medium, design: .rounded))
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 7)
-                            .background(
-                                durationMinutes == preset.durationMinutes
-                                    ? Color.primary.opacity(0.12)
-                                    : Color.primary.opacity(0.04)
-                            )
-                            .clipShape(Capsule())
+            // 프리셋 + 사이클
+            VStack(spacing: 8) {
+                // 단일 프리셋
+                HStack(spacing: 6) {
+                    ForEach(presets) { preset in
+                        Button {
+                            durationMinutes = preset.durationMinutes
+                            durationText = "\(preset.durationMinutes)"
+                        } label: {
+                            Text("\(preset.durationMinutes)")
+                                .font(.system(size: 13, weight: .medium, design: .rounded))
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .background(
+                                    durationMinutes == preset.durationMinutes
+                                        ? Color.primary.opacity(0.12)
+                                        : Color.primary.opacity(0.04)
+                                )
+                                .clipShape(Capsule())
+                        }
+                        .buttonStyle(.plain)
+                        .pointerCursor()
                     }
-                    .buttonStyle(.plain)
-                    .pointerCursor()
                 }
-            }
 
-            // 사이클 프리셋
-            HStack(spacing: 6) {
-                ForEach(cyclePresets, id: \.label) { cycle in
+                // #2: 사이클 버튼 (하나만, 클릭하면 설정 시트)
+                HStack(spacing: 6) {
                     Button {
                         timerService.startCycleSession(
-                            config: CycleConfig(focusMinutes: cycle.focus, restMinutes: cycle.rest, rounds: cycle.rounds),
+                            config: CycleConfig(focusMinutes: cycleFocus, restMinutes: cycleRest, rounds: cycleRounds),
                             todos: todos
                         )
                     } label: {
-                        Text(cycle.label)
-                            .font(.system(size: 10, weight: .medium, design: .rounded))
-                            .padding(.horizontal, 10)
+                        Text("\(cycleFocus)+\(cycleRest) ×\(cycleRounds)")
+                            .font(.system(size: 11, weight: .medium, design: .rounded))
+                            .padding(.horizontal, 12)
                             .padding(.vertical, 5)
-                            .background(Color.orange.opacity(0.08))
+                            .background(Color.blue.opacity(0.1))
                             .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(.blue)
+                    .pointerCursor()
+
+                    Button {
+                        showCycleSheet = true
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                            .font(.system(size: 10))
+                            .foregroundStyle(.blue.opacity(0.6))
+                    }
+                    .buttonStyle(.plain)
                     .pointerCursor()
                 }
             }
-            .padding(.top, 8)
 
-            Spacer(minLength: 16)
+            Spacer(minLength: 12)
 
-            // TODO
+            // #1: TODO — ScrollView 제거, 직접 표시
             VStack(spacing: 0) {
                 Divider()
                     .padding(.horizontal, 24)
 
-                ScrollView {
-                    TodoListView(todos: $todos)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 12)
-                }
-                .frame(maxHeight: todos.isEmpty ? 50 : 110)
+                TodoListView(todos: $todos)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 10)
             }
 
-            Spacer(minLength: 6)
+            Spacer(minLength: 4)
 
             // 시작 버튼
             Button(action: startSession) {
@@ -130,7 +138,7 @@ struct PreSessionView: View {
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.quaternary)
                 .pointerCursor()
 
                 Button {
@@ -142,7 +150,7 @@ struct PreSessionView: View {
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.quaternary)
                 .pointerCursor()
             }
             .padding(.bottom, 4)
@@ -151,13 +159,51 @@ struct PreSessionView: View {
         .onAppear {
             durationText = "\(durationMinutes)"
         }
+        .sheet(isPresented: $showCycleSheet) {
+            CycleConfigSheet(focus: $cycleFocus, rest: $cycleRest, rounds: $cycleRounds)
+        }
     }
 
     private func startSession() {
+        // #4: 범위 확인
+        let mins = max(1, min(durationMinutes, 999))
         timerService.startSession(
-            durationMinutes: durationMinutes,
+            durationMinutes: mins,
             goal: "",
             todos: todos
         )
+    }
+}
+
+// MARK: - 사이클 설정 시트
+
+private struct CycleConfigSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @Binding var focus: Int
+    @Binding var rest: Int
+    @Binding var rounds: Int
+
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("사이클 설정")
+                .font(.system(size: 14, weight: .semibold))
+
+            VStack(spacing: 10) {
+                Stepper("집중: \(focus)분", value: $focus, in: 5...120, step: 5)
+                Stepper("휴식: \(rest)분", value: $rest, in: 1...30)
+                Stepper("세트: \(rounds)회", value: $rounds, in: 1...10)
+            }
+            .font(.system(size: 13))
+
+            Text("총 \(focus * rounds + rest * (rounds - 1))분")
+                .font(.system(size: 12))
+                .foregroundStyle(.secondary)
+
+            Button("확인") { dismiss() }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.small)
+        }
+        .padding(20)
+        .frame(width: 220)
     }
 }
