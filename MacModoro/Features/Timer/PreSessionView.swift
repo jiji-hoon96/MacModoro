@@ -8,14 +8,13 @@ struct PreSessionView: View {
 
     @State private var durationMinutes: Int = AppSettings.shared.defaultDurationMinutes
     @State private var durationText: String = ""
-    @State private var goal: String = ""
     @State private var todos: [String] = []
 
     var body: some View {
         VStack(spacing: 0) {
             Spacer(minLength: 20)
 
-            // 타이머 입력 — 큰 숫자 중심
+            // 타이머 입력
             VStack(spacing: 4) {
                 TextField("", text: $durationText)
                     .font(.system(size: 64, weight: .thin, design: .rounded))
@@ -38,7 +37,7 @@ struct PreSessionView: View {
 
             Spacer(minLength: 16)
 
-            // 프리셋 — 알약형 버튼
+            // 프리셋
             HStack(spacing: 8) {
                 ForEach(presets) { preset in
                     Button {
@@ -57,32 +56,31 @@ struct PreSessionView: View {
                             .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
+                    .onHover { hovering in
+                        if hovering { NSCursor.pointingHand.push() }
+                        else { NSCursor.pop() }
+                    }
                 }
             }
 
             Spacer(minLength: 20)
 
-            // 목표 & TODO — 접히는 영역
+            // TODO
             VStack(spacing: 0) {
                 Divider()
                     .padding(.horizontal, 24)
 
                 ScrollView {
-                    VStack(spacing: 10) {
-                        GoalInputView(goal: $goal)
-                        if !goal.isEmpty || !todos.isEmpty {
-                            TodoListView(todos: $todos)
-                        }
-                    }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 12)
+                    TodoListView(todos: $todos)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 12)
                 }
-                .frame(maxHeight: goal.isEmpty && todos.isEmpty ? 60 : 130)
+                .frame(maxHeight: todos.isEmpty ? 50 : 120)
             }
 
             Spacer(minLength: 8)
 
-            // 시작 버튼 — 둥글고 넓게
+            // 시작 버튼
             Button(action: startSession) {
                 Text("Start Focus")
                     .font(.system(size: 14, weight: .semibold))
@@ -95,6 +93,10 @@ struct PreSessionView: View {
             .clipShape(Capsule())
             .controlSize(.large)
             .padding(.horizontal, 40)
+            .onHover { hovering in
+                if hovering { NSCursor.pointingHand.push() }
+                else { NSCursor.pop() }
+            }
 
             // 하단 네비게이션
             HStack(spacing: 0) {
@@ -106,6 +108,10 @@ struct PreSessionView: View {
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.tertiary)
+                .onHover { hovering in
+                    if hovering { NSCursor.pointingHand.push() }
+                    else { NSCursor.pop() }
+                }
 
                 Button {
                     NotificationCenter.default.post(name: AppDelegate.openSettingsNotification, object: nil)
@@ -117,6 +123,10 @@ struct PreSessionView: View {
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.tertiary)
+                .onHover { hovering in
+                    if hovering { NSCursor.pointingHand.push() }
+                    else { NSCursor.pop() }
+                }
             }
             .padding(.bottom, 4)
         }
@@ -129,7 +139,7 @@ struct PreSessionView: View {
     private func startSession() {
         timerService.startSession(
             durationMinutes: durationMinutes,
-            goal: goal,
+            goal: "",
             todos: todos
         )
     }
