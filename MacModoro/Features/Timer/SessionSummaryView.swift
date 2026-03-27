@@ -7,65 +7,95 @@ struct SessionSummaryView: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
-                VStack(spacing: 16) {
-                    Spacer(minLength: 8)
+                VStack(spacing: 20) {
+                    Spacer(minLength: 16)
 
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 44))
-                        .foregroundStyle(.green)
+                    // 완료
+                    VStack(spacing: 6) {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 28, weight: .light))
+                            .foregroundStyle(.green)
 
-                    Text("집중 완료")
-                        .font(.system(size: 20, weight: .semibold))
+                        Text("Complete")
+                            .font(.system(size: 11, weight: .medium))
+                            .foregroundStyle(.tertiary)
+                            .textCase(.uppercase)
+                            .kerning(2)
+                    }
 
                     if let session = timerService.currentSession {
-                        // 통계 카드
-                        VStack(spacing: 10) {
-                            StatRow(icon: "clock.fill", label: "집중 시간", value: "\(session.focusedMinutes)분")
-
-                            if !session.goal.isEmpty {
-                                StatRow(icon: "target", label: "목표", value: session.goal)
-                            }
-
-                            StatRow(icon: "brain.head.profile", label: "집중 깨짐", value: "\(session.breakCount)회")
-
-                            if !session.focusBreaks.isEmpty {
-                                BreakTimelineView(breaks: session.focusBreaks)
-                            }
+                        // 집중 시간 — 큰 숫자
+                        VStack(spacing: 2) {
+                            Text("\(session.focusedMinutes)")
+                                .font(.system(size: 48, weight: .thin, design: .rounded))
+                            Text("minutes focused")
+                                .font(.system(size: 11))
+                                .foregroundStyle(.tertiary)
+                                .kerning(0.5)
                         }
-                        .padding(12)
-                        .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
 
-                        // TODO 점검 카드
-                        if !session.todos.isEmpty {
-                            VStack(alignment: .leading, spacing: 8) {
-                                let completed = session.todos.filter(\.isCompleted).count
-                                let total = session.todos.count
+                        // 통계 행
+                        if !session.goal.isEmpty || session.breakCount > 0 {
+                            VStack(spacing: 8) {
+                                if !session.goal.isEmpty {
+                                    HStack {
+                                        Text("목표")
+                                            .foregroundStyle(.tertiary)
+                                        Spacer()
+                                        Text(session.goal)
+                                            .lineLimit(1)
+                                    }
+                                    .font(.system(size: 12))
+                                }
 
                                 HStack {
-                                    Label("할 일 점검", systemImage: "checklist")
-                                        .font(.system(size: 12, weight: .semibold))
-                                        .foregroundStyle(.secondary)
-
+                                    Text("집중 깨짐")
+                                        .foregroundStyle(.tertiary)
                                     Spacer()
+                                    Text("\(session.breakCount)회")
+                                        .foregroundStyle(session.breakCount > 0 ? .orange : .primary)
+                                }
+                                .font(.system(size: 12))
 
-                                    Text("\(completed)/\(total) 완료")
+                                if !session.focusBreaks.isEmpty {
+                                    BreakTimelineView(breaks: session.focusBreaks)
+                                }
+                            }
+                            .padding(14)
+                            .background(Color.primary.opacity(0.03), in: RoundedRectangle(cornerRadius: 10))
+                        }
+
+                        // TODO 점검
+                        if !session.todos.isEmpty {
+                            let completed = session.todos.filter(\.isCompleted).count
+                            let total = session.todos.count
+
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Text("할 일")
                                         .font(.system(size: 11, weight: .medium))
+                                        .foregroundStyle(.tertiary)
+                                        .textCase(.uppercase)
+                                        .kerning(1)
+                                    Spacer()
+                                    Text("\(completed)/\(total)")
+                                        .font(.system(size: 11, weight: .semibold, design: .rounded))
                                         .foregroundStyle(completed == total ? .green : .orange)
                                 }
 
-                                // 진행률 바
+                                // 프로그레스
                                 GeometryReader { geo in
                                     ZStack(alignment: .leading) {
-                                        RoundedRectangle(cornerRadius: 3)
-                                            .fill(Color.primary.opacity(0.08))
-                                        RoundedRectangle(cornerRadius: 3)
-                                            .fill(completed == total ? Color.green : Color.orange)
+                                        Capsule()
+                                            .fill(Color.primary.opacity(0.06))
+                                        Capsule()
+                                            .fill(completed == total ? Color.green.opacity(0.6) : Color.orange.opacity(0.6))
                                             .frame(width: geo.size.width * CGFloat(completed) / max(CGFloat(total), 1))
+                                            .animation(.easeOut(duration: 0.3), value: completed)
                                     }
                                 }
-                                .frame(height: 6)
+                                .frame(height: 4)
 
-                                // 각 TODO 항목 (탭해서 체크)
                                 ForEach(session.todos) { todo in
                                     Button {
                                         todo.isCompleted.toggle()
@@ -74,13 +104,13 @@ struct SessionSummaryView: View {
                                     } label: {
                                         HStack(spacing: 8) {
                                             Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
-                                                .foregroundStyle(todo.isCompleted ? .green : .secondary)
-                                                .font(.system(size: 16))
+                                                .font(.system(size: 14))
+                                                .foregroundStyle(todo.isCompleted ? Color.green : Color.gray.opacity(0.3))
 
                                             Text(todo.text)
-                                                .font(.system(size: 13))
+                                                .font(.system(size: 12))
                                                 .strikethrough(todo.isCompleted)
-                                                .foregroundStyle(todo.isCompleted ? .secondary : .primary)
+                                                .foregroundStyle(todo.isCompleted ? .tertiary : .primary)
 
                                             Spacer()
                                         }
@@ -89,47 +119,31 @@ struct SessionSummaryView: View {
                                     .buttonStyle(.plain)
                                 }
                             }
-                            .padding(12)
-                            .background(Color.primary.opacity(0.04), in: RoundedRectangle(cornerRadius: 10))
+                            .padding(14)
+                            .background(Color.primary.opacity(0.03), in: RoundedRectangle(cornerRadius: 10))
                             .id(refreshID)
                         }
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 24)
             }
 
+            // 확인
             Button(action: { timerService.dismiss() }) {
-                Text("확인")
-                    .font(.system(size: 15, weight: .semibold))
+                Text("Done")
+                    .font(.system(size: 14, weight: .semibold))
+                    .kerning(0.5)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 11)
             }
             .buttonStyle(.borderedProminent)
+            .tint(Color.primary.opacity(0.85))
+            .clipShape(Capsule())
             .controlSize(.large)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 40)
             .padding(.bottom, 12)
             .padding(.top, 8)
         }
-        .frame(width: 300, height: 420)
-    }
-}
-
-private struct StatRow: View {
-    let icon: String
-    let label: String
-    let value: String
-
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .foregroundStyle(.secondary)
-                .frame(width: 18)
-            Text(label)
-                .font(.system(size: 13))
-                .foregroundStyle(.secondary)
-            Spacer()
-            Text(value)
-                .font(.system(size: 13, weight: .medium))
-        }
+        .frame(width: 280, height: 400)
     }
 }
