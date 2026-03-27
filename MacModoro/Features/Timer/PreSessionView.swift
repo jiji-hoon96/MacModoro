@@ -4,7 +4,6 @@ import SwiftData
 struct PreSessionView: View {
     @ObservedObject var timerService: TimerService
     @Binding var showHistory: Bool
-    @Query(sort: \TimerPreset.sortOrder) private var presets: [TimerPreset]
 
     @State private var durationMinutes: Int = AppSettings.shared.defaultDurationMinutes
     @State private var durationText: String = ""
@@ -14,6 +13,9 @@ struct PreSessionView: View {
     @State private var cycleFocus: Int = 40
     @State private var cycleRest: Int = 5
     @State private var cycleRounds: Int = 2
+
+    // 하드코딩 프리셋 (DB 의존 없음)
+    private let quickPresets = [90, 40, 20, 5]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -40,67 +42,66 @@ struct PreSessionView: View {
                     .kerning(2)
             }
 
-            Spacer(minLength: 12)
+            Spacer(minLength: 14)
 
-            // 프리셋 (단일 + 사이클 같은 줄)
-            VStack(spacing: 8) {
-                HStack(spacing: 6) {
-                    ForEach(presets) { preset in
-                        Button {
-                            durationMinutes = preset.durationMinutes
-                            durationText = "\(preset.durationMinutes)"
-                        } label: {
-                            Text("\(preset.durationMinutes)")
-                                .font(.system(size: 12, weight: .medium, design: .rounded))
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
-                                .background(
-                                    durationMinutes == preset.durationMinutes
-                                        ? Color.primary.opacity(0.12)
-                                        : Color.primary.opacity(0.04)
-                                )
-                                .clipShape(Capsule())
-                        }
-                        .buttonStyle(.plain)
-                        .pointerCursor()
-                    }
-                }
-
-                // 사이클 버튼
-                HStack(spacing: 6) {
+            // 프리셋 버튼: 90 · 40 · 20 · 5
+            HStack(spacing: 6) {
+                ForEach(quickPresets, id: \.self) { mins in
                     Button {
-                        timerService.startCycleSession(
-                            config: CycleConfig(focusMinutes: cycleFocus, restMinutes: cycleRest, rounds: cycleRounds),
-                            todos: todos
-                        )
+                        durationMinutes = mins
+                        durationText = "\(mins)"
                     } label: {
-                        HStack(spacing: 3) {
-                            Image(systemName: "repeat")
-                                .font(.system(size: 8))
-                            Text("\(cycleFocus)분 + \(cycleRest)분 휴식 × \(cycleRounds)세트")
-                                .font(.system(size: 10, weight: .medium))
-                        }
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                        .background(Color.blue.opacity(0.08))
-                        .clipShape(Capsule())
+                        Text("\(mins)")
+                            .font(.system(size: 13, weight: .medium, design: .rounded))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(
+                                durationMinutes == mins
+                                    ? Color.primary.opacity(0.12)
+                                    : Color.primary.opacity(0.04)
+                            )
+                            .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
-                    .foregroundStyle(.blue)
-                    .pointerCursor()
-
-                    Button { showCycleSheet = true } label: {
-                        Image(systemName: "slider.horizontal.3")
-                            .font(.system(size: 9))
-                            .padding(5)
-                            .background(Color.blue.opacity(0.06))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-                    .foregroundStyle(.blue.opacity(0.5))
                     .pointerCursor()
                 }
             }
+
+            // 사이클 버튼
+            HStack(spacing: 6) {
+                Button {
+                    timerService.startCycleSession(
+                        config: CycleConfig(focusMinutes: cycleFocus, restMinutes: cycleRest, rounds: cycleRounds),
+                        todos: todos
+                    )
+                } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "repeat")
+                            .font(.system(size: 8))
+                        Text("\(cycleFocus) + \(cycleRest)min rest × \(cycleRounds)")
+                            .font(.system(size: 10, weight: .medium))
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(Color.primary.opacity(0.06))
+                    .clipShape(Capsule())
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
+                .pointerCursor()
+
+                Button { showCycleSheet = true } label: {
+                    Image(systemName: "slider.horizontal.3")
+                        .font(.system(size: 9))
+                        .padding(5)
+                        .background(Color.primary.opacity(0.04))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.tertiary)
+                .pointerCursor()
+            }
+            .padding(.top, 6)
 
             Spacer(minLength: 10)
 
@@ -168,15 +169,11 @@ struct PreSessionView: View {
 
     private func startSession() {
         let mins = max(1, min(durationMinutes, 999))
-        timerService.startSession(
-            durationMinutes: mins,
-            goal: "",
-            todos: todos
-        )
+        timerService.startSession(durationMinutes: mins, goal: "", todos: todos)
     }
 }
 
-// MARK: - 사이클 설정 시트
+// MARK: - 사이클 설정
 
 private struct CycleConfigSheet: View {
     @Environment(\.dismiss) private var dismiss
@@ -198,7 +195,6 @@ private struct CycleConfigSheet: View {
                     Stepper("\(focus)분", value: $focus, in: 5...120, step: 5)
                         .font(.system(size: 13, design: .rounded))
                 }
-
                 HStack {
                     Text("휴식")
                         .font(.system(size: 12))
@@ -207,7 +203,6 @@ private struct CycleConfigSheet: View {
                     Stepper("\(rest)분", value: $rest, in: 1...30)
                         .font(.system(size: 13, design: .rounded))
                 }
-
                 HStack {
                     Text("세트")
                         .font(.system(size: 12))
@@ -220,35 +215,17 @@ private struct CycleConfigSheet: View {
 
             Divider()
 
-            // 미리보기
-            HStack(spacing: 4) {
-                ForEach(0..<rounds, id: \.self) { i in
-                    Text("\(focus)")
-                        .font(.system(size: 11, weight: .semibold, design: .rounded))
-                        .foregroundStyle(.blue)
-                    if i < rounds - 1 || true {
-                        Text("+\(rest)")
-                            .font(.system(size: 10, design: .rounded))
-                            .foregroundStyle(.green)
-                    }
-                    if i < rounds - 1 {
-                        Text("→")
-                            .font(.system(size: 9))
-                            .foregroundStyle(.quaternary)
-                    }
-                }
-            }
-
-            Text("총 \(focus * rounds + rest * rounds)분")
+            Text("총 \(focus * rounds + rest * (rounds - 1))분")
                 .font(.system(size: 12, weight: .medium))
                 .foregroundStyle(.secondary)
 
             Button("확인") { dismiss() }
                 .buttonStyle(.borderedProminent)
+                .tint(Color.primary.opacity(0.85))
                 .controlSize(.regular)
                 .pointerCursor()
         }
         .padding(24)
-        .frame(width: 280)
+        .frame(width: 260)
     }
 }
