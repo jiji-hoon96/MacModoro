@@ -10,7 +10,6 @@ struct PreSessionView: View {
     @State private var durationText: String = ""
     @State private var todos: [String] = []
 
-    // #2: 사이클 설정
     @State private var showCycleSheet = false
     @State private var cycleFocus: Int = 40
     @State private var cycleRest: Int = 5
@@ -29,7 +28,6 @@ struct PreSessionView: View {
                     .textFieldStyle(.plain)
                     .frame(maxWidth: .infinity)
                     .onChange(of: durationText) { _, newValue in
-                        // #4: 1~999 범위 제한
                         if let val = Int(newValue) {
                             durationMinutes = max(1, min(val, 999))
                         }
@@ -44,9 +42,8 @@ struct PreSessionView: View {
 
             Spacer(minLength: 12)
 
-            // 프리셋 + 사이클
+            // 프리셋 (단일 + 사이클 같은 줄)
             VStack(spacing: 8) {
-                // 단일 프리셋
                 HStack(spacing: 6) {
                     ForEach(presets) { preset in
                         Button {
@@ -54,8 +51,8 @@ struct PreSessionView: View {
                             durationText = "\(preset.durationMinutes)"
                         } label: {
                             Text("\(preset.durationMinutes)")
-                                .font(.system(size: 13, weight: .medium, design: .rounded))
-                                .padding(.horizontal, 12)
+                                .font(.system(size: 12, weight: .medium, design: .rounded))
+                                .padding(.horizontal, 10)
                                 .padding(.vertical, 6)
                                 .background(
                                     durationMinutes == preset.durationMinutes
@@ -69,7 +66,7 @@ struct PreSessionView: View {
                     }
                 }
 
-                // #2: 사이클 버튼 (하나만, 클릭하면 설정 시트)
+                // 사이클 버튼
                 HStack(spacing: 6) {
                     Button {
                         timerService.startCycleSession(
@@ -77,32 +74,37 @@ struct PreSessionView: View {
                             todos: todos
                         )
                     } label: {
-                        Text("\(cycleFocus)+\(cycleRest) ×\(cycleRounds)")
-                            .font(.system(size: 11, weight: .medium, design: .rounded))
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 5)
-                            .background(Color.blue.opacity(0.1))
-                            .clipShape(Capsule())
+                        HStack(spacing: 3) {
+                            Image(systemName: "repeat")
+                                .font(.system(size: 8))
+                            Text("\(cycleFocus)분 + \(cycleRest)분 휴식 × \(cycleRounds)세트")
+                                .font(.system(size: 10, weight: .medium))
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .background(Color.blue.opacity(0.08))
+                        .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
                     .foregroundStyle(.blue)
                     .pointerCursor()
 
-                    Button {
-                        showCycleSheet = true
-                    } label: {
+                    Button { showCycleSheet = true } label: {
                         Image(systemName: "slider.horizontal.3")
-                            .font(.system(size: 10))
-                            .foregroundStyle(.blue.opacity(0.6))
+                            .font(.system(size: 9))
+                            .padding(5)
+                            .background(Color.blue.opacity(0.06))
+                            .clipShape(Circle())
                     }
                     .buttonStyle(.plain)
+                    .foregroundStyle(.blue.opacity(0.5))
                     .pointerCursor()
                 }
             }
 
-            Spacer(minLength: 12)
+            Spacer(minLength: 10)
 
-            // #1: TODO — ScrollView 제거, 직접 표시
+            // TODO
             VStack(spacing: 0) {
                 Divider()
                     .padding(.horizontal, 24)
@@ -165,7 +167,6 @@ struct PreSessionView: View {
     }
 
     private func startSession() {
-        // #4: 범위 확인
         let mins = max(1, min(durationMinutes, 999))
         timerService.startSession(
             durationMinutes: mins,
@@ -184,26 +185,70 @@ private struct CycleConfigSheet: View {
     @Binding var rounds: Int
 
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             Text("사이클 설정")
-                .font(.system(size: 14, weight: .semibold))
+                .font(.system(size: 15, weight: .semibold))
 
-            VStack(spacing: 10) {
-                Stepper("집중: \(focus)분", value: $focus, in: 5...120, step: 5)
-                Stepper("휴식: \(rest)분", value: $rest, in: 1...30)
-                Stepper("세트: \(rounds)회", value: $rounds, in: 1...10)
+            VStack(spacing: 14) {
+                HStack {
+                    Text("집중")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 40, alignment: .leading)
+                    Stepper("\(focus)분", value: $focus, in: 5...120, step: 5)
+                        .font(.system(size: 13, design: .rounded))
+                }
+
+                HStack {
+                    Text("휴식")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 40, alignment: .leading)
+                    Stepper("\(rest)분", value: $rest, in: 1...30)
+                        .font(.system(size: 13, design: .rounded))
+                }
+
+                HStack {
+                    Text("세트")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                        .frame(width: 40, alignment: .leading)
+                    Stepper("\(rounds)세트", value: $rounds, in: 1...10)
+                        .font(.system(size: 13, design: .rounded))
+                }
             }
-            .font(.system(size: 13))
 
-            Text("총 \(focus * rounds + rest * (rounds - 1))분")
-                .font(.system(size: 12))
+            Divider()
+
+            // 미리보기
+            HStack(spacing: 4) {
+                ForEach(0..<rounds, id: \.self) { i in
+                    Text("\(focus)")
+                        .font(.system(size: 11, weight: .semibold, design: .rounded))
+                        .foregroundStyle(.blue)
+                    if i < rounds - 1 || true {
+                        Text("+\(rest)")
+                            .font(.system(size: 10, design: .rounded))
+                            .foregroundStyle(.green)
+                    }
+                    if i < rounds - 1 {
+                        Text("→")
+                            .font(.system(size: 9))
+                            .foregroundStyle(.quaternary)
+                    }
+                }
+            }
+
+            Text("총 \(focus * rounds + rest * rounds)분")
+                .font(.system(size: 12, weight: .medium))
                 .foregroundStyle(.secondary)
 
             Button("확인") { dismiss() }
                 .buttonStyle(.borderedProminent)
-                .controlSize(.small)
+                .controlSize(.regular)
+                .pointerCursor()
         }
-        .padding(20)
-        .frame(width: 220)
+        .padding(24)
+        .frame(width: 280)
     }
 }
