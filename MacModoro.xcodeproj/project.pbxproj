@@ -15,6 +15,7 @@
 		23C2768A1DE45AE0DACAB01B /* BreakTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DEAA3F66EEBAFD6E885493 /* BreakTimelineView.swift */; };
 		2F84E11FE34B71163CC25F75 /* DistractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F4D83C11E201BEE4B529FA /* DistractionDetector.swift */; };
 		39FCBC08178E7B850BD2FA99 /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03131A21590F8EB4F54F98B /* TimerService.swift */; };
+		466202F91A562ABA10822BD9 /* PointerCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F885F6F3269270F90C3A69 /* PointerCursor.swift */; };
 		497CC5ACFDC425E16D4D1179 /* ShortcutSettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517303756ECFB573A0B4C119 /* ShortcutSettingsTab.swift */; };
 		4BFF7DA6AC3785E22D13EB06 /* DataExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7440B559BBEA83E84B700C /* DataExportService.swift */; };
 		4C48D5A3B145DE03EA878B3A /* AnimationFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B347806910EFF62154FCCF /* AnimationFrameProvider.swift */; };
@@ -66,6 +67,7 @@
 		9AF9F8EC23BF7F5785029B1C /* ScreenFlashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFlashService.swift; sourceTree = "<group>"; };
 		9FF38ECD9718A30395146DBF /* TimerPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPreset.swift; sourceTree = "<group>"; };
 		A0B3399898E1EA079EBD7297 /* CozyScreenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CozyScreenApp.swift; sourceTree = "<group>"; };
+		A3F885F6F3269270F90C3A69 /* PointerCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerCursor.swift; sourceTree = "<group>"; };
 		BA5A5AEE506DB9B08F678467 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BF907F7BEBC8F32D74E827CA /* TimerSettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingsTab.swift; sourceTree = "<group>"; };
 		C03131A21590F8EB4F54F98B /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		33712DB613BD4DA62B8B73E9 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				C541DCCC79DC4BD24F386767 /* Common */,
 				7C783B5AA3CB3B89C736D971 /* Goals */,
 				75D5423A3927EAA7CD9EC606 /* History */,
 				B704B45896DA4568CAE67E92 /* Presets */,
@@ -224,6 +227,14 @@
 				7B7440B559BBEA83E84B700C /* DataExportService.swift */,
 			);
 			path = DataExportService;
+			sourceTree = "<group>";
+		};
+		C541DCCC79DC4BD24F386767 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A3F885F6F3269270F90C3A69 /* PointerCursor.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		D73F53AD7789B0415D156E1E /* Persistence */ = {
@@ -356,6 +367,7 @@
 				C5A5C269F444850C05B4FD85 /* HistoryView.swift in Sources */,
 				EEC8AE2E925B168FCB2CB197 /* MenuBarAnimationService.swift in Sources */,
 				738380BD44D7C00F9FF975EF /* MenuBarView.swift in Sources */,
+				466202F91A562ABA10822BD9 /* PointerCursor.swift in Sources */,
 				7CD2DF786E8E49B1BD5A9919 /* PomodoroSession.swift in Sources */,
 				1C954D49BFE5AE31D817452A /* PreSessionView.swift in Sources */,
 				9FF59F71C7A8F22ACA875D24 /* PresetManagementView.swift in Sources */,

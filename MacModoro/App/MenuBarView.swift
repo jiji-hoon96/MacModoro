@@ -23,6 +23,7 @@ struct MenuBarPopoverView: View {
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
+                    .pointerCursor()
 
                     Divider()
 

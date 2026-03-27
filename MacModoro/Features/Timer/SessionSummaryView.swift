@@ -117,6 +117,7 @@ struct SessionSummaryView: View {
                                         .contentShape(Rectangle())
                                     }
                                     .buttonStyle(.plain)
+                                    .pointerCursor()
                                 }
                             }
                             .padding(14)
@@ -143,6 +144,7 @@ struct SessionSummaryView: View {
             .padding(.horizontal, 40)
             .padding(.bottom, 12)
             .padding(.top, 8)
+            .pointerCursor()
         }
         .frame(width: 280, height: 400)
     }

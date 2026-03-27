@@ -52,6 +52,7 @@ struct ActiveSessionView: View {
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.tertiary)
+                .pointerCursor()
                 .popover(isPresented: $showNoiseMenu) {
                     WhiteNoisePickerView(noiseService: noiseService)
                 }
@@ -76,6 +77,7 @@ struct ActiveSessionView: View {
                             .clipShape(Circle())
                     }
                     .buttonStyle(.plain)
+                    .pointerCursor()
                 } else if timerService.state == .paused {
                     Button(action: { timerService.resume() }) {
                         Image(systemName: "play.fill")
@@ -85,6 +87,7 @@ struct ActiveSessionView: View {
                             .clipShape(Circle())
                     }
                     .buttonStyle(.plain)
+                    .pointerCursor()
                 }
 
                 Button(action: {
@@ -99,6 +102,7 @@ struct ActiveSessionView: View {
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.red.opacity(0.7))
+                .pointerCursor()
             }
 
             Spacer(minLength: 12)

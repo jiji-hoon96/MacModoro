@@ -56,10 +56,7 @@ struct PreSessionView: View {
                             .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
-                    .onHover { hovering in
-                        if hovering { NSCursor.pointingHand.push() }
-                        else { NSCursor.pop() }
-                    }
+                    .pointerCursor()
                 }
             }
 
