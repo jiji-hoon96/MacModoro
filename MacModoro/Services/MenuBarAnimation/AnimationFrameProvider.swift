@@ -42,16 +42,16 @@ enum AnimationFrameProvider {
         let themeData = allThemes.first { $0.id == theme } ?? allThemes[0]
         let name = themeData.symbolName
 
-        // 8프레임: 위아래 바운스 + 살짝 기울기
+        // 8프레임: 상단바 안에서만 움직이도록 범위 축소
         let offsets: [(y: CGFloat, rot: CGFloat, scale: CGFloat)] = [
             (y: 0,    rot: 0,    scale: 1.0),
-            (y: -1.0, rot: -3,   scale: 1.02),
-            (y: -2.0, rot: -5,   scale: 1.04),
-            (y: -2.5, rot: 0,    scale: 1.05),
-            (y: -2.0, rot: 5,    scale: 1.04),
-            (y: -1.0, rot: 3,    scale: 1.02),
+            (y: -0.5, rot: -2,   scale: 1.0),
+            (y: -1.0, rot: -3,   scale: 1.0),
+            (y: -1.2, rot: 0,    scale: 1.0),
+            (y: -1.0, rot: 3,    scale: 1.0),
+            (y: -0.5, rot: 2,    scale: 1.0),
             (y: 0,    rot: 0,    scale: 1.0),
-            (y: 0.5,  rot: 0,    scale: 0.98),
+            (y: 0.3,  rot: 0,    scale: 1.0),
         ]
 
         return offsets.map { renderSFSymbol(name: name, size: size, offsetY: $0.y, rotation: $0.rot, scale: $0.scale) }
@@ -66,7 +66,7 @@ enum AnimationFrameProvider {
         rotation: CGFloat,
         scale: CGFloat
     ) -> NSImage {
-        let config = NSImage.SymbolConfiguration(pointSize: size.height * 0.7, weight: .regular)
+        let config = NSImage.SymbolConfiguration(pointSize: size.height * 0.6, weight: .regular)
         guard let symbol = NSImage(systemSymbolName: name, accessibilityDescription: nil) else {
             let fallback = NSImage(size: size)
             fallback.isTemplate = true
