@@ -70,18 +70,18 @@ struct CircularTimerView: View {
     private var phaseLabelColor: Color {
         switch phase {
         case .focus: return .primary.opacity(0.3)
-        case .rest: return .green.opacity(0.6)
-        case .paused: return .orange.opacity(0.6)
+        case .rest: return .primary.opacity(0.5)
+        case .paused: return .primary.opacity(0.35)
         }
     }
 
     private var ringColor: Color {
         switch phase {
-        case .rest: return .green.opacity(0.5)
-        case .paused: return .orange.opacity(0.3)
+        case .rest: return .primary.opacity(0.4)
+        case .paused: return .primary.opacity(0.2)
         case .focus:
-            if displayedProgress > 0.9 { return .red.opacity(0.7) }
-            if displayedProgress > 0.7 { return .orange.opacity(0.7) }
+            if displayedProgress > 0.9 { return .primary.opacity(0.5) }
+            if displayedProgress > 0.7 { return .primary.opacity(0.35) }
             return .primary.opacity(0.3)
         }
     }

@@ -13,7 +13,7 @@ struct ActiveSessionView: View {
             if let cycleLabel = timerService.cycleLabel {
                 Text(cycleLabel)
                     .font(.system(size: 10, weight: .medium))
-                    .foregroundStyle(timerService.isRestPhase ? Color.green.opacity(0.7) : Color.secondary)
+                    .foregroundStyle(timerService.isRestPhase ? Color.primary.opacity(0.5) : Color.secondary)
                     .kerning(1.5)
             } else if let session = timerService.currentSession, !session.goal.isEmpty {
                 Text(session.goal)
@@ -39,7 +39,7 @@ struct ActiveSessionView: View {
             if timerService.focusBreakCount > 0 {
                 Text("\(timerService.focusBreakCount) distractions")
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(.orange.opacity(0.8))
+                    .foregroundStyle(.primary.opacity(0.4))
                     .kerning(0.5)
             }
 
@@ -102,11 +102,11 @@ struct ActiveSessionView: View {
                     Image(systemName: "xmark")
                         .font(.system(size: 12, weight: .medium))
                         .frame(width: 36, height: 36)
-                        .background(Color.red.opacity(0.08))
+                        .background(Color.primary.opacity(0.06))
                         .clipShape(Circle())
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.red.opacity(0.7))
+                .foregroundStyle(.primary.opacity(0.5))
                 .pointerCursor()
             }
 

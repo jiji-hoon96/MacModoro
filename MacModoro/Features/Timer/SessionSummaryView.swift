@@ -14,7 +14,7 @@ struct SessionSummaryView: View {
                     VStack(spacing: 6) {
                         Image(systemName: "checkmark")
                             .font(.system(size: 28, weight: .light))
-                            .foregroundStyle(.green)
+                            .foregroundStyle(.primary.opacity(0.6))
 
                         Text("Complete")
                             .font(.system(size: 11, weight: .medium))
@@ -53,7 +53,7 @@ struct SessionSummaryView: View {
                                         .foregroundStyle(.tertiary)
                                     Spacer()
                                     Text("\(session.breakCount)회")
-                                        .foregroundStyle(session.breakCount > 0 ? .orange : .primary)
+                                        .foregroundStyle(session.breakCount > 0 ? Color.primary.opacity(0.4) : Color.primary)
                                 }
                                 .font(.system(size: 12))
 
@@ -80,7 +80,7 @@ struct SessionSummaryView: View {
                                     Spacer()
                                     Text("\(completed)/\(total)")
                                         .font(.system(size: 11, weight: .semibold, design: .rounded))
-                                        .foregroundStyle(completed == total ? .green : .orange)
+                                        .foregroundStyle(Color.primary.opacity(completed == total ? 0.6 : 0.4))
                                 }
 
                                 // 프로그레스
@@ -89,7 +89,7 @@ struct SessionSummaryView: View {
                                         Capsule()
                                             .fill(Color.primary.opacity(0.06))
                                         Capsule()
-                                            .fill(completed == total ? Color.green.opacity(0.6) : Color.orange.opacity(0.6))
+                                            .fill(completed == total ? Color.primary.opacity(0.5) : Color.primary.opacity(0.35))
                                             .frame(width: geo.size.width * CGFloat(completed) / max(CGFloat(total), 1))
                                             .animation(.easeOut(duration: 0.3), value: completed)
                                     }
@@ -105,7 +105,7 @@ struct SessionSummaryView: View {
                                         HStack(spacing: 8) {
                                             Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
                                                 .font(.system(size: 14))
-                                                .foregroundStyle(todo.isCompleted ? Color.green : Color.gray.opacity(0.3))
+                                                .foregroundStyle(todo.isCompleted ? Color.primary.opacity(0.6) : Color.gray.opacity(0.3))
 
                                             Text(todo.text)
                                                 .font(.system(size: 12))

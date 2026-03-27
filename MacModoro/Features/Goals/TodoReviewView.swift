@@ -14,7 +14,7 @@ struct TodoReviewView: View {
                 ForEach(todos) { todo in
                     HStack {
                         Image(systemName: todo.isCompleted ? "checkmark.circle.fill" : "circle")
-                            .foregroundStyle(todo.isCompleted ? .green : .secondary)
+                            .foregroundStyle(todo.isCompleted ? Color.primary.opacity(0.6) : Color.secondary)
                             .onTapGesture {
                                 onToggle?(todo)
                             }

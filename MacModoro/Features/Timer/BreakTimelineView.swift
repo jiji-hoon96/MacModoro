@@ -10,7 +10,7 @@ struct BreakTimelineView: View {
                 let sec = brk.secondsSinceSessionStart % 60
                 HStack(spacing: 6) {
                     Circle()
-                        .fill(Color.orange.opacity(0.5))
+                        .fill(Color.primary.opacity(0.3))
                         .frame(width: 4, height: 4)
 
                     Text("\(String(format: "%d:%02d", min, sec))")
@@ -19,7 +19,7 @@ struct BreakTimelineView: View {
 
                     Text(brk.reason)
                         .font(.system(size: 10))
-                        .foregroundStyle(.orange.opacity(0.7))
+                        .foregroundStyle(.primary.opacity(0.35))
                 }
             }
         }

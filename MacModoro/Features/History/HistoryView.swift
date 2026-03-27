@@ -87,7 +87,7 @@ private struct StatColumn: View {
 
             Text(sub)
                 .font(.system(size: 9))
-                .foregroundStyle(.orange.opacity(0.7))
+                .foregroundStyle(.primary.opacity(0.35))
         }
         .frame(maxWidth: .infinity)
     }
@@ -109,7 +109,7 @@ private struct SessionRowView: View {
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: 4) {
                     Circle()
-                        .fill(session.wasCompleted ? Color.green.opacity(0.7) : Color.red.opacity(0.4))
+                        .fill(session.wasCompleted ? Color.primary.opacity(0.5) : Color.primary.opacity(0.15))
                         .frame(width: 5, height: 5)
 
                     Text(session.startedAt, style: .time)
@@ -131,7 +131,7 @@ private struct SessionRowView: View {
             if session.breakCount > 0 {
                 Text("\(session.breakCount)")
                     .font(.system(size: 10, weight: .medium, design: .rounded))
-                    .foregroundStyle(.orange.opacity(0.7))
+                    .foregroundStyle(.primary.opacity(0.35))
             }
         }
         .padding(.vertical, 8)
