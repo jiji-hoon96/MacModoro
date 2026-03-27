@@ -37,8 +37,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.handleTimerStateChange(state)
             }
 
-        // #5: 남은 시간 비율에 따라 연속적으로 속도 가변
+        // 속도 가변: 10초마다만 체크 (매초 불필요)
         speedObserver = TimerService.shared.$remainingSeconds
+            .filter { $0 % 10 == 0 || $0 <= 5 }
             .receive(on: RunLoop.main)
             .sink { [weak self] remaining in
                 self?.updateAnimationSpeed(remaining: remaining)

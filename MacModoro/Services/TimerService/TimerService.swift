@@ -32,7 +32,7 @@ final class TimerService: ObservableObject {
     @Published var isRestPhase: Bool = false
 
     private(set) var currentSession: PomodoroSession?
-    private var timer: DispatchSourceTimer?
+    private var timer: Timer?
     private var modelContext: ModelContext?
 
     private var cycleConfig: CycleConfig?
@@ -154,17 +154,16 @@ final class TimerService: ObservableObject {
 
     private func startTimer() {
         stopTimer()
-        let timer = DispatchSource.makeTimerSource(queue: .main)
-        timer.schedule(deadline: .now() + 1, repeating: 1.0)
-        timer.setEventHandler { [weak self] in
+        let timer = Timer(timeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.tick()
         }
-        timer.resume()
+        timer.tolerance = 0.1 // 100ms 허용 → CPU idle 시간 확보
+        RunLoop.main.add(timer, forMode: .common)
         self.timer = timer
     }
 
     private func stopTimer() {
-        timer?.cancel()
+        timer?.invalidate()
         timer = nil
     }
 
