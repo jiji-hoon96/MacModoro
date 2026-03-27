@@ -56,7 +56,16 @@ enum SharedModelContainer {
         do {
             return try ModelContainer(for: schema, configurations: [config])
         } catch {
-            fatalError("Failed to create ModelContainer: \(error)")
+            // 스키마 변경으로 기존 스토어 호환 안 될 때 삭제 후 재생성
+            let storeURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+            for ext in ["MacModoro.store", "MacModoro.store-shm", "MacModoro.store-wal"] {
+                try? FileManager.default.removeItem(at: storeURL.appendingPathComponent(ext))
+            }
+            do {
+                return try ModelContainer(for: schema, configurations: [config])
+            } catch {
+                fatalError("Failed to create ModelContainer: \(error)")
+            }
         }
     }()
 }
