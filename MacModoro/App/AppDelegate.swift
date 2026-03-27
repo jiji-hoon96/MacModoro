@@ -10,7 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var timerStateObserver: AnyCancellable?
     private var timeTextObserver: AnyCancellable?
     private var speedObserver: AnyCancellable?
-    private var eventMonitor: Any?
+    private var settingsObservers: Set<AnyCancellable> = []
 
     private var statusItem: NSStatusItem!
     private var popover: NSPopover!
@@ -37,6 +37,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.handleTimerStateChange(state)
             }
 
+        // #5: 남은 시간 비율에 따라 연속적으로 속도 가변
         speedObserver = TimerService.shared.$remainingSeconds
             .receive(on: RunLoop.main)
             .sink { [weak self] remaining in
@@ -50,10 +51,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         TimerService.shared.requestNotificationPermission()
 
-        // #4: 앱 전환 감지 서비스 시작
         DistractionDetector.shared.onDistraction = {
             TimerService.shared.recordFocusBreak()
         }
+
+        // #4: 설정 변경 즉시 반영
+        observeSettingsChanges()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -66,6 +69,51 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         true
+    }
+
+    // MARK: - #4: 설정 변경 즉시 반영
+
+    private func observeSettingsChanges() {
+        let settings = AppSettings.shared
+
+        // 아이콘 테마 변경 → 즉시 반영
+        settings.$selectedAnimationTheme
+            .dropFirst()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.animationService?.loadTheme()
+                if TimerService.shared.state == .running {
+                    self?.animationService?.startAnimation()
+                } else {
+                    self?.animationService?.showIdle()
+                }
+            }
+            .store(in: &settingsObservers)
+
+        // 시간 표시 토글 → 즉시 반영
+        settings.$showRemainingTimeInMenuBar
+            .dropFirst()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] show in
+                if show && TimerService.shared.state == .running {
+                    self?.observeTimeText()
+                } else {
+                    self?.animationService?.updateTimeText(nil)
+                    self?.timeTextObserver?.cancel()
+                }
+            }
+            .store(in: &settingsObservers)
+
+        // 애니메이션 속도 변경 → 즉시 반영
+        settings.$animationSpeed
+            .dropFirst()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newSpeed in
+                if TimerService.shared.state == .running {
+                    self?.animationService?.updateSpeed(newSpeed)
+                }
+            }
+            .store(in: &settingsObservers)
     }
 
     // MARK: - Timer State → Animation
@@ -87,24 +135,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    // #5: 남은 시간 비율에 따라 연속적으로 속도 가변 (느림 → 빠름)
     private func updateAnimationSpeed(remaining: Int) {
         guard TimerService.shared.state == .running else { return }
         let total = TimerService.shared.totalSeconds
         guard total > 0 else { return }
 
-        let ratio = Double(remaining) / Double(total)
+        let ratio = Double(remaining) / Double(total) // 1.0 → 0.0
         let baseSpeed = AppSettings.shared.animationSpeed
 
-        let speed: Double
-        if ratio < 0.1 {
-            speed = baseSpeed * 0.3
-        } else if ratio < 0.25 {
-            speed = baseSpeed * 0.5
-        } else if ratio < 0.5 {
-            speed = baseSpeed * 0.7
-        } else {
-            speed = baseSpeed
-        }
+        // ratio 1.0일 때 baseSpeed, ratio 0.0일 때 baseSpeed * 0.2
+        // 선형 보간: speed = baseSpeed * (0.2 + 0.8 * ratio)
+        let speed = baseSpeed * (0.2 + 0.8 * ratio)
 
         animationService?.updateSpeed(speed)
     }
@@ -138,7 +180,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         animationService?.showIdle()
     }
 
-    // MARK: - Popover (#1: 외부 클릭 시 닫기)
+    // MARK: - Popover
 
     private func setupPopover() {
         popover = NSPopover()

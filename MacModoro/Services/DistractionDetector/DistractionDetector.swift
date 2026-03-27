@@ -8,35 +8,27 @@ final class DistractionDetector {
 
     private var observer: NSObjectProtocol?
     private var lastRecordedTime: Date = .distantPast
-    private let cooldown: TimeInterval = 10 // 같은 앱 반복 감지 방지 (10초)
+    private let cooldown: TimeInterval = 10
 
-    // 집중 깨짐으로 감지할 앱 번들 ID
-    private let distractingBundleIDs: Set<String> = [
-        // 영상
-        "com.google.Chrome",           // Chrome (YouTube)
-        "com.apple.Safari",            // Safari (YouTube)
-        "org.mozilla.firefox",         // Firefox
-        // SNS / 메신저
-        "com.kakao.KakaoTalk",         // 카카오톡
-        "com.tinyspeck.slackmacgap",   // Slack
-        "com.hnc.Discord",             // Discord
-        "com.facebook.archon",         // Messenger
-        "ru.keepcoder.Telegram",       // Telegram
-        "net.whatsapp.WhatsApp",       // WhatsApp
-        "com.linecorp.LineForMac",     // Line
-        // SNS 앱
-        "com.twitter.twitter-mac",     // Twitter/X
-        "com.burbn.instagram",         // Instagram
+    // 집중 깨짐으로 감지할 앱 번들 ID (부분 매칭 포함)
+    private let distractingBundlePatterns: [String] = [
+        // 메신저
+        "com.kakao",              // 카카오톡 (com.kakao.KakaoTalk 등)
+        "com.tinyspeck.slackmacgap", // Slack
+        "com.hnc.Discord",        // Discord
+        "ru.keepcoder.Telegram",  // Telegram
+        "net.whatsapp",           // WhatsApp
+        "com.linecorp",           // Line
+        "com.facebook",           // Messenger
+        // SNS
+        "com.twitter",            // Twitter/X
+        "com.burbn.instagram",    // Instagram
+        "com.reddit",             // Reddit
+        "com.zhiliaoapp.musically", // TikTok
     ]
 
-    // 브라우저에서 감지할 URL 키워드 (탭 제목 기반)
-    private let distractingKeywords: [String] = [
-        "youtube", "youtu.be",
-        "twitter", "x.com",
-        "instagram", "facebook",
-        "tiktok", "reddit",
-        "netflix", "twitch",
-    ]
+    // 브라우저에서 감지 안 함 (개발 작업 중 사용하므로 오탐 많음)
+    // 대신 순수 SNS/메신저 앱만 감지
 
     private init() {}
 
@@ -69,34 +61,18 @@ final class DistractionDetector {
         // 쿨다운 체크
         guard Date.now.timeIntervalSince(lastRecordedTime) > cooldown else { return }
 
-        // 번들 ID 직접 매칭
-        if distractingBundleIDs.contains(bundleID) {
-            recordDistraction()
-            return
-        }
-
-        // 브라우저인 경우 앱 이름 / 타이틀에서 키워드 확인
-        let browserBundleIDs: Set<String> = [
-            "com.google.Chrome", "com.apple.Safari", "org.mozilla.firefox",
-            "com.microsoft.edgemac", "com.brave.Browser", "com.operasoftware.Opera"
-        ]
-
-        if browserBundleIDs.contains(bundleID) {
-            // 활성 윈도우 제목에서 키워드 감지
-            if let title = app.localizedName {
-                let lowered = title.lowercased()
-                for keyword in distractingKeywords {
-                    if lowered.contains(keyword) {
-                        recordDistraction()
-                        return
-                    }
-                }
+        // 번들 ID 부분 매칭 (com.kakao → com.kakao.KakaoTalk도 매칭)
+        for pattern in distractingBundlePatterns {
+            if bundleID.hasPrefix(pattern) || bundleID == pattern {
+                recordDistraction(appName: app.localizedName ?? bundleID)
+                return
             }
         }
     }
 
-    private func recordDistraction() {
+    private func recordDistraction(appName: String) {
         lastRecordedTime = .now
+        print("[MacModoro] 집중 깨짐 감지: \(appName)")
         onDistraction?()
     }
 }

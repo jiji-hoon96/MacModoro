@@ -7,17 +7,22 @@ struct TimerSettingsTab: View {
     @State private var previewTimer: Timer?
 
     var body: some View {
-        VStack(spacing: 0) {
-            Form {
-                Section("기본 설정") {
-                    Stepper("기본 시간: \(settings.defaultDurationMinutes)분",
-                            value: $settings.defaultDurationMinutes,
-                            in: 1...180)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                // 기본 설정
+                GroupBox("기본 설정") {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Stepper("기본 시간: \(settings.defaultDurationMinutes)분",
+                                value: $settings.defaultDurationMinutes,
+                                in: 1...180)
 
-                    Toggle("메뉴바에 남은 시간 표시", isOn: $settings.showRemainingTimeInMenuBar)
+                        Toggle("메뉴바에 남은 시간 표시", isOn: $settings.showRemainingTimeInMenuBar)
+                    }
+                    .padding(.vertical, 4)
                 }
 
-                Section("애니메이션 속도") {
+                // 애니메이션 속도
+                GroupBox("애니메이션 속도") {
                     HStack {
                         Text("느리게")
                             .font(.caption)
@@ -27,52 +32,46 @@ struct TimerSettingsTab: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
+                    .padding(.vertical, 4)
                 }
-            }
-            .padding(.horizontal)
-            .padding(.top)
 
-            Divider()
-                .padding(.vertical, 8)
+                // 아이콘 테마
+                GroupBox {
+                    VStack(alignment: .leading, spacing: 10) {
+                        HStack {
+                            Text("아이콘 테마")
+                                .font(.subheadline.bold())
 
-            // 테마 선택 그리드
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text("아이콘 테마")
-                        .font(.headline)
+                            Spacer()
 
-                    Spacer()
+                            if let frame = previewFrames[safe: previewFrame] {
+                                Image(nsImage: frame)
+                                    .frame(width: 20, height: 20)
+                            }
 
-                    // 선택된 테마 미리보기
-                    if let frame = previewFrames[safe: previewFrame] {
-                        Image(nsImage: frame)
-                            .frame(width: 24, height: 24)
-                    }
+                            if let theme = AnimationFrameProvider.allThemes.first(where: { $0.id == settings.selectedAnimationTheme }) {
+                                Text(theme.name)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
 
-                    if let theme = AnimationFrameProvider.allThemes.first(where: { $0.id == settings.selectedAnimationTheme }) {
-                        Text(theme.name)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                    }
-                }
-                .padding(.horizontal)
-
-                ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 5), spacing: 8) {
-                        ForEach(AnimationFrameProvider.allThemes) { theme in
-                            ThemeCell(
-                                theme: theme,
-                                isSelected: settings.selectedAnimationTheme == theme.id
-                            ) {
-                                settings.selectedAnimationTheme = theme.id
-                                startPreview()
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 5), spacing: 6) {
+                            ForEach(AnimationFrameProvider.allThemes) { theme in
+                                ThemeCell(
+                                    theme: theme,
+                                    isSelected: settings.selectedAnimationTheme == theme.id
+                                ) {
+                                    settings.selectedAnimationTheme = theme.id
+                                    startPreview()
+                                }
                             }
                         }
                     }
-                    .padding(.horizontal)
+                    .padding(.vertical, 4)
                 }
             }
-            .padding(.bottom)
+            .padding()
         }
         .onAppear { startPreview() }
         .onDisappear { previewTimer?.invalidate() }
@@ -82,7 +81,7 @@ struct TimerSettingsTab: View {
         previewTimer?.invalidate()
         previewFrames = AnimationFrameProvider.runningFrames(
             theme: settings.selectedAnimationTheme,
-            size: NSSize(width: 24, height: 24)
+            size: NSSize(width: 20, height: 20)
         )
         previewFrame = 0
         previewTimer = Timer.scheduledTimer(withTimeInterval: settings.animationSpeed, repeats: true) { _ in
@@ -98,23 +97,23 @@ private struct ThemeCell: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 4) {
+            VStack(spacing: 2) {
                 Image(systemName: theme.icon)
-                    .font(.system(size: 20))
-                    .frame(width: 36, height: 36)
+                    .font(.system(size: 16))
+                    .frame(width: 30, height: 28)
 
                 Text(theme.name)
-                    .font(.system(size: 10))
+                    .font(.system(size: 9))
                     .lineLimit(1)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 6)
+            .padding(.vertical, 4)
             .background(
                 isSelected ? Color.accentColor.opacity(0.15) : Color.primary.opacity(0.04),
-                in: RoundedRectangle(cornerRadius: 8)
+                in: RoundedRectangle(cornerRadius: 6)
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
+                RoundedRectangle(cornerRadius: 6)
                     .strokeBorder(isSelected ? Color.accentColor : Color.clear, lineWidth: 1.5)
             )
         }
